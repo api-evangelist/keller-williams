@@ -1,0 +1,484 @@
+aid: keller-williams
+name: Keller Williams
+review:
+  question: >-
+    Does Keller Williams publish a reachable developer API surface, and does it
+    carry any RESO posture?
+  answer: >-
+    Yes to a real developer surface, no to RESO. Keller Williams operates a
+    live Apigee-backed developer portal (DevHub) at developer.kw.com with one
+    anonymously published OpenAPI 3.0.1 specification and a publicly readable
+    OpenID Connect discovery document, but every credential is issued only
+    after an approved partnership application and a signed API License
+    Agreement. Keller Williams appears nowhere in the RESO certification
+    directory and makes no reference to RESO, the RESO Data Dictionary, OData,
+    $metadata or the Universal Property Identifier anywhere in its portal or
+    specification.
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  homeMarket: United States
+  tier: brokerage
+
+sector:
+  resoPosture:
+    summary: No RESO reference found; absent from the RESO certification directory.
+    certified: false
+    webApiCertification: none found
+    dataDictionaryCertification: none found
+    dataDictionaryVersion: null
+    uniqueOrganizationIdentifier: none found
+    directoryEvidence: >-
+      Fetched https://www.reso.org/certificates/ on 2026-07-26 (HTTP 200,
+      416,233 bytes) and parsed 578 certified organization entries, each
+      carrying a RESO Unique Organization Identifier (UOI). Zero entries match
+      "Keller", "KWRI" or "KW". Control checks on the same document confirm the
+      page is the real directory: eXp (13 hits), Bridge (6), MLS Grid (2),
+      Zillow (2, UOI T00000053 with a certification summary link to
+      certification.reso.org/summary/T00000053). https://certification.reso.org/
+      itself returned HTTP 400 to an anonymous client and could not be queried.
+    odataMetadata: >-
+      No $metadata document, no OData service root, and no OData vocabulary
+      anywhere. The KW gateway is plain REST/JSON; the DevHub Getting Started
+      page states explicitly "All KW APIs are RESTful" and "All KW APIs return
+      response data in a JSON object."
+    universalPropertyIdentifier: >-
+      No UPI reference. The listings OpenAPI keys listings by an internal
+      list_uuid and a KW org/region identifier, not a UPI or a RESO ListingKey.
+    portalSearchEvidence: >-
+      Case-insensitive grep across every harvested DevHub page (28 pages) and
+      the harvested OpenAPI document for "RESO", "Data Dictionary", "IDX",
+      "VOW", "MLS", "Multiple Listing", "UPI", "OData" and "$metadata" returned
+      zero hits in the portal pages. The only related string in the whole
+      corpus is inside the OpenAPI description itself, and it is a disclaimer.
+    verbatimDisclaimer: >-
+      From the anonymously published KW Worldwide Listings Search catalog entry
+      and its OpenAPI info.description: "The Listings service returns all
+      Keller Williams Listing Service listings specific to an agent. This is
+      not a substitution for or tied to any Multiple Listings Services database
+      records."
+    interpretation: >-
+      Keller Williams is a brokerage franchisor, not an MLS or an MLS data
+      vendor. The listing data it exposes is its own Keller Williams Listing
+      Service (KWLS) inventory, deliberately positioned outside the MLS
+      cooperative. Certification is therefore not merely unreachable here — it
+      is absent, because KW never entered the RESO seam at all. The mandated
+      machine-readable contract of US residential real estate does not touch
+      this organization's developer surface.
+  accessGate:
+    classification: application-approval
+    whatADeveloperMustDoOrSign:
+      - >-
+        Submit the "Apply to Integrate" / "Become A Partner" application (a
+        HubSpot form at https://share.hsforms.com/2JQHe7zfKRLSo_cXKjy-5nwbg45/,
+        HTTP 200) — linked from both the DevHub header and footer.
+      - >-
+        Receive KWRI approval. The Getting Started page states: "In order to
+        use DevHub, you must have an approved application and have received a
+        DevHub account... NOTE: DevHub accounts are subject to KWRI Approval."
+      - >-
+        Accept the Keller Williams Realty, Inc. API License Agreement
+        (effective 2023-08-02, https://developer.kw.com/api-license-agreement),
+        a non-exclusive, non-transferable, revocable licence with a License Fee
+        clause in Exhibit A.
+      - >-
+        Accept the KWRI API Terms of Use (last updated 2023-08-02,
+        https://developer.kw.com/terms-and-conditions), which binds use of APIs
+        provided by KW Worldwide Ltd., KW Accelerator Studios LLC, KW Insurance
+        Ltd., Business MAPS Ltd., Keller Williams LLC and Livian LLC.
+      - >-
+        Sign in to DevHub via SAML with credentials issued by KW, register an
+        application with a single HTTPS callback URL, select API products and
+        scopes, and collect the generated API Key and Secret.
+      - >-
+        For Marketplace integrations, additionally obtain separate Command and
+        Marketplace developer accounts, share a secured event endpoint with the
+        KW team, and submit each Marketplace product for review and approval
+        before publishing.
+    isSelfServe: false
+    isMembershipRequired: false
+    isBrokerOrAgentOnly: false
+    notes: >-
+      Not membership-required in the MLS sense — a developer does not have to
+      join a board, an MLS or hold a real estate licence. The gate is a
+      commercial partnership application reviewed by KWRI, followed by a signed
+      licence. End-user data access is additionally consent-gated: every
+      access token is minted per KW user through an OpenID Connect consent
+      screen during a Marketplace subscription or user-assignment event.
+  openData:
+    exists: false
+    notes: >-
+      No open, unlicensed, publicly callable dataset. The single anonymously
+      readable artifact is a specification document, not data. Every data
+      endpoint on partners.api.kw.com answered HTTP 401
+      BAD_TOKEN_AUTHENTICATION to an anonymous request.
+  authModel:
+    schemes:
+      - OAuth 2.0 authorization code with PKCE (S256)
+      - OpenID Connect (identity layer, RS256 ID tokens)
+      - API key + secret (API-Key header) on every request
+      - HTTP Basic (base64 API_KEY:API_SECRET) for non-user-specific resources and token calls
+      - Bearer access tokens (Authorization header)
+      - SAML sign-in for the DevHub developer portal itself
+    discoveryDocument: >-
+      https://partners.api.kw.com/idp/.well-known/openid-configuration returned
+      HTTP 200 anonymously on 2026-07-26 and is saved verbatim at
+      authentication/keller-williams-openid-configuration.json.
+    endpoints:
+      - https://partners.api.kw.com/idp/authorize
+      - https://partners.api.kw.com/idp/token
+      - https://partners.api.kw.com/idp/introspect
+      - https://partners.api.kw.com/idp/userinfo
+      - https://partners.api.kw.com/idp/revoke
+      - https://partners.api.kw.com/idp/end_session
+      - https://partners.api.kw.com/idp/device_authorization
+      - https://partners.api.kw.com/idp/keys
+      - https://partners.api.kw.com/v2/oauth2/partner/token
+    scopesSupportedCount: 40
+    scopesDocumentedInPortal:
+      - read_contact
+      - write_contact
+      - read_contact_setting
+      - write_custom_field
+      - read_user
+      - read_organization
+      - read_task
+      - write_task
+    tokenLifetimes: >-
+      Access token expires 2 days after generation; refresh token expires 365
+      days after generation and rotates on each refresh (documented at
+      https://developer.kw.com/docs-authentication).
+    notes: >-
+      The jwks_uri advertised in the discovery document
+      (https://partners.api.kw.com/idp/keys) returned HTTP 404
+      "Resourse not supported." to an anonymous request, as did
+      /idp/token via GET. /idp/authorize returned HTTP 401
+      "Invalid client id or secret" — a live authorization server rejecting an
+      unregistered client, not a missing endpoint.
+  homeMarket: United States
+
+findings:
+  summary: |
+    Keller Williams Realty, Inc. (KWRI), Austin, Texas, runs a real and
+    currently maintained partner developer program. developer.kw.com is a
+    Google Apigee integrated developer portal (site id
+    devhub-apigee-prod-kwri, served behind istio-envoy) branded "DevHub",
+    with a public sitemap of 66 URLs, an API catalog, a Getting Started
+    guide, Marketplace documentation, an API License Agreement, terms, and a
+    support address (PartnerTechSupport@KW.com).
+
+    Exactly one API is exposed anonymously in the catalog: KW Worldwide
+    Listings Search (apiId listingskww, product ListingsKWW, approvalType
+    "manual", anonAllowed true). Its OpenAPI 3.0.1 document was harvested
+    verbatim and parses — 5 paths, 8 operations, servers
+    https://partners.api.kw.com/v2 (Production) and
+    https://sandbox.partners.api.kw.com/v2 (Sandbox).
+
+    The catalog also enumerates the API categories that exist behind login,
+    which is the honest map of the product family: Internal; Command MC;
+    User, Organization & Role Information; Contact & Lead Data; Tasks;
+    Opportunity, Deal, and Transaction Data; KW Worldwide; Marketplace
+    Subscription Management. The OpenID Connect discovery document
+    independently confirms that family through its 40 scopes — contacts,
+    tasks, listings (including read_syndicated_listings and
+    read_all_listings), organizations, users, associates, opportunities,
+    recruiting (read_recruit / write_recruit) and marketing profiles.
+
+    There is no RESO posture. Keller Williams is not in the RESO
+    certification directory, publishes no OData surface or $metadata, uses no
+    UPI, and its own listings spec disclaims any tie to MLS records. This is
+    the sector's counter-case: a large US brokerage whose developer surface is
+    entirely proprietary and sits outside the mandated standard.
+  developerPortal:
+    url: https://developer.kw.com/
+    status: 200
+    confirmed: true
+    platform: Google Apigee integrated developer portal ("liveportal"), site id devhub-apigee-prod-kwri
+    selfServeSignup: false
+    note: >-
+      The portal itself is publicly browsable and confirmed live, but the
+      "Sign In" flow is SAML with KW-issued credentials and there is no
+      self-service registration — only an application form.
+  apiCatalogAnonymous:
+    endpoint: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/apis
+    status: 200
+    apiDocsVisibleAnonymously: 1
+    apiProducts:
+      - name: ListingsKWW
+        displayName: ListingsKWW
+        description: Listings KWW for Integrated Portal
+        approvalType: manual
+    apiCategories:
+      - Internal
+      - Command MC
+      - User, Organization & Role Information
+      - Contact & Lead Data
+      - Tasks
+      - Opportunity, Deal, and Transaction Data
+      - KW Worldwide
+      - Marketplace Subscription Management
+  endpointsConfirmedRest:
+    - GET https://partners.api.kw.com/v2/listings
+    - POST https://partners.api.kw.com/v2/listings
+    - PATCH https://partners.api.kw.com/v2/listings/{list_uuid}
+    - DELETE https://partners.api.kw.com/v2/listings/{list_uuid}
+    - GET https://partners.api.kw.com/v2/listings/lookup-table
+    - GET https://partners.api.kw.com/v2/listings/region/{regionId}
+    - GET https://partners.api.kw.com/v2/listings/orgs/{orgId}/people
+    - POST https://partners.api.kw.com/v1/subscription/billing/usage
+    - POST https://partners.api.kw.com/v2/oauth2/partner/token
+  legacyBasePaths:
+    retired: '2024-03-02'
+    paths:
+      - https://kw-prod-prod.apigee.net/
+      - https://kw-nonprod-stage.apigee.net/
+      - https://kw-nonprod-qa.apigee.net/
+    replacedBy:
+      - https://partners.api.kw.com/
+      - https://sandbox.partners.api.kw.com/
+    note: >-
+      Documented at https://developer.kw.com/base-path-migration-guide. The
+      legacy hosts confirm Apigee as the gateway. Documentation examples still
+      reference a /v3/contacts resource on the new host, but the Contacts API
+      reference itself is behind login and GET /v3/contacts returned HTTP 404
+      anonymously.
+  webhooksAndEvents:
+    exists: true
+    style: >-
+      Outbound Marketplace lifecycle events posted from the KW Gateway to a
+      partner-registered secured HTTPS endpoint. There is no self-service
+      webhook registration API — the endpoint is shared with the KW team during
+      onboarding.
+    eventTypes:
+      - subscription creation
+      - subscription creation (teams)
+      - subscription change
+      - subscription cancel
+      - status notification
+      - user assignment
+      - user unassignment
+    asyncapi: false
+    note: >-
+      Sample payloads are published per event type. A separate Timeline API
+      documented at https://developer.kw.com/timelines lets a partner POST
+      NOTE and INFO events onto a Command contact timeline.
+  sdksAndCollections:
+    officialSdks: none published
+    postmanCollection: none published
+    cli: none published
+    codeSamples: cURL only, embedded in DevHub documentation pages
+    githubOrganization:
+      url: https://github.com/KWRI
+      publicRepos: 25
+      note: >-
+        Org display name "Keller Williams". No API SDK or specification
+        repository was advertised from the developer portal.
+  ratesAndPlans:
+    published: false
+    note: >-
+      No public pricing or rate-limit page. The API License Agreement contains
+      a License Fee clause referring to an Exhibit A that is not published.
+      Metered billing runs the other direction — partners report usage to KW
+      for Marketplace invoicing, with a large controlled vocabulary of unit
+      types (USER, API_CALLS, TIER1_API_CALLS, CONTACT, PROPERTY, and others).
+
+probes:
+  - url: https://kw.com/
+    status: 403
+    note: Bot protection; no anonymous access to the corporate site.
+  - url: https://www.kw.com/
+    status: 403
+    note: Redirects to https://kw.com/, blocked.
+  - url: https://developer.kw.com/
+    status: 200
+    note: Live Apigee developer portal (DevHub). Confirmed.
+  - url: https://developers.kw.com/
+    status: 403
+  - url: https://docs.kw.com/
+    status: 403
+  - url: https://api.kw.com/
+    status: 403
+    note: Redirects to https://kw.com/kw/, blocked.
+  - url: https://www.kw.com/developers
+    status: 403
+  - url: https://www.kw.com/api
+    status: 403
+  - url: https://labs.kw.com/
+    status: 0
+    note: Connection timed out after 20s.
+  - url: https://command.kw.com/
+    status: 0
+    note: Connection timed out after 20s.
+  - url: https://outfront.kw.com/
+    status: 200
+    note: KW Outfront Magazine; https://outfront.kw.com/feed/ is a valid RSS 2.0 feed.
+  - url: https://kwri.kw.com/
+    status: 200
+    note: "Keller Williams: Real Estate News, Culture & Vision"
+  - url: https://marketplace.kw.com/
+    status: 200
+    note: KW Marketplace storefront for agents (Shopify-hosted), not a developer surface.
+  - url: https://developer.kw.com/siteid
+    status: 200
+    note: Returned "devhub-apigee-prod-kwri".
+  - url: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/sitemap
+    status: 200
+  - url: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/menus
+    status: 200
+  - url: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/apis
+    status: 200
+    note: Anonymous API catalog. One apiDoc, one apiProduct, eight categories.
+  - url: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/apis/listingskww/spec
+    status: 200
+    note: Spec snapshot; OpenAPI 3.0.1 harvested verbatim and parsed.
+  - url: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/apidocs
+    status: 401
+    note: '"No authorization header provided" — the full catalog is login-gated.'
+  - url: https://developer.kw.com/sitemap.xml
+    status: 200
+    note: 66 URLs.
+  - url: https://developer.kw.com/robots.txt
+    status: 200
+  - url: https://developer.kw.com/openapi.json
+    status: 200
+    note: >-
+      FALSE POSITIVE. The Angular SPA returns the same 2,138-byte shell for
+      every unmatched path. Not an OpenAPI document. The same is true of
+      https://developer.kw.com/.well-known/openid-configuration on this host.
+  - url: https://partners.api.kw.com/
+    status: 404
+  - url: https://partners.api.kw.com/v2
+    status: 401
+    note: '{"success":"false","errorCode":"BAD_TOKEN_AUTHENTICATION"} — live gateway.'
+  - url: https://partners.api.kw.com/v2/listings
+    status: 401
+    note: BAD_TOKEN_AUTHENTICATION.
+  - url: https://sandbox.partners.api.kw.com/v2
+    status: 401
+    note: BAD_TOKEN_AUTHENTICATION — sandbox is live but still credentialed.
+  - url: https://partners.api.kw.com/openapi.json
+    status: 404
+  - url: https://partners.api.kw.com/swagger.json
+    status: 404
+  - url: https://partners.api.kw.com/.well-known/openid-configuration
+    status: 404
+  - url: https://partners.api.kw.com/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://partners.api.kw.com/idp/.well-known/openid-configuration
+    status: 200
+    note: Real OIDC discovery document, harvested verbatim.
+  - url: https://partners.api.kw.com/idp/authorize
+    status: 401
+    note: '"Invalid client id or secret" — live authorization server.'
+  - url: https://partners.api.kw.com/idp/keys
+    status: 404
+    note: Advertised jwks_uri is not anonymously served ("Resourse not supported.").
+  - url: https://partners.api.kw.com/v3/contacts
+    status: 404
+  - url: https://www.reso.org/certification/
+    status: 200
+  - url: https://www.reso.org/certificates/
+    status: 200
+    note: 578 certified organizations parsed; no Keller Williams / KWRI entry.
+  - url: https://certification.reso.org/
+    status: 400
+    note: Rejected an anonymous client; could not be queried.
+  - url: https://share.hsforms.com/2JQHe7zfKRLSo_cXKjy-5nwbg45/
+    status: 200
+    note: The "Apply to Integrate" / "Become A Partner" application form.
+  - url: https://github.com/KWRI
+    status: 200
+    note: Org "Keller Williams", 25 public repos (via api.github.com/orgs/kwri).
+
+harvested:
+  - path: openapi/keller-williams-listings-search-openapi.json
+    type: OpenAPI
+    version: 3.0.1
+    title: KW Listings Search
+    apiVersion: '2'
+    sourceURL: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/apis/listingskww/spec
+    httpStatus: 200
+    fetched: '2026-07-26'
+    parses: true
+    paths: 5
+    operations: 8
+    note: >-
+      Saved verbatim as served in the Apigee snapshot payload (the portal's
+      catalog record declares specFormat YAML, but the snapshot endpoint
+      serves the document as JSON; the JSON was written unmodified).
+      No components.securitySchemes are declared — authorization is carried
+      as an explicit Authorization header parameter on each operation,
+      documented as "Basic base64Encode(API_KEY:API_SECRET)".
+  - path: authentication/keller-williams-openid-configuration.json
+    type: OpenIDConnectDiscovery
+    sourceURL: https://partners.api.kw.com/idp/.well-known/openid-configuration
+    httpStatus: 200
+    fetched: '2026-07-26'
+    parses: true
+    note: >-
+      Issuer https://partners.api.kw.com. 40 scopes, 6 grant types including
+      client_credentials, token-exchange and jwt-bearer. Fetched anonymously.
+
+sources:
+  - url: https://developer.kw.com/
+    type: DeveloperPortal
+    note: Apigee "DevHub" portal, HTTP 200, last-modified 2025-12-14.
+  - url: https://developer.kw.com/getting-started
+    type: Documentation
+    note: >-
+      Prerequisites, KWRI approval requirement, SAML login, app/team creation,
+      full OpenID Connect application flow with /idp/authorize, /idp/token and
+      /idp/revoke, and the eight product scopes offered at app creation.
+  - url: https://developer.kw.com/docs-getting-started
+    type: Documentation
+    note: >-
+      Marketplace onboarding: environments (partners.api.kw.com and
+      sandbox.partners.api.kw.com), fine-grained per path+verb access policy,
+      API Key and Secret issued by the KW team, per-user access/refresh tokens
+      minted on subscription_creation or user_assignment events.
+  - url: https://developer.kw.com/docs-authentication
+    type: Documentation
+    note: Token lifetimes and the Authorization + api-key header pair.
+  - url: https://developer.kw.com/docs-refresh-token
+    type: APIReference
+    note: POST /v2/oauth2/partner/token with Basic auth and grant_type=refresh_token.
+  - url: https://developer.kw.com/marketplace-documentation
+    type: Documentation
+    note: Index of subscription lifecycle, sample payloads and error codes.
+  - url: https://developer.kw.com/metered-billing
+    type: APIReference
+    note: POST /v1/subscription/billing/usage with Bearer + API-Key auth.
+  - url: https://developer.kw.com/api-license-agreement
+    type: License
+    note: KWRI API License Agreement, effective 2023-08-02, 1221 S. MoPac Expressway, Suite 400, Austin, TX 78746.
+  - url: https://developer.kw.com/terms-and-conditions
+    type: TermsOfService
+    note: Names KW Worldwide Ltd., KW Accelerator Studios LLC, KW Insurance Ltd., Business MAPS Ltd., Keller Williams LLC and Livian LLC.
+  - url: https://developer.kw.com/base-path-migration-guide
+    type: Documentation
+    note: Legacy *.apigee.net base paths retired 2024-03-02.
+  - url: https://developer.kw.com/support
+    type: Support
+    note: PartnerTechSupport@KW.com, 24-48 business hour response.
+  - url: https://developer.kw.com/timelines
+    type: Documentation
+    note: Timeline event POST schemas for third-party authored contact events.
+  - url: https://www.reso.org/certificates/
+    type: CertificationDirectory
+    note: 578 certified organizations; Keller Williams absent.
+
+actions:
+  apisYmlCreated: true
+  apisListed: 3
+  openapiHarvested: true
+  specsCount: 1
+  additionalArtifacts: 1
+  status: built
+  imageNote: >-
+    image is the shared placeholder icon URL pending the provider icon
+    backfill; no Keller Williams icon has been uploaded to S3 yet.
+  notes: >-
+    Marked built rather than built-stub because a real, live, publicly
+    browsable developer portal with a downloadable machine-readable contract
+    and an anonymously readable OIDC discovery document was confirmed —
+    even though every credential and every data byte is behind an approved
+    partnership and a signed licence.
