@@ -1,0 +1,147 @@
+generated: '2026-07-26'
+method: searched
+source: https://developer.kw.com/docs-error-codes-reference
+also:
+  - https://developer.kw.com/subscription-async-management
+  - https://developer.kw.com/docs-synchronous-subscription
+  - https://developer.kw.com/metered-billing
+  - openapi/keller-williams-listings-search-openapi.json
+format: proprietary
+rfc9457: false
+envelope:
+  media_type: application/json
+  fields:
+    success: string — "false" when an error occurred
+    errorCode: string — SCREAMING_SNAKE_CASE identifier from the registry below
+    message: string — human-readable explanation
+  example: |
+    {
+      "success": "false",
+      "errorCode": "BAD_TOKEN_AUTHENTICATION",
+      "message": "Token is not valid or missing"
+    }
+summary:
+  gateway_codes: 13
+  partner_response_codes: 13
+  note: >-
+    Two distinct registries. The gateway registry is what the KW partner
+    gateway returns TO a partner. The partner-response registry is what a
+    partner's own webhook endpoint must return TO KW when it rejects a
+    subscription event — the same code list is reused for the synchronous
+    409 rejection body and the asynchronous /v1/subscription/async/confirm
+    rejection body.
+gateway_errors:
+  - code: BAD_API_KEY
+    status: 500
+    message: API key is not valid, missing, or you do not have permission to make this request
+    causes: [Your ID query parameter is malformed or invalid]
+    note: >-
+      Published as HTTP 500 in the gateway reference but as HTTP 401 in
+      the async-subscription reference for the same code — recorded as
+      published on both pages.
+  - code: BAD_APDIRECT_ACCESS_TOKEN
+    status: 400
+    message: Apdirect access token is invalid
+    causes: [Something wrong with Marketplace integration]
+    remediation: Contact KW if the error persists.
+    note: >-
+      "Apdirect" is the AppDirect commerce platform that powers the KW
+      Marketplace — visible again in the SUBSCRIPTION_ORDER sample payload
+      (company.website "appdirect.com").
+  - code: BAD_GATEWAY
+    status: 502
+    message: Unhandled error
+    causes: [An unexpected error occurred]
+    remediation: Contact KW if the error persists.
+  - code: BAD_KWUID
+    status: 500
+    message: Invalid KWUID
+    causes:
+      - No KWUID in event payload
+      - Event payload is invalid
+      - Marketplace webhook failed
+    remediation: Verify app configuration; contact KW if the error persists.
+  - code: BAD_TOKEN_AUTHENTICATION
+    status: 401
+    message: Token is not valid or missing
+    causes: [Your KW gateway credentials are invalid or malformed]
+    note: This is the code returned by an anonymous probe of any partners.api.kw.com/v2 path.
+  - code: BAD_REQUEST
+    status: 400
+    message: Invalid JSON payload / Invalid filter query parameter / field type errors
+    causes:
+      - Malformed request body
+      - Invalid filter query parameter
+      - Payload field has the wrong data type
+      - Payload contains a property that is not allowed
+    source: openapi/keller-williams-listings-search-openapi.json (BadRequestErrorResponse examples)
+  - code: INVALID_PROVISION_ENDPOINT
+    status: 400
+    message: ISV provision endpoint is invalid
+    causes: [Webhook request failed, The webhook endpoint is invalid]
+    remediation: Check your logs for the webhook response returned to the KW gateway.
+  - code: INTERNAL_SERVER_ERROR
+    status: 500
+    message: Failed to create a subscription event
+    causes:
+      - You do not have access to asynchronous subscriptions
+      - The subscription event is already in PENDING state
+      - The previous subscription event failed
+    remediation: Confirm or reject the pending event, or contact KW to enable async subscriptions.
+  - code: NOT_FOUND
+    status: 404
+    message: Resource not found / Endpoint not found
+    causes: [Integration URL is malformed]
+  - code: STOLEN_TOKEN
+    status: 401
+    message: The token you provided is invalid
+    causes:
+      - Your ID query parameter is not registered
+      - Your ID query parameter is malformed or invalid
+      - Your KW gateway credentials are invalid or malformed
+  - code: TOO_MANY_REQUESTS
+    status: 429
+    message: Quota exceeded
+    causes: [Your quota exceeded]
+    remediation: Contact KW to request a quota increase.
+  - code: UNAUTHORIZED_WITH_API_KEY
+    status: 401
+    message: You are not authorized to perform this action
+    causes: [Your ID is not registered]
+  - code: UNAUTHORIZED_WITH_API_SECRET
+    status: 403
+    message: Invalid credentials.
+    causes: [The API secret is either invalid or corrupt]
+    source: https://developer.kw.com/subscription-async-management
+  - code: UNHANDLED_ERROR
+    status: 500
+    message: Unexpected error happened. Try again later.
+    source: https://developer.kw.com/metered-billing
+  - code: FORBIDDEN
+    status: 403
+    message: Listing not kww listing, cannot edit / You do not have permissions to delete this listing
+    source: openapi/keller-williams-listings-search-openapi.json (ForbiddenErrorResponse examples)
+partner_response_errors:
+  note: >-
+    Codes a partner returns to KW to reject a subscription event —
+    HTTP 409 on the synchronous webhook response, or in the rejection body
+    posted to https://<ENVIRONMENT>/v1/subscription/async/confirm.
+  envelope: '{"success": "false", "errorCode": "<code>", "message": "<optional message>"}'
+  codes:
+    - USER_ALREADY_EXISTS
+    - USER_NOT_FOUND
+    - ACCOUNT_NOT_FOUND
+    - MAX_USERS_REACHED
+    - UNAUTHORIZED
+    - OPERATION_CANCELLED
+    - CONFIGURATION_ERROR
+    - INVALID_RESPONSE
+    - PENDING
+    - FORBIDDEN
+    - BINDING_NOT_FOUND
+    - TRANSPORT_ERROR
+    - UNKNOWN_ERROR
+  docs:
+    - https://developer.kw.com/docs-synchronous-subscription
+    - https://developer.kw.com/docs-asynchronous-subscription
+    - https://developer.kw.com/subscription-async-management

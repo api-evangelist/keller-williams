@@ -1,0 +1,1746 @@
+{
+  "generated": "2026-07-26",
+  "method": "derived",
+  "source": "openapi/keller-williams-listings-search-openapi.json",
+  "note": "Extracted verbatim from the example/examples members of the published KW Worldwide Listings Search OpenAPI 3.0.1. Values are the provider's own published samples; nothing was authored, padded or corrected here.",
+  "count": 18,
+  "examples": [
+    {
+      "id": "ListingsCreate",
+      "component": "ListingsCreate",
+      "kind": "requestBodies",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-create (request)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "list_kw_uid": 1,
+        "list_desc": "This is example list",
+        "co_list_kw_uid": null,
+        "list_type": "MLS Listing",
+        "source_system_name": "KW Sourced",
+        "version": "2.0.0",
+        "list_type_id": 1,
+        "kwls_status": "Accepted",
+        "current_list_price": 385000,
+        "list_status_id": 18,
+        "list_category": "Off Market",
+        "list_category_id": 4,
+        "prop_type": "Residential",
+        "prop_type_id": 8,
+        "prop_subtype": "Condominium",
+        "prop_subtype_id": 4,
+        "list_status": "Draft",
+        "mls_id": "KWW_ID",
+        "mls_number": "1"
+      }
+    },
+    {
+      "id": "ListingsUpdate-oneField",
+      "component": "ListingsUpdate",
+      "kind": "requestBodies",
+      "name": "oneField",
+      "summary": "One field",
+      "used_by": [
+        "listings-details-update (request)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "list_desc": "This is example list"
+      }
+    },
+    {
+      "id": "ListingsUpdate-fewFields",
+      "component": "ListingsUpdate",
+      "kind": "requestBodies",
+      "name": "fewFields",
+      "summary": "Few fields",
+      "used_by": [
+        "listings-details-update (request)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "list_kw_uid": 1,
+        "list_desc": "This is example list",
+        "co_list_kw_uid": null,
+        "list_type": "MLS Listing",
+        "source_system_name": "KW Sourced",
+        "version": "2.0.0",
+        "kwls_status": "Accepted",
+        "current_list_price": 385000,
+        "list_status_id": 18,
+        "list_category": "Off Market",
+        "list_category_id": 4,
+        "prop_type": "Residential",
+        "prop_type_id": 8,
+        "prop_subtype": "Condominium",
+        "prop_subtype_id": 4,
+        "list_status": "Draft",
+        "mls_id": "KWW_ID"
+      }
+    },
+    {
+      "id": "OrgsPeople",
+      "component": "OrgsPeople",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-region-people-read (response 200)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "meta": {
+          "query": {
+            "limit": 15,
+            "offset": 0,
+            "cache": true,
+            "is_org_legacy_team": false,
+            "is_org_legacy_id": false,
+            "include_inactive": false,
+            "include_active": true,
+            "include_person_kwid": false
+          },
+          "total": 35
+        },
+        "data": [
+          {
+            "kw_uid": 1,
+            "username": "1",
+            "first_name": "1",
+            "last_name": "QA",
+            "kw_email": "1kwemail@kw.com",
+            "default_org_id": 1,
+            "recovery_email": null,
+            "email": "1wpemail@kw.com",
+            "marketing_email": "1marketing_email@kw.com",
+            "kw_start_dt": "2017-07-01",
+            "re_start_dt": null,
+            "photo": "https://avatar.kwconnect.com/1.jpeg",
+            "phone": null,
+            "mobile_phone": null,
+            "address_1": "000 Main St.",
+            "address_2": null,
+            "city": "CESK\u00c1 REPUBLIKA",
+            "state": null,
+            "postal_code": "110 00",
+            "country": "CZ",
+            "luxury": 0,
+            "luxury_dt": null,
+            "commercial": 0,
+            "land": 0,
+            "kwyp": 0,
+            "gps": 0,
+            "maps_client": 1,
+            "maps_coach": 0,
+            "maps_mastery_client": 1,
+            "active": 1,
+            "km_active": 0,
+            "kww": 1,
+            "military": 0,
+            "designations": null,
+            "vested": 0,
+            "birth_dt": "1971-06-06",
+            "service_areas": null,
+            "org_start_dt": "2020-02-03",
+            "recruit_id": null,
+            "languages": [],
+            "license": [],
+            "teams": [],
+            "person_role_orgs": [
+              {
+                "role": {
+                  "id": 7,
+                  "name": "Operating Principal",
+                  "legacy_role_id": 11
+                },
+                "end_dt": null,
+                "kw_uid": 2,
+                "org_id": 3,
+                "org_key": "W00247",
+                "role_id": 7,
+                "start_dt": "2020-04-01",
+                "legacy_org_id": 6,
+                "legacy_team_id": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "LookupTableResponse",
+      "component": "LookupTableResponse",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-read-by-table (response 200)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "took": 3,
+        "timed_out": false,
+        "_shards": {
+          "total": 5,
+          "successful": 5,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 22,
+            "relation": "eq"
+          },
+          "max_score": 1,
+          "hits": [
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "list_type",
+              "_score": 1,
+              "_source": {
+                "list_type": {
+                  "id": 1,
+                  "value": "Prospective",
+                  "value_transkey": "listings.prospective"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "currency",
+              "_score": 1,
+              "_source": {
+                "currency": {
+                  "id": 1,
+                  "label": "Emirati Dirham",
+                  "value": "AED"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "country",
+              "_score": 1,
+              "_source": {
+                "country": {
+                  "id": 3,
+                  "label": "Albania",
+                  "value": "ALB"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "unit",
+              "_score": 1,
+              "_source": {
+                "unit": {
+                  "id": 1,
+                  "label": "Square Feet",
+                  "value": "sqft"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "kwls_status",
+              "_score": 1,
+              "_source": {
+                "kwls_status": {
+                  "id": 1,
+                  "value": "Initiated",
+                  "value_transkey": "listings.initiated"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "appliance",
+              "_score": 1,
+              "_source": {
+                "appliance": {
+                  "id": 1,
+                  "value": "Barbeque or Grill"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "list_category",
+              "_score": 1,
+              "_source": {
+                "list_category": {
+                  "id": 0,
+                  "value": "Other",
+                  "sa_mapping": {
+                    "id": 0,
+                    "value": "Other"
+                  },
+                  "value_transkey": "listings.other"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "expense_type",
+              "_score": 1,
+              "_source": {
+                "expense_type": {
+                  "id": 1,
+                  "value": "AC Maintenance Fee"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "oh_status",
+              "_score": 1,
+              "_source": {
+                "oh_status": {
+                  "id": 1,
+                  "value": "Active"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "flooring",
+              "_score": 1,
+              "_source": {
+                "flooring": {
+                  "id": 1,
+                  "value": "Bamboo"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "syndicate",
+              "_score": 1,
+              "_source": {
+                "syndicate": {
+                  "id": 1,
+                  "value": "KW My MC"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "frequency",
+              "_score": 1,
+              "_source": {
+                "frequency": {
+                  "id": 1,
+                  "value": "Annually"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "arch_style",
+              "_score": 1,
+              "_source": {
+                "arch_style": {
+                  "id": 1,
+                  "value": "A Frame"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "parking_feature",
+              "_score": 1,
+              "_source": {
+                "parking_feature": {
+                  "id": 1,
+                  "value": "Alley"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "construction_material",
+              "_score": 1,
+              "_source": {
+                "construction_material": {
+                  "id": 1,
+                  "value": "Adobe"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "prop_type",
+              "_score": 1,
+              "_source": {
+                "prop_type": {
+                  "id": 8,
+                  "value": "Residential",
+                  "sa_mapping": {
+                    "id": 1,
+                    "value": "Single Family Residence"
+                  },
+                  "value_transkey": "listings.residential"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "roof_type",
+              "_score": 1,
+              "_source": {
+                "roof_type": {
+                  "id": 1,
+                  "value": "Aluminum"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "list_status",
+              "_score": 1,
+              "_source": {
+                "list_status": {
+                  "id": 6,
+                  "value": "Pending Contingent",
+                  "sa_mapping": {
+                    "id": 7,
+                    "value": "Contingent-No Show"
+                  },
+                  "value_transkey": "listings.pending_contingent"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "prop_sub_type",
+              "_score": 1,
+              "_source": {
+                "prop_sub_type": {
+                  "id": 1,
+                  "value": "Apartment",
+                  "sa_mapping": {
+                    "id": 1,
+                    "value": "Residential-Unit/Flat/Apartment"
+                  },
+                  "value_transkey": "listings.apartment"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "special_condition",
+              "_score": 1,
+              "_source": {
+                "special_condition": {
+                  "id": 1,
+                  "value": "Auction"
+                }
+              }
+            },
+            {
+              "_index": "kwls_lookup",
+              "_type": "_doc",
+              "_id": "state_province",
+              "_score": 1,
+              "_source": {
+                "state_province": {
+                  "id": 1,
+                  "label": "Alabama, USA",
+                  "value": "AL"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "InternalServerErrorResponse",
+      "component": "InternalServerErrorResponse",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-read (response 500)",
+        "listings-create (response 500)",
+        "listings-details-delete (response 500)",
+        "listings-details-update (response 500)",
+        "listings-read-by-table (response 500)",
+        "listings-region-details-read (response 500)",
+        "listings-region-people-read (response 500)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "INTERNAL_SERVER_ERROR",
+        "message": "Unexpected error happened. Try again later."
+      }
+    },
+    {
+      "id": "UnhandledErrorResponse",
+      "component": "UnhandledErrorResponse",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-read (response 502)",
+        "listings-create (response 502)",
+        "listings-details-delete (response 502)",
+        "listings-details-update (response 502)",
+        "listings-read-by-table (response 502)",
+        "listings-region-details-read (response 502)",
+        "listings-region-people-read (response 502)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_GATEWAY",
+        "message": "Unhandled error."
+      }
+    },
+    {
+      "id": "UnauthorizedErrorResponse-token",
+      "component": "UnauthorizedErrorResponse",
+      "kind": "responses",
+      "name": "token",
+      "summary": "Bearer token is either invalid or corrupt.",
+      "used_by": [
+        "listings-read (response 401)",
+        "listings-create (response 401)",
+        "listings-details-delete (response 401)",
+        "listings-details-update (response 401)",
+        "listings-region-people-read (response 401)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_TOKEN_AUTHENTICATION",
+        "message": "Token is not valid or missing"
+      }
+    },
+    {
+      "id": "UnauthorizedErrorResponse-apikey",
+      "component": "UnauthorizedErrorResponse",
+      "kind": "responses",
+      "name": "apikey",
+      "summary": "The API key is either invalid or corrupt.",
+      "used_by": [
+        "listings-read (response 401)",
+        "listings-create (response 401)",
+        "listings-details-delete (response 401)",
+        "listings-details-update (response 401)",
+        "listings-region-people-read (response 401)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_API_KEY",
+        "message": "API key is not valid, missing, or you do not have permission to make this request"
+      }
+    },
+    {
+      "id": "ListingsResponse",
+      "component": "ListingsResponse",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-read (response 200)",
+        "listings-region-details-read (response 200)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "took": 51,
+        "timed_out": false,
+        "_shards": {
+          "total": 25,
+          "successful": 25,
+          "skipped": 0,
+          "failed": 0
+        },
+        "hits": {
+          "total": {
+            "value": 10000,
+            "relation": "gte"
+          },
+          "max_score": null,
+          "hits": [
+            {
+              "_index": "kwls_qa",
+              "_type": "_doc",
+              "_id": "f2274b2928a1e609372e697f",
+              "_score": null,
+              "_source": {
+                "brokerage": {
+                  "email": null,
+                  "name": "Hey Realty, Inc.",
+                  "phone": null
+                },
+                "close_dt": null,
+                "close_price": null,
+                "co_list_agent_office": null,
+                "co_list_kw_uid": null,
+                "co_sell_agent_office": null,
+                "commissions": null,
+                "contract_expiry_dt": null,
+                "contract_expiry_dt_lock": false,
+                "currency_code": "USD",
+                "current_list_price": 179900,
+                "expenses": null,
+                "full_bath": 1,
+                "geo": {
+                  "address_id": [
+                    5884694383689711100
+                  ],
+                  "city": [
+                    1421451
+                  ],
+                  "county": [
+                    961661
+                  ],
+                  "mcd": [
+                    979845
+                  ],
+                  "neighborhood": [
+                    147131
+                  ],
+                  "postal_code": [
+                    174181
+                  ],
+                  "property_id": null,
+                  "school_attendance": [
+                    807885,
+                    807884,
+                    807882
+                  ],
+                  "school_district": [
+                    920096
+                  ],
+                  "state": [
+                    964406
+                  ]
+                },
+                "green_home": null,
+                "half_bath": 0,
+                "history": null,
+                "hoa": [
+                  {
+                    "assoc_amenities": [
+                      "Security"
+                    ],
+                    "assoc_fee": 278,
+                    "assoc_fee_freq": "Monthly",
+                    "assoc_fee_freq_search": null,
+                    "assoc_fee_includes": [
+                      "Trash",
+                      "Snow Removal",
+                      "Lawn Care",
+                      "Maintenance Grounds",
+                      "Water",
+                      "Professional Mgmt"
+                    ],
+                    "assoc_fee_search": null,
+                    "assoc_req": null,
+                    "has_assoc": true
+                  }
+                ],
+                "is_deleted": false,
+                "is_kww_listing": false,
+                "kw_agent": false,
+                "kw_attribute": null,
+                "kw_created_at": "2021-07-26T17:20:03.000000",
+                "kw_expiry_dt": "2022-05-28T00:00:00.000000",
+                "kw_expiry_dt_lock": false,
+                "kw_listing": false,
+                "kw_mc": false,
+                "kw_updated_at": "2022-05-13T15:48:21.169000",
+                "kw_updated_by": "Smarter Agent",
+                "kwls_status": "Accepted",
+                "kww_region": null,
+                "lease_price": null,
+                "list_address": {
+                  "address": "2512 2518 8 New Brighton MN 55112",
+                  "city": "New Brighton",
+                  "coordinates_gp": {
+                    "lat": 45.0687556746,
+                    "lon": -93.2334300785
+                  },
+                  "coordinates_gs": {
+                    "coordinates": [
+                      -93.2198750785,
+                      45.0689851746
+                    ],
+                    "type": "Point"
+                  },
+                  "country": null,
+                  "full_street_address": "2512 Innsbruck Trail",
+                  "postal_code": "54112",
+                  "state_prov": "MN",
+                  "street_direction": null,
+                  "street_name": "Innsbruck",
+                  "street_number": "2412",
+                  "street_post_dir": null,
+                  "street_suffix": "Trail",
+                  "unit_number": null,
+                  "zip_4": null
+                },
+                "list_agent_office": {
+                  "list_agent_email": "dawrt@realty.com",
+                  "list_agent_fax": null,
+                  "list_agent_first_name": "Hey",
+                  "list_agent_full_name": "Hey Peddycoart",
+                  "list_agent_key": "MN_RMLS-NST8850-NST506099572",
+                  "list_agent_key_2": "MN_RMLS-NST16866-NST77948",
+                  "list_agent_last_name": "Peddycoart",
+                  "list_agent_mls_id": "NST506099581",
+                  "list_agent_mls_id_2": "NST77941",
+                  "list_agent_office_phone": null,
+                  "list_agent_preferred_phone": "763-134-0963",
+                  "list_agent_url": null,
+                  "list_office_address": null,
+                  "list_office_email": "example@realty.com",
+                  "list_office_fax": null,
+                  "list_office_key": "MN_RMLS-NST8660",
+                  "list_office_key_2": "MN_RMLS-NST18866",
+                  "list_office_mls_id": "NST8850",
+                  "list_office_mls_id_2": "NST18866",
+                  "list_office_name": "Example Realty, Inc.",
+                  "list_office_phone": "763-795-9800",
+                  "list_office_url": null
+                },
+                "list_category": "For Sale",
+                "list_category_id": 2,
+                "list_desc": "Welcome Home! Come fall in love with this open concept one level living on the main floor of the building.",
+                "list_desc_en": null,
+                "list_desc_lock": false,
+                "list_dt": "2021-07-26T00:00:00.000000",
+                "list_id": 5920294489286458000,
+                "list_key": "MN_RMLS-NST8428612",
+                "list_kw_uid": null,
+                "list_status": "Active",
+                "list_status_id": 1,
+                "list_status_lock": false,
+                "list_type": "MLS Listing",
+                "list_type_id": 2,
+                "list_uuid": "f2274b2928dk460a4d2e697f",
+                "living_area": 1020,
+                "living_area_units": "SF",
+                "location": {
+                  "county": "Ramsey",
+                  "municipality": null,
+                  "neighborhoods": null,
+                  "prop_directions": "698 to Golden Lake Rd, go north to 1st stoplight by Burger King, go left (east) to Fox Trail right home.",
+                  "region": null,
+                  "schools": null,
+                  "subdivision": "Condo 217 SpringField Place Co",
+                  "township": null,
+                  "zoning": "Residential-Single Family"
+                },
+                "lot_depth_area": null,
+                "lot_depth_units": null,
+                "lot_front_area": null,
+                "lot_front_units": null,
+                "lot_size_area": 0.02,
+                "lot_size_units": "AC",
+                "luxury_home": false,
+                "manual_entry": false,
+                "market_center": null,
+                "marketing_info": {
+                  "courtesy_label": "Courtesy of",
+                  "courtesy_location": "BOTTOM",
+                  "courtesy_of_detail": "Edina Realty, Inc.",
+                  "courtesy_of_list": null,
+                  "display_address": true,
+                  "display_internet": true,
+                  "display_list_price": true,
+                  "display_listing": true,
+                  "display_photo": true,
+                  "legal_accept_disclaimer": false,
+                  "legal_description": null,
+                  "legal_exclusive_rights": false,
+                  "living_area_display": "1021",
+                  "photo_courtesy_required": false,
+                  "vow": false
+                },
+                "mls_id": "MN_RMLS",
+                "mls_name": "Regional MLS of MN",
+                "mls_number": "NST6068612",
+                "mls_source_id": 131,
+                "mls_updated_at": "2021-07-26T16:45:16.000000",
+                "office_size": null,
+                "office_size_units": null,
+                "one_quarter_bath": 0,
+                "open_houses": null,
+                "open_houses_lock": false,
+                "original_list_category": "For Sale",
+                "original_list_category_id": 2,
+                "original_list_price": 179900,
+                "other_area_size": null,
+                "other_area_size_units": null,
+                "partial_bath": 0,
+                "photos": null,
+                "photos_lock": false,
+                "price_history": [
+                  {
+                    "current_list_price": 179900,
+                    "in_use": false,
+                    "percent_change": 0,
+                    "previous_list_price": 0,
+                    "price_updated_at": "2021-07-26T13:20:03.000Z"
+                  }
+                ],
+                "price_tax_suffix": false,
+                "prop_subtype": "Single Family Detached",
+                "prop_subtype_id": 15,
+                "prop_subtype_lock": false,
+                "prop_type": "Residential",
+                "prop_type_id": 8,
+                "prop_type_lock": false,
+                "property_address": {
+                  "address": "9512 Trail New SpringField MN 53412",
+                  "city_long": "New SpringField",
+                  "city_short": null,
+                  "coordinates_gp": {
+                    "lat": 45.0587631756,
+                    "lon": -93.2193300774
+                  },
+                  "coordinates_gs": {
+                    "coordinates": [
+                      -93.2193300773,
+                      45.0787631745
+                    ],
+                    "type": "Point"
+                  },
+                  "country_long": null,
+                  "country_short": null,
+                  "county": "Ramsey",
+                  "county_fips": null,
+                  "full_street_address": "2532 Fox Trail",
+                  "habitation_name": null,
+                  "level_number": null,
+                  "postal_code_long": null,
+                  "postal_code_short": "55112",
+                  "rural_address": null,
+                  "state_prov_short": "MN",
+                  "street_direction": null,
+                  "street_long": null,
+                  "street_number": null,
+                  "street_suffix_short": null,
+                  "unit_number": null,
+                  "unit_type": null,
+                  "zip_4": null
+                },
+                "raw": {
+                  "co_list_kw_uid": null,
+                  "co_list_market_center": null,
+                  "display_listing": "true",
+                  "lambda_updated_at": "2021-07-26T17:20:04.494000",
+                  "list_kw_uid": null,
+                  "list_status": "Active",
+                  "list_status_id": "1",
+                  "market_center": null,
+                  "parking_total": "1",
+                  "prop_type": "Manor/Village",
+                  "prop_type_id": "1",
+                  "signature_id": null,
+                  "source_list_id": "131_2234264255",
+                  "trace_id": null
+                },
+                "retail_size": null,
+                "retail_size_units": null,
+                "sell_agent_office": null,
+                "sell_kw_uid": null,
+                "source_system_name": "smarteragent",
+                "special_list_condition": null,
+                "structure": {
+                  "appliances": [
+                    "Range",
+                    "Microwave",
+                    "Dishwasher",
+                    "Refrigerator",
+                    "Washer",
+                    "Dryer",
+                    "Water Softener Owned",
+                    "Electric Water Heater",
+                    "Gas Water Heater"
+                  ],
+                  "architectural_styles": null,
+                  "basement_desc": null,
+                  "building_name": null,
+                  "construction_materials": [
+                    "Materials: Block",
+                    "Materials: Vinyl Siding"
+                  ],
+                  "dining_room_desc": null,
+                  "exterior_features": {
+                    "has_barbecue_area": false,
+                    "has_deck": false,
+                    "has_disabled_access": false,
+                    "has_dock": false,
+                    "has_garden": false,
+                    "has_gated_entry": false,
+                    "has_green_house": false,
+                    "has_hot_tub_spa": false,
+                    "has_patio": false,
+                    "has_pond": false,
+                    "has_pool": false,
+                    "has_porch": false,
+                    "has_rv_parking": false,
+                    "has_sports_court": false,
+                    "has_sprinkler_system": false,
+                    "is_water_front": false
+                  },
+                  "fireplace_desc": "Yes,1,Living Room,Gas",
+                  "fireplaces_total": null,
+                  "floorings": null,
+                  "foundation_details": [
+                    "Area: 1020"
+                  ],
+                  "has_garage": true,
+                  "has_parking": true,
+                  "heating_cooling": [
+                    "Forced Air"
+                  ],
+                  "interior_features": {
+                    "has_ceiling_fan": false,
+                    "has_fireplace": true,
+                    "has_jetted_bath_tub": false,
+                    "has_mother_in_law": false,
+                    "has_sauna": false,
+                    "has_security_system": false,
+                    "has_skylight": false,
+                    "has_vaulted_ceiling": false,
+                    "has_wet_bar": false,
+                    "is_cable_ready": false,
+                    "is_wired": false
+                  },
+                  "is_new_construction": false,
+                  "parking_features": [
+                    "Attached Garage",
+                    "Asphalt",
+                    "Storage",
+                    "Garage Door Opener",
+                    "SQFT: 171"
+                  ],
+                  "parking_total": 1,
+                  "roof_types": [
+                    "Asphalt",
+                    "Age 8 Years or Less"
+                  ],
+                  "rooms_total": null,
+                  "stories": null,
+                  "total_buildings": null,
+                  "total_units": null,
+                  "unit_level": null,
+                  "utilities": null,
+                  "views": null,
+                  "water_source": [
+                    "City Water/Connected"
+                  ]
+                },
+                "syndicate": {
+                  "all_kw_apps": true,
+                  "brokerage_id": null,
+                  "command_only": false,
+                  "consumer_only": false,
+                  "list_org_id": null,
+                  "list_team_id": null
+                },
+                "system": {
+                  "processed_by": "qa-run-manual-reprocessing-l1-es-2022-05-13-15-80-42",
+                  "reprocessed": true
+                },
+                "taxes": [
+                  {
+                    "tax_amt": 1954,
+                    "tax_id": null,
+                    "tax_year": "2021"
+                  }
+                ],
+                "three_quarter_bath": 0,
+                "total_bath": 1,
+                "total_bed": 2,
+                "version": "4.1.0",
+                "virtual_tours": [
+                  {
+                    "vt_short_desc": null,
+                    "vt_updated_at": null,
+                    "vt_url": null,
+                    "vt_url_branded": false
+                  }
+                ],
+                "virtual_tours_lock": false,
+                "warehouse_size": null,
+                "warehouse_size_units": null,
+                "year_built": 1991,
+                "days_on_market": 295,
+                "lot_size_units_transkey": "listings.ac",
+                "living_area_units_transkey": "listings.sf",
+                "list_status_transkey": "listings.active",
+                "prop_type_transkey": "listings.residential",
+                "list_type_transkey": "listings.mls_listing",
+                "kwls_status_transkey": "listings.accepted",
+                "list_category_transkey": "listings.for_sale"
+              },
+              "sort": [
+                5920294403786638000
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "DeleteResponse",
+      "component": "DeleteResponse",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-details-delete (response 200)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": true,
+        "data": {
+          "list_type": "MLS Listing",
+          "list_type_id": 1,
+          "mls_id": "KWW_KIWI",
+          "source_system_name": "KW Sourced",
+          "kw_mc": true,
+          "kw_listing": true,
+          "version": "2.0.0",
+          "list_id": 1254243,
+          "list_key": "KWW_KIWI-123456",
+          "kwls_status": "Accepted",
+          "manual_entry": false,
+          "mls_number": "1254243",
+          "kw_agent": true,
+          "list_uuid": "668c51b17c9422975e4f12d6",
+          "current_list_price": 385000,
+          "list_status": "Draft",
+          "list_status_id": 18,
+          "list_category": "Off Market",
+          "list_category_id": 4,
+          "prop_type": "Residential",
+          "prop_type_id": 8,
+          "prop_subtype": "Condominium",
+          "prop_subtype_id": 4,
+          "mls_name": "Keller Williams Realty",
+          "is_kww_listing": true,
+          "kww_region": null,
+          "co_list_kw_uid": null,
+          "sell_kw_uid": null,
+          "is_deleted": true,
+          "mls_source_id": null,
+          "list_kw_uid": 556396,
+          "market_center": null,
+          "syndicate": {
+            "list_team_id": null,
+            "list_org_id": null,
+            "brokerage_id": null,
+            "all_kw_apps": true,
+            "command_only": false,
+            "consumer_only": false
+          },
+          "list_address": null,
+          "property_address": null,
+          "currency_code": null,
+          "lease_price": null,
+          "close_price": null,
+          "original_list_price": 385000,
+          "price_tax_suffix": false,
+          "price_history": null,
+          "list_dt": "2021-11-15T15:45:08.873000",
+          "kw_expiry_dt": null,
+          "kw_expiry_dt_lock": false,
+          "contract_expiry_dt": null,
+          "contract_expiry_dt_lock": false,
+          "close_dt": null,
+          "list_status_lock": false,
+          "original_list_category": "Off Market",
+          "original_list_category_id": 4,
+          "luxury_home": false,
+          "prop_type_lock": false,
+          "prop_subtype_lock": false,
+          "special_list_condition": null,
+          "year_built": null,
+          "living_area": null,
+          "living_area_units": null,
+          "lot_size_area": null,
+          "lot_size_units": null,
+          "lot_front_area": null,
+          "lot_front_units": null,
+          "lot_depth_area": null,
+          "lot_depth_units": null,
+          "office_size": null,
+          "office_size_units": null,
+          "warehouse_size": null,
+          "warehouse_size_units": null,
+          "retail_size": null,
+          "retail_size_units": null,
+          "other_area_size": null,
+          "other_area_size_units": null,
+          "total_bed": null,
+          "total_bath": 0,
+          "full_bath": 0,
+          "half_bath": 0,
+          "one_quarter_bath": 0,
+          "three_quarter_bath": 0,
+          "partial_bath": 0,
+          "list_desc": "This is test list from Taras2",
+          "list_desc_en": null,
+          "list_desc_lock": false,
+          "brokerage": null,
+          "list_agent_office": null,
+          "co_list_agent_office": null,
+          "sell_agent_office": null,
+          "co_sell_agent_office": null,
+          "location": null,
+          "structure": {
+            "builder_name": null,
+            "stories": null,
+            "total_units": null,
+            "total_buildings": null,
+            "unit_level": null,
+            "building_name": null,
+            "has_garage": false,
+            "has_parking": false,
+            "parking_total": null,
+            "parking_features": null,
+            "appliances": null,
+            "architectural_styles": null,
+            "architectural_design": null,
+            "interior_features": {
+              "has_fireplace": false,
+              "has_ceiling_fan": false,
+              "has_jetted_bath_tub": false,
+              "has_mother_in_law": false,
+              "has_sauna": false,
+              "has_security_system": false,
+              "has_skylight": false,
+              "has_vaulted_ceiling": false,
+              "has_wet_bar": false,
+              "is_cable_ready": false,
+              "is_wired": false
+            },
+            "exterior_features": {
+              "has_hot_tub_spa": false,
+              "has_barbecue_area": false,
+              "has_deck": false,
+              "has_disabled_access": false,
+              "has_dock": false,
+              "has_garden": false,
+              "has_gated_entry": false,
+              "has_green_house": false,
+              "has_patio": false,
+              "has_pond": false,
+              "has_pool": false,
+              "has_porch": false,
+              "has_rv_parking": false,
+              "has_sports_court": false,
+              "has_sprinkler_system": false,
+              "is_water_front": false
+            },
+            "views": null,
+            "roof_types": null,
+            "foundation_details": null,
+            "construction_materials": null,
+            "heating_cooling": null,
+            "floorings": null,
+            "basement_desc": null,
+            "master_bedroom_desc": null,
+            "family_room_desc": null,
+            "dining_room_desc": null,
+            "living_room_desc": null,
+            "fireplace_desc": null,
+            "utilities": null,
+            "water_source": null,
+            "rooms_total": null,
+            "fireplaces_total": null,
+            "is_new_construction": false
+          },
+          "green_home": null,
+          "expenses": null,
+          "hoa": null,
+          "taxes": null,
+          "marketing_info": {
+            "display_listing": true,
+            "display_address": true,
+            "display_internet": true,
+            "display_list_price": true,
+            "display_photo": true,
+            "courtesy_location": null,
+            "courtesy_label": null,
+            "courtesy_of_list": null,
+            "courtesy_of_detail": null,
+            "photo_courtesy_required": false,
+            "vow": false,
+            "legal_exclusive_rights": false,
+            "legal_accept_disclaimer": false,
+            "living_area_display": null,
+            "legal_description": null
+          },
+          "virtual_tours": null,
+          "virtual_tours_lock": false,
+          "open_houses": null,
+          "open_houses_lock": false,
+          "photos": null,
+          "photos_lock": false,
+          "links": null,
+          "links_lock": false,
+          "mls_updated_at": null,
+          "kw_updated_at": "2021-11-15T15:45:18.113Z",
+          "kw_updated_by": "KW Sourced-556396",
+          "raw": {
+            "lambda_updated_at": "2021-11-15T15:45:18.113Z"
+          },
+          "history": null,
+          "kw_attribute": {
+            "kw_active": false,
+            "list_team_id": null,
+            "membership": {
+              "luxury": false,
+              "commercial": false,
+              "land": false,
+              "kwyp": false,
+              "gps": false,
+              "maps_client": false,
+              "maps_coach": false,
+              "maps_mastery_client": false,
+              "keller_mortgage": false,
+              "kww": false
+            }
+          },
+          "geo": null,
+          "system": {
+            "reprocessed": false,
+            "processed_by": "pipeline"
+          }
+        }
+      }
+    },
+    {
+      "id": "ListingsCreated",
+      "component": "ListingsCreated",
+      "kind": "responses",
+      "name": null,
+      "summary": null,
+      "used_by": [
+        "listings-create (response 201)",
+        "listings-details-update (response 200)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": true,
+        "data": {
+          "list_kw_uid": 556396,
+          "list_desc": "This is test list",
+          "co_list_kw_uid": null,
+          "list_type": "MLS Listing",
+          "source_system_name": "KW Sourced",
+          "version": "2.0.0",
+          "list_type_id": 1,
+          "kwls_status": "Accepted",
+          "current_list_price": 387000,
+          "list_status_id": 18,
+          "list_category": "Off Market",
+          "list_category_id": 4,
+          "prop_type": "Residential",
+          "prop_type_id": 8,
+          "prop_subtype": "Condominium",
+          "prop_subtype_id": 4,
+          "list_status": "Draft",
+          "mls_id": "KWW",
+          "mls_number": "1257243",
+          "is_kww_listing": false,
+          "kww_region": null,
+          "sell_kw_uid": null,
+          "is_deleted": false,
+          "mls_source_id": null,
+          "market_center": null,
+          "syndicate": {
+            "list_team_id": null,
+            "list_org_id": null,
+            "brokerage_id": [],
+            "all_kw_apps": true,
+            "command_only": false,
+            "consumer_only": false
+          },
+          "list_address": {
+            "street_number": null,
+            "street_direction": null,
+            "street_name": null,
+            "street_suffix": null,
+            "street_post_dir": null,
+            "full_street_address": "",
+            "unit_number": null,
+            "city": null,
+            "state_prov": null,
+            "country": null,
+            "postal_code": null,
+            "zip_4": null,
+            "address": null,
+            "coordinates_gp": null,
+            "coordinates_gs": null
+          },
+          "property_address": {
+            "full_street_address": null,
+            "street_number": null,
+            "street_number_low": null,
+            "street_number_high": null,
+            "street_long": null,
+            "street_short": null,
+            "street_suffix_long": null,
+            "street_suffix_short": null,
+            "street_unit": null,
+            "unit_number": null,
+            "unit_type": null,
+            "city_long": null,
+            "city_short": null,
+            "state_prov_long": null,
+            "state_prov_short": null,
+            "country_long": null,
+            "country_short": null,
+            "postal_code_long": null,
+            "postal_code_short": null,
+            "zip_4": null,
+            "address": null,
+            "habitation_name": null,
+            "level_number": null,
+            "street_direction": null,
+            "rural_address": null,
+            "coordinates_gp": null,
+            "coordinates_gs": null
+          },
+          "currency_code": null,
+          "lease_price": null,
+          "close_price": null,
+          "original_list_price": null,
+          "price_tax_suffix": false,
+          "price_history": null,
+          "list_dt": "2022-05-16T14:01:24.317Z",
+          "kw_expiry_dt": null,
+          "kw_expiry_dt_lock": false,
+          "contract_expiry_dt": null,
+          "contract_expiry_dt_lock": false,
+          "close_dt": null,
+          "list_status_lock": false,
+          "original_list_category": null,
+          "original_list_category_id": null,
+          "luxury_home": false,
+          "prop_type_lock": false,
+          "prop_subtype_lock": false,
+          "special_list_condition": null,
+          "year_built": null,
+          "living_area": null,
+          "living_area_units": null,
+          "lot_size_area": null,
+          "lot_size_units": null,
+          "lot_front_area": null,
+          "lot_front_units": null,
+          "lot_depth_area": null,
+          "lot_depth_units": null,
+          "office_size": null,
+          "office_size_units": null,
+          "warehouse_size": null,
+          "warehouse_size_units": null,
+          "retail_size": null,
+          "retail_size_units": null,
+          "other_area_size": null,
+          "other_area_size_units": null,
+          "total_bed": null,
+          "total_bath": 0,
+          "full_bath": 0,
+          "half_bath": 0,
+          "one_quarter_bath": 0,
+          "three_quarter_bath": 0,
+          "partial_bath": 0,
+          "list_desc_en": null,
+          "list_desc_lock": false,
+          "brokerage": {
+            "name": null,
+            "email": null,
+            "phone": null
+          },
+          "list_agent_office": {
+            "list_agent_mls_id": null,
+            "list_agent_key": null,
+            "list_agent_mls_id_2": null,
+            "list_agent_key_2": null,
+            "list_agent_first_name": null,
+            "list_agent_last_name": null,
+            "list_agent_full_name": null,
+            "list_agent_preferred_phone": null,
+            "list_agent_office_phone": null,
+            "list_agent_fax": null,
+            "list_agent_email": null,
+            "list_agent_url": null,
+            "list_agent_license": null,
+            "list_office_mls_id": null,
+            "list_office_key": null,
+            "list_office_mls_id_2": null,
+            "list_office_key_2": null,
+            "list_office_name": null,
+            "list_office_address": {
+              "full_street_address": null,
+              "unit_number": null,
+              "city": null,
+              "state_prov": null,
+              "postal_code": null,
+              "country": null,
+              "address": null
+            },
+            "list_office_phone": null,
+            "list_office_fax": null,
+            "list_office_email": null,
+            "list_office_url": null
+          },
+          "co_list_agent_office": {
+            "co_list_agent_mls_id": null,
+            "co_list_agent_key": null,
+            "co_list_agent_mls_id_2": null,
+            "co_list_agent_key_2": null,
+            "co_list_agent_first_name": null,
+            "co_list_agent_last_name": null,
+            "co_list_agent_full_name": null,
+            "co_list_agent_preferred_phone": null,
+            "co_list_agent_office_phone": null,
+            "co_list_agent_fax": null,
+            "co_list_agent_email": null,
+            "co_list_agent_url": null,
+            "co_list_office_mls_id": null,
+            "co_list_office_key": null,
+            "co_list_office_name": null,
+            "co_list_office_phone": null
+          },
+          "sell_agent_office": {
+            "sell_agent_mls_id": null,
+            "sell_office_mls_id_2": null,
+            "sell_office_key_2": null,
+            "sell_agent_key": null,
+            "sell_agent_mls_id_2": null,
+            "sell_agent_key_2": null,
+            "sell_agent_full_name": null,
+            "sell_office_mls_id": null,
+            "sell_office_key": null,
+            "sell_office_name": null
+          },
+          "co_sell_agent_office": {
+            "co_sell_agent_mls_id": null,
+            "co_sell_agent_key": null,
+            "co_sell_agent_mls_id_2": null,
+            "co_sell_agent_key_2": null,
+            "co_sell_agent_full_name": null,
+            "co_sell_office_mls_id": null,
+            "co_sell_office_key": null,
+            "co_sell_office_name": null
+          },
+          "location": {
+            "county": null,
+            "township": null,
+            "region": null,
+            "subdivision": null,
+            "elevation": null,
+            "zoning": null,
+            "schools": null,
+            "neighborhoods": null,
+            "prop_directions": null,
+            "municipality": null
+          },
+          "structure": {
+            "builder_name": null,
+            "stories": null,
+            "total_units": null,
+            "total_buildings": null,
+            "unit_level": null,
+            "building_name": null,
+            "has_garage": false,
+            "has_parking": false,
+            "parking_total": null,
+            "parking_features": null,
+            "appliances": null,
+            "architectural_styles": null,
+            "architectural_design": null,
+            "interior_features": {
+              "has_fireplace": false,
+              "has_ceiling_fan": false,
+              "has_jetted_bath_tub": false,
+              "has_mother_in_law": false,
+              "has_sauna": false,
+              "has_security_system": false,
+              "has_skylight": false,
+              "has_vaulted_ceiling": false,
+              "has_wet_bar": false,
+              "is_cable_ready": false,
+              "is_wired": false
+            },
+            "exterior_features": {
+              "has_hot_tub_spa": false,
+              "has_barbecue_area": false,
+              "has_deck": false,
+              "has_disabled_access": false,
+              "has_dock": false,
+              "has_garden": false,
+              "has_gated_entry": false,
+              "has_green_house": false,
+              "has_patio": false,
+              "has_pond": false,
+              "has_pool": false,
+              "has_porch": false,
+              "has_rv_parking": false,
+              "has_sports_court": false,
+              "has_sprinkler_system": false,
+              "is_water_front": false
+            },
+            "views": null,
+            "roof_types": null,
+            "foundation_details": null,
+            "construction_materials": null,
+            "heating_cooling": null,
+            "floorings": null,
+            "basement_desc": null,
+            "master_bedroom_desc": null,
+            "family_room_desc": null,
+            "dining_room_desc": null,
+            "living_room_desc": null,
+            "fireplace_desc": null,
+            "utilities": null,
+            "water_source": null,
+            "rooms_total": null,
+            "fireplaces_total": null,
+            "is_new_construction": false
+          },
+          "green_home": {
+            "indoor_air_quality": null,
+            "water_conservation": null,
+            "energy_efficient": null,
+            "energy_generation": null,
+            "building_verification_type": null,
+            "energy_grade_level": null,
+            "co2_class": null
+          },
+          "expenses": null,
+          "hoa": null,
+          "taxes": null,
+          "marketing_info": {
+            "display_listing": true,
+            "display_address": true,
+            "display_internet": true,
+            "display_list_price": true,
+            "display_photo": true,
+            "courtesy_location": null,
+            "courtesy_label": null,
+            "courtesy_of_list": null,
+            "courtesy_of_detail": null,
+            "photo_courtesy_required": false,
+            "vow": false,
+            "legal_exclusive_rights": false,
+            "legal_accept_disclaimer": false,
+            "living_area_display": null,
+            "legal_description": null
+          },
+          "virtual_tours": null,
+          "virtual_tours_lock": false,
+          "open_houses": null,
+          "open_houses_lock": false,
+          "photos": null,
+          "photos_lock": false,
+          "links": null,
+          "links_lock": false,
+          "mls_updated_at": null,
+          "kw_updated_at": "2022-05-16T14:01:24.317Z",
+          "kw_updated_by": "KW Sourced-1",
+          "raw": {
+            "lambda_updated_at": "2022-05-16T14:01:24.317Z"
+          },
+          "history": null,
+          "kw_attribute": {
+            "kw_active": false,
+            "list_team_id": null,
+            "membership": {
+              "luxury": false,
+              "commercial": false,
+              "land": false,
+              "kwyp": false,
+              "gps": false,
+              "maps_client": false,
+              "maps_coach": false,
+              "maps_mastery_client": false,
+              "keller_mortgage": false,
+              "kww": false
+            }
+          },
+          "geo": {
+            "neighborhood": null,
+            "city": null,
+            "postal_code": null,
+            "state": null,
+            "mcd": null,
+            "county": null,
+            "school_attendance": null,
+            "school_district": null,
+            "address_id": null,
+            "property_id": null
+          },
+          "system": {
+            "reprocessed": false,
+            "processed_by": "pipeline"
+          },
+          "list_key": "KWW_KIWI-1156",
+          "list_uuid": "41acf64a5115b155acae1618",
+          "list_id": 1111,
+          "kw_created_at": "2022-05-16T14:01:24.317Z",
+          "kw_created_by": "KW Sourced-1",
+          "manual_entry": false,
+          "kw_mc": true,
+          "kw_listing": true,
+          "kw_agent": true,
+          "mls_name": "Keller Williams Realty"
+        }
+      }
+    },
+    {
+      "id": "BadRequestErrorResponse-invalidFilterQueryParameter",
+      "component": "BadRequestErrorResponse",
+      "kind": "responses",
+      "name": "invalidFilterQueryParameter",
+      "summary": "A query parameter is invalid.",
+      "used_by": [
+        "listings-read (response 400)",
+        "listings-create (response 400)",
+        "listings-details-update (response 400)",
+        "listings-read-by-table (response 400)",
+        "listings-region-details-read (response 400)",
+        "listings-region-people-read (response 400)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_REQUEST",
+        "message": "Invalid filter query parameter"
+      }
+    },
+    {
+      "id": "BadRequestErrorResponse-payloadFieldInvalidType",
+      "component": "BadRequestErrorResponse",
+      "kind": "responses",
+      "name": "payloadFieldInvalidType",
+      "summary": "Invalid data type.",
+      "used_by": [
+        "listings-read (response 400)",
+        "listings-create (response 400)",
+        "listings-details-update (response 400)",
+        "listings-read-by-table (response 400)",
+        "listings-region-details-read (response 400)",
+        "listings-region-people-read (response 400)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_REQUEST",
+        "message": "\"list_desc\" must be a string"
+      }
+    },
+    {
+      "id": "BadRequestErrorResponse-payloadFieldNotAllowed",
+      "component": "BadRequestErrorResponse",
+      "kind": "responses",
+      "name": "payloadFieldNotAllowed",
+      "summary": "Not allowed property.",
+      "used_by": [
+        "listings-read (response 400)",
+        "listings-create (response 400)",
+        "listings-details-update (response 400)",
+        "listings-read-by-table (response 400)",
+        "listings-region-details-read (response 400)",
+        "listings-region-people-read (response 400)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_REQUEST",
+        "message": "\"test\" is not allowed"
+      }
+    },
+    {
+      "id": "BadRequestErrorResponse-payloadFieldRequired",
+      "component": "BadRequestErrorResponse",
+      "kind": "responses",
+      "name": "payloadFieldRequired",
+      "summary": "Missing required property.",
+      "used_by": [
+        "listings-read (response 400)",
+        "listings-create (response 400)",
+        "listings-details-update (response 400)",
+        "listings-read-by-table (response 400)",
+        "listings-region-details-read (response 400)",
+        "listings-region-people-read (response 400)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "BAD_REQUEST",
+        "message": "\"mls_id\" is required"
+      }
+    },
+    {
+      "id": "ForbiddenErrorResponse-notKWWListing",
+      "component": "ForbiddenErrorResponse",
+      "kind": "responses",
+      "name": "notKWWListing",
+      "summary": "Cannot edit non-kww listing.",
+      "used_by": [
+        "listings-details-delete (response 403)",
+        "listings-details-update (response 403)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "FORBIDDEN",
+        "message": "Listing not kww listing, cannot edit"
+      }
+    },
+    {
+      "id": "ForbiddenErrorResponse-invlidPermissions",
+      "component": "ForbiddenErrorResponse",
+      "kind": "responses",
+      "name": "invlidPermissions",
+      "summary": "Invalid permissions.",
+      "used_by": [
+        "listings-details-delete (response 403)",
+        "listings-details-update (response 403)"
+      ],
+      "media_type": "application/json",
+      "value": {
+        "success": "false",
+        "errorCode": "FORBIDDEN",
+        "message": "You do not have permissions to delete this listing"
+      }
+    }
+  ]
+}

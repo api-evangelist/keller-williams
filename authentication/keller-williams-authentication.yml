@@ -1,0 +1,144 @@
+generated: '2026-07-26'
+method: searched
+docs: https://developer.kw.com/docs-authentication
+source:
+  - https://developer.kw.com/getting-started
+  - https://developer.kw.com/docs-getting-started
+  - https://developer.kw.com/docs-authentication
+  - https://developer.kw.com/docs-refresh-token
+  - https://partners.api.kw.com/idp/.well-known/openid-configuration
+  - openapi/keller-williams-listings-search-openapi.json
+summary:
+  types: [apiKey, http, oauth2, openIdConnect]
+  api_key_in: [header]
+  api_key_names: [api-key, API-Key]
+  http_schemes: [basic, bearer]
+  oauth2_flows: [authorizationCode, implicit, clientCredentials, tokenExchange, jwtBearer, refreshToken]
+  paired_credentials: true
+  note: >-
+    Every Keller Williams partner request carries TWO credentials: the
+    application's `api-key` header (the DevHub app API Key) and an
+    `Authorization` header. Which Authorization credential depends on the
+    resource: user-owned Command data uses an OAuth 2.0 / OpenID Connect
+    Bearer access token minted for one individual KW user; non-user-scoped
+    or more public resources use HTTP Basic with
+    base64(API_KEY:API_SECRET). The published Listings OpenAPI declares NO
+    `components.securitySchemes` at all — authorization is modelled as an
+    explicit required `Authorization` header parameter on all seven
+    operations, described as "Basic token is created by base 64 encoding
+    your credentials: <Basic base64Encode(API_KEY:API_SECRET)>". That is a
+    real contract-quality gap: a machine reading the spec alone cannot
+    discover the api-key header or the OAuth flows at all.
+credential_issuance:
+  self_serve: false
+  process:
+    - Submit a partnership application via the "Apply to Integrate" HubSpot form.
+    - KWRI reviews and approves; a DevHub account is provisioned (SAML sign-in).
+    - Sign the KW API License Agreement and the DevHub Terms and Conditions.
+    - Create an App in DevHub (name, description, owner or team, selected APIs + scopes, one callback URL).
+    - API Key and Secret are revealed on the app record; only Owner and App Admin roles can view the Secret.
+    - Keys can be rotated ("Add Key") and revoked ("Revoke") from the app record.
+  callback_urls: one per application (redirect URI must be https)
+  teams: Owner / Administrator / Viewer permission levels
+schemes:
+  - name: apiKeyHeader
+    type: apiKey
+    in: header
+    parameter: api-key
+    aliases: [API-Key]
+    applies_to: all partner gateway requests
+    source: https://developer.kw.com/docs-authentication
+  - name: basicAuth
+    type: http
+    scheme: basic
+    value: base64(API_KEY:API_SECRET)
+    applies_to: >-
+      Resources that are not scoped to an individual KW user, the Listings
+      Search API as documented in its OpenAPI, and the client
+      authentication leg of /idp/token and /idp/revoke.
+    source: openapi/keller-williams-listings-search-openapi.json
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    applies_to: user-owned Command data (contacts, tasks, opportunities, listings, marketing profiles)
+    source: https://developer.kw.com/docs-getting-started
+  - name: openIdConnect
+    type: openIdConnect
+    openIdConnectUrl: https://partners.api.kw.com/idp/.well-known/openid-configuration
+    issuer: https://partners.api.kw.com
+    id_token_signing_alg: [RS256]
+    subject_types: [public]
+    pkce: [S256]
+    response_types: [code, id_token, "id_token token"]
+    grant_types:
+      - authorization_code
+      - implicit
+      - refresh_token
+      - client_credentials
+      - urn:ietf:params:oauth:grant-type:token-exchange
+      - urn:ietf:params:oauth:grant-type:jwt-bearer
+    token_endpoint_auth_methods: [none, client_secret_basic, client_secret_post]
+    scopes: scopes/keller-williams-scopes.yml
+    endpoints:
+      authorize: https://partners.api.kw.com/idp/authorize
+      token: https://partners.api.kw.com/idp/token
+      introspect: https://partners.api.kw.com/idp/introspect
+      userinfo: https://partners.api.kw.com/idp/userinfo
+      revoke: https://partners.api.kw.com/idp/revoke
+      end_session: https://partners.api.kw.com/idp/end_session
+      device_authorization: https://partners.api.kw.com/idp/device_authorization
+      jwks_uri: https://partners.api.kw.com/idp/keys
+    jwks_note: >-
+      The advertised jwks_uri returns HTTP 404 ("Resourse not supported.")
+      to an anonymous client, so ID-token signature verification keys are
+      not publicly retrievable. Probed 2026-07-26.
+token_lifetimes:
+  access_token: 2 days
+  refresh_token: 365 days
+  rotation: >-
+    Refresh tokens are single-use — refreshing invalidates the old refresh
+    token and returns a new one in the same payload.
+  expired_refresh: Contact KW; a new refresh token cannot be self-issued.
+  docs: https://developer.kw.com/docs-authentication
+partner_token_refresh:
+  endpoint: https://partners.api.kw.com/v2/oauth2/partner/token
+  method: POST
+  content_type: application/x-www-form-urlencoded
+  auth: Basic <base64 API_KEY:API_SECRET> + api-key header
+  parameters: [grant_type=refresh_token, account_identifier, refresh_token]
+  response_fields:
+    - access_token
+    - refresh_token
+    - refresh_token_expires_in
+    - refresh_token_status
+    - refresh_token_issued_at
+    - refresh_count
+    - old_access_token_life_time
+    - token_type
+    - expires_in
+    - issued_at
+    - status
+    - client_id
+    - application_name
+    - organization_name
+    - developer.email
+  docs: https://developer.kw.com/docs-refresh-token
+marketplace_token_minting:
+  note: >-
+    For KW Marketplace integrations, per-user access and refresh tokens
+    are not obtained through the /authorize redirect at all — they are
+    delivered to the partner inside the SUBSCRIPTION_ORDER and
+    USER_ASSIGNMENT webhook payloads as `access-token` and
+    `refresh-token` fields. See asyncapi/keller-williams-marketplace-webhooks.yml.
+  docs: https://developer.kw.com/docs-getting-started
+transport:
+  https_required: true
+  note: Calls made over plain HTTP fail; unauthenticated requests fail.
+authorization_model:
+  granularity: path + verb pair
+  note: >-
+    KW describes a fine-grained access policy where a resource is defined
+    by a path and verb pair — GET /v3/contacts and POST /v3/contacts are
+    granted separately, per partnership.
+  docs: https://developer.kw.com/docs-getting-started

@@ -1,0 +1,130 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for KW Worldwide Listings Search
+  version: 1.0.0
+extends: openapi/keller-williams-listings-search-openapi.json
+x-apievangelist:
+  generated: '2026-07-26'
+  method: generated
+  source: >-
+    Authored from the artifacts harvested in this repo — the DevHub
+    documentation set, the OIDC discovery document, and the derived
+    conventions/errors/authentication files. Applies API Evangelist
+    enhancements without mutating the provider's published document.
+actions:
+  - target: $.info
+    description: Provenance and repo cross-links.
+    update:
+      x-apievangelist-source: https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/apis/listingskww/spec
+      x-apievangelist-harvested: '2026-07-26'
+      x-apievangelist-access: partner-gated — requires an approved DevHub application and a signed KW API License Agreement
+      x-apievangelist-artifacts:
+        authentication: authentication/keller-williams-authentication.yml
+        scopes: scopes/keller-williams-scopes.yml
+        conventions: conventions/keller-williams-conventions.yml
+        errors: errors/keller-williams-problem-types.yml
+        error_codes: errors/keller-williams-error-codes.yml
+        data_model: data-model/keller-williams-data-model.yml
+        examples: examples/keller-williams-listings-search-examples.json
+        sandbox: sandbox/keller-williams-sandbox.yml
+        lifecycle: lifecycle/keller-williams-lifecycle.yml
+        webhooks: asyncapi/keller-williams-marketplace-webhooks.yml
+        skills: skills/_index.yml
+
+  - target: $.info
+    description: >-
+      The provider's spec declares no license or terms. KW publishes both
+      on the developer portal.
+    update:
+      x-apievangelist-license-agreement: https://developer.kw.com/api-license-agreement
+      x-apievangelist-terms: https://developer.kw.com/terms-and-conditions
+      x-apievangelist-support: https://developer.kw.com/support
+
+  - target: $
+    description: >-
+      Add the security model the provider documents but does not declare
+      in the spec. The published document has NO components.securitySchemes
+      at all — authorization is modelled only as a required Authorization
+      header parameter on each operation, and the required `api-key`
+      header is missing entirely.
+    update:
+      x-apievangelist-security-gap: >-
+        components.securitySchemes is absent and no security requirement
+        is applied to any operation. The api-key header documented at
+        https://developer.kw.com/docs-authentication does not appear
+        anywhere in the specification. A client generated from this spec
+        alone will not authenticate successfully.
+      x-apievangelist-recommended-securitySchemes:
+        apiKeyHeader:
+          type: apiKey
+          in: header
+          name: api-key
+        basicAuth:
+          type: http
+          scheme: basic
+        bearerAuth:
+          type: http
+          scheme: bearer
+        kwOpenIdConnect:
+          type: openIdConnect
+          openIdConnectUrl: https://partners.api.kw.com/idp/.well-known/openid-configuration
+
+  - target: $.paths['/listings'].get
+    description: Bind the operation to its OAuth scope and record the pagination grammar.
+    update:
+      x-apievangelist-scopes: [listings_get, read_all_listings, read_user_listings]
+      x-apievangelist-pagination: "page[offset]/page[limit] (JSON:API style), flat offset/limit, or scroll/scroll_id cursor; max limit 100"
+      x-apievangelist-filtering: "filter[:attribute][:operator]=:value — operators is, like, gt, gte, le, lte, between, radius, coordinate, in; prefix ! to negate"
+      x-apievangelist-sorting: "sort=field1,-field2; geo_location sort requires location[lat] and location[lon]"
+
+  - target: $.paths['/listings'].post
+    description: Scope binding and the missing write-safety contract.
+    update:
+      x-apievangelist-scopes: [listings_post]
+      x-apievangelist-idempotency: >-
+        None. No Idempotency-Key header or parameter is documented or
+        declared; a retried create may duplicate a listing.
+
+  - target: $.paths['/listings/{list_uuid}'].patch
+    description: Scope binding.
+    update:
+      x-apievangelist-scopes: [listings_details_patch]
+      x-apievangelist-idempotency: "Naturally idempotent by resource id, but no concurrency control (no ETag / If-Match) is offered."
+
+  - target: $.paths['/listings/{list_uuid}'].delete
+    description: Scope binding and consequence class.
+    update:
+      x-apievangelist-scopes: [listings_details_delete]
+      x-apievangelist-consequence: destructive — no soft-delete or undo is documented; is_deleted exists on the read shape
+
+  - target: $.paths['/listings/lookup-table'].get
+    description: Scope binding for the controlled-vocabulary service.
+    update:
+      x-apievangelist-scopes: [listings_lookup_table_get]
+      x-apievangelist-note: >-
+        Resolves every numeric *_id on a listing (prop_type_id,
+        prop_subtype_id, list_type_id, list_status_id, list_category_id)
+        plus 21 controlled vocabularies. Call this before any create.
+
+  - target: $.paths['/listings/region/{regionId}'].get
+    description: Scope binding.
+    update:
+      x-apievangelist-scopes: [listings_region_details_get]
+
+  - target: $.paths['/listings/orgs/{orgId}/people'].get
+    description: Scope binding.
+    update:
+      x-apievangelist-scopes: [listings_orgs_people_get]
+
+  - target: $.paths['/listings/lookup-table'].get.responses
+    description: >-
+      Record the declared-response gap rather than editing the provider's
+      contract — this operation requires the Authorization header but
+      declares no 401.
+    update:
+      x-apievangelist-missing-responses: ['401', '429']
+
+  - target: $.paths['/listings/region/{regionId}'].get.responses
+    description: Same declared-response gap on the region lookup.
+    update:
+      x-apievangelist-missing-responses: ['401', '429']

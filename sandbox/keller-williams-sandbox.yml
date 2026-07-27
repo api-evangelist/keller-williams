@@ -1,0 +1,91 @@
+generated: '2026-07-26'
+method: searched
+source:
+  - https://developer.kw.com/docs-getting-started
+  - https://developer.kw.com/base-path-migration-guide
+  - openapi/keller-williams-listings-search-openapi.json
+summary: >-
+  Keller Williams runs a real, separately-addressed sandbox environment
+  that is declared as a second server in the published OpenAPI — but it is
+  not self-serve. There are no public test credentials, no magic test
+  identifiers, no fixture generator and no test clock. Sandbox access is
+  provisioned by the KW onboarding team as part of an approved
+  partnership, and the sandbox gateway is credentialed exactly like
+  production (an anonymous probe of https://sandbox.partners.api.kw.com/v2
+  returns 401 BAD_TOKEN_AUTHENTICATION).
+environments:
+  - name: Production
+    api: https://partners.api.kw.com
+    listings_base: https://partners.api.kw.com/v2
+    command: Command Production
+    declared_in_openapi: true
+  - name: Sandbox
+    api: https://sandbox.partners.api.kw.com
+    listings_base: https://sandbox.partners.api.kw.com/v2
+    command: Command Sandbox / QA
+    declared_in_openapi: true
+    note: >-
+      Consolidated from the retired legacy Stage and QA Apigee base paths
+      on 2024-03-02.
+marketplace_environments:
+  - name: Marketplace Staging
+    description: >-
+      A product that has not yet been Published is in staging. It is
+      visible only to Marketplace developers from the vendor's own company
+      and to KW Marketplace managers. Credit cards are NOT required to
+      test the purchase flow while in staging.
+  - name: Marketplace Production / Live
+    description: >-
+      Once published the product is purchasable by production users. A
+      published product can never be unpublished — only made invisible —
+      and updates overwrite the published product. Publishing requires a
+      review and approval request to KW.
+test_vs_live:
+  key_prefixes: none
+  mode_flag: >-
+    Marketplace webhook payloads carry an event.flag field whose value is
+    "DEVELOPMENT" in the sample payloads for SUBSCRIPTION_ORDER,
+    SUBSCRIPTION_CHANGE and SUBSCRIPTION_NOTICE — the only observable
+    test-vs-live discriminator KW publishes.
+  separate_credentials: true
+  note: >-
+    KW recommends two registered webhook endpoints (one sandbox, one
+    production) and two Marketplace products per service, with "(dev)" or
+    "(test)" in the development product's name.
+credentials:
+  self_serve: false
+  process:
+    - Request a Marketplace developer username/password from the KW onboarding team for each developer.
+    - Request access to developer.kw.com (separate from the Marketplace test credentials).
+    - Share the secured sandbox endpoint with the KW team so the Marketplace product can be pointed at it.
+    - KW creates the gateway entry and issues an API Key and Secret.
+  note: >-
+    "For security purposes, do not share this username/password" —
+    credentials are issued per developer, per partnership.
+test_data:
+  test_cards: none published
+  magic_identifiers: none published
+  fixtures: none published
+  test_clock: false
+  data_seeding: >-
+    Not documented. Sandbox listing/contact data comes from the Command
+    Sandbox tenant KW provisions for the partner; no seeding API or
+    fixture endpoint is published.
+  sample_payloads: >-
+    KW does publish full example request/response payloads for every
+    Marketplace subscription event and for the listings responses in the
+    OpenAPI — see examples/ — but these are documentation samples, not
+    live sandbox fixtures.
+simulation:
+  event_triggers: none published
+  async_confirmation: >-
+    The asynchronous subscription flow is the closest thing to a
+    simulation control: a partner can hold a subscription in PENDING and
+    then confirm or reject it via
+    POST https://<ENVIRONMENT>/v1/subscription/async/confirm, which lets
+    the full lifecycle be exercised deliberately in sandbox.
+console:
+  interactive_try_it: >-
+    The DevHub API catalog renders the Listings OpenAPI with per-route
+    reference pages (https://developer.kw.com/docs/listingskww/1/routes/...)
+    but calls require an approved app's key and secret.

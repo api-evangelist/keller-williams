@@ -1,0 +1,298 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/keller-williams-listings-search-openapi.json
+also:
+  - https://developer.kw.com/timelines
+  - https://developer.kw.com/docs-subscription-creation
+note: >-
+  Derived from the only anonymously published Keller Williams contract —
+  the KW Worldwide Listings Search OpenAPI 3.0.1 — plus the entity shapes
+  visible in the Marketplace webhook sample payloads. The rest of the KW
+  domain (Contacts, Opportunities, Tasks, Users, Organizations, Roles) is
+  behind the SAML-gated DevHub catalog and is represented here only where
+  a public artifact evidences it. Nothing is invented.
+summary:
+  entities: 8
+  relationships: 12
+  root_entity: Listing
+  id_style: >-
+    Mixed. Listings carry both a Mongo-style 24-hex `list_uuid`
+    ("668c51b17c9422975e4f12d6") and a numeric `list_id`, plus a
+    composite human key `list_key` of the form "<mls_id>-<mls_number>"
+    (e.g. "KWW_KIWI-123456"). People are identified by a numeric
+    `kw_uid` (KWUID). Organizations use a numeric `id` with a separate
+    `org_key`. Marketplace subscriptions use partner-issued
+    `accountIdentifier` UUIDs and KW-issued user `uuid`s.
+entities:
+  - name: Listing
+    schema: ListingsResponse.hits.hits[]._source
+    fields: 117
+    identifiers: [list_uuid, list_id, list_key, mls_number]
+    domain: listings
+    operations:
+      - listings-read
+      - listings-create
+      - listings-details-update
+      - listings-details-delete
+    key_fields:
+      - list_uuid
+      - list_id
+      - list_key
+      - list_kw_uid
+      - co_list_kw_uid
+      - sell_kw_uid
+      - kww_region
+      - market_center
+      - mls_id
+      - mls_name
+      - mls_number
+      - mls_source_id
+      - list_status
+      - list_status_id
+      - kwls_status
+      - list_type
+      - list_type_id
+      - list_category
+      - list_category_id
+      - prop_type
+      - prop_type_id
+      - prop_subtype
+      - prop_subtype_id
+      - current_list_price
+      - original_list_price
+      - close_price
+      - lease_price
+      - currency_code
+      - list_dt
+      - close_dt
+      - contract_expiry_dt
+      - kw_expiry_dt
+      - days_on_market
+      - is_kww_listing
+      - is_deleted
+      - manual_entry
+      - version
+    embedded_objects:
+      - brokerage
+      - list_address
+      - property_address
+      - geo
+      - location
+      - structure
+      - expenses
+      - taxes
+      - hoa
+      - commissions
+      - history
+      - price_history
+      - open_houses
+      - photos
+      - virtual_tours
+      - marketing_info
+      - syndicate
+      - system
+      - kw_attribute
+      - green_home
+      - luxury_home
+      - special_list_condition
+      - raw
+    required_on_create:
+      - mls_id
+      - source_system_name
+      - mls_number
+      - current_list_price
+      - list_status_id
+      - list_category
+      - list_category_id
+      - prop_type
+      - prop_type_id
+      - prop_subtype
+      - prop_subtype_id
+    lock_fields:
+      note: >-
+        A distinctive KWLS pattern — parallel *_lock booleans
+        (list_desc_lock, list_status_lock, prop_type_lock,
+        prop_subtype_lock, photos_lock, open_houses_lock,
+        virtual_tours_lock, contract_expiry_dt_lock, kw_expiry_dt_lock)
+        that pin a field against overwrite by an upstream feed.
+    i18n_fields:
+      note: >-
+        Parallel *_transkey fields (list_status_transkey,
+        list_type_transkey, list_category_transkey, prop_type_transkey,
+        kwls_status_transkey, living_area_units_transkey,
+        lot_size_units_transkey) carry translation keys for the KW
+        Worldwide multi-locale surface, alongside list_desc_en.
+  - name: Person
+    schema: OrgsPeople.data[]
+    fields: 43
+    identifiers: [kw_uid, username, kw_email]
+    domain: people
+    operations: [listings-region-people-read]
+    key_fields:
+      - kw_uid
+      - username
+      - first_name
+      - last_name
+      - kw_email
+      - email
+      - marketing_email
+      - recovery_email
+      - default_org_id
+      - kw_start_dt
+      - re_start_dt
+      - org_start_dt
+      - active
+      - vested
+      - recruit_id
+      - license
+      - designations
+      - languages
+      - service_areas
+      - teams
+      - person_role_orgs
+    segment_flags: [luxury, luxury_dt, commercial, land, military, kww, kwyp, km_active, maps_client, maps_coach, maps_mastery_client]
+  - name: Organization
+    schema: PeopleOrgsDataItem
+    fields: 24
+    identifiers: [id, org_key, legacy_org_id, legacy_team_id, legacy_expansion_team_id]
+    domain: organizations
+    key_fields:
+      - id
+      - name
+      - dba_name
+      - org_type
+      - org_type_id
+      - parent_org_id
+      - member_count
+      - start_dt
+      - end_dt
+      - person_role_orgs
+    note: >-
+      Self-referencing via parent_org_id — the market-center / region /
+      team hierarchy. Three legacy id columns preserve the pre-Command
+      org, team and expansion-team identifiers.
+  - name: Role
+    schema: PeopleOrgsDataItem.person_role_orgs[].role
+    identifiers: [id, legacy_role_id]
+    domain: organizations
+    key_fields: [id, name, legacy_role_id]
+  - name: PersonRoleOrg
+    schema: person_role_orgs[]
+    domain: organizations
+    key_fields: [kw_uid, org_id, role_id, start_dt, end_dt]
+    note: The join entity binding a Person to an Organization in a Role for a date range.
+  - name: LookupTable
+    schema: LookupTableResponse.hits.hits[]
+    domain: reference-data
+    operations: [listings-read-by-table]
+    variants:
+      - prop_type
+      - prop_subtype (LookupTableHitPropSupType)
+      - list_type
+      - list_status
+      - list_category
+      - kwls_status
+      - country
+      - state_province
+      - currency
+      - unit
+      - flooring
+      - roof_type
+      - construction_material
+      - parking_feature
+      - arch_style
+      - appliance
+      - expense_type
+      - frequency
+      - oh_status
+      - special_condition
+      - syndicate
+    shape: "{id, value, value_transkey, sa_mapping, ...}"
+    note: >-
+      The controlled-vocabulary service. Each hit is discriminated by
+      _id (an enum of the table name) and carries an array of
+      {id, value, value_transkey} rows — this is where the numeric
+      *_id fields on a Listing resolve.
+  - name: Region
+    domain: listings
+    operations: [listings-region-details-read]
+    identifiers: [regionId]
+    note: KW Worldwide region; scopes the listings a partner may read or write.
+  - name: Subscription
+    schema: Marketplace webhook payload.event.payload
+    domain: marketplace
+    identifiers: [accountIdentifier, KWID]
+    key_fields:
+      - account.accountIdentifier
+      - account.status
+      - order.editionCode
+      - order.pricingDuration
+      - order.freeTrial.active
+      - configuration.entry.KWID
+      - configuration.entry.roleId
+      - configuration.entry.orgId
+      - company.uuid
+      - creator.uuid
+    source: asyncapi/keller-williams-marketplace-webhooks.yml
+relationships:
+  - from: Listing
+    to: Person
+    type: belongs_to
+    via: list_kw_uid
+    description: The listing agent (KWUID).
+  - from: Listing
+    to: Person
+    type: has_one
+    via: co_list_kw_uid
+    description: Co-listing agent.
+  - from: Listing
+    to: Person
+    type: has_one
+    via: sell_kw_uid
+    description: Selling agent.
+  - from: Listing
+    to: Organization
+    type: belongs_to
+    via: market_center
+    description: The KW market center the listing belongs to.
+  - from: Listing
+    to: Region
+    type: belongs_to
+    via: kww_region
+    description: KW Worldwide region scope.
+  - from: Listing
+    to: LookupTable
+    type: belongs_to
+    via: prop_type_id / prop_subtype_id / list_type_id / list_status_id / list_category_id
+    description: Every numeric *_id on a listing resolves against the lookup-table service.
+  - from: Listing
+    to: Brokerage
+    type: has_one
+    via: brokerage
+    description: Embedded {name, email, phone} object, not a referenced entity.
+  - from: Organization
+    to: Organization
+    type: belongs_to
+    via: parent_org_id
+    description: Market-center / region / team hierarchy.
+  - from: Organization
+    to: PersonRoleOrg
+    type: has_many
+    via: person_role_orgs
+  - from: Person
+    to: PersonRoleOrg
+    type: has_many
+    via: person_role_orgs
+  - from: PersonRoleOrg
+    to: Role
+    type: belongs_to
+    via: role_id
+  - from: Person
+    to: Organization
+    type: belongs_to
+    via: default_org_id
+    description: The agent's home organization.
+gaps:
+  - "Contacts, Opportunities, Tasks and Timelines are documented in prose (developer.kw.com/timelines, /filtering-and-sorting) but have no anonymously published schema — the v3 Contacts catalog entry is SAML-gated."
+  - "No $ref-based schema reuse between the listing read shape (_source) and the create/update shapes (ListingsCreate/ListingsUpdate) — the same 100+ fields are re-declared inline in each."
+  - "The response envelope is Elasticsearch's, so took/timed_out/_shards/hits leak the storage engine into the public contract."

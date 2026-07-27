@@ -1,0 +1,56 @@
+generated: '2026-07-26'
+method: generated
+source: >-
+  Generated from the harvested KW Worldwide Listings Search OpenAPI 3.0.1,
+  the public OpenID Connect discovery document, and the DevHub
+  documentation set. Keller Williams publishes no AGENTS.md and no skill
+  files of its own (searched the 66-URL DevHub sitemap and the KWRI GitHub
+  organization; the "copilot-skills" repo is KW's own internal Copilot CLI
+  skills, not partner API skills).
+note: >-
+  Every operationId referenced below was verified verbatim against
+  openapi/keller-williams-listings-search-openapi.json. The two skills
+  with no OpenAPI to ground them (identity and Marketplace) are grounded
+  in the documented endpoints and payloads instead, and say so in their
+  frontmatter.
+skills:
+  - file: keller-williams-search-listings.md
+    name: Search KW Worldwide listings
+    api: openapi/keller-williams-listings-search-openapi.json
+    operations:
+      - listings-read
+      - listings-read-by-table
+      - listings-region-details-read
+    scopes: [listings_get, listings_lookup_table_get, listings_region_details_get]
+  - file: keller-williams-manage-listing.md
+    name: Create, update and delete a KW Worldwide listing
+    api: openapi/keller-williams-listings-search-openapi.json
+    operations:
+      - listings-read-by-table
+      - listings-create
+      - listings-details-update
+      - listings-details-delete
+      - listings-read
+    scopes: [listings_post, listings_details_patch, listings_details_delete]
+  - file: keller-williams-authorize-partner-app.md
+    name: Authorize a KW partner application with OpenID Connect
+    api: authentication/keller-williams-openid-configuration.json
+    operations:
+      - GET https://partners.api.kw.com/idp/authorize
+      - POST https://partners.api.kw.com/idp/token
+      - POST https://partners.api.kw.com/v2/oauth2/partner/token
+      - POST https://partners.api.kw.com/idp/revoke
+    grounding: docs
+  - file: keller-williams-handle-marketplace-subscriptions.md
+    name: Handle KW Marketplace subscription events
+    api: asyncapi/keller-williams-marketplace-webhooks.yml
+    operations:
+      - SUBSCRIPTION_ORDER
+      - SUBSCRIPTION_CHANGE
+      - SUBSCRIPTION_CANCEL
+      - SUBSCRIPTION_NOTICE
+      - USER_ASSIGNMENT
+      - USER_UNASSIGNMENT
+      - POST /v1/subscription/async/confirm
+      - POST /v1/subscription/billing/usage
+    grounding: docs

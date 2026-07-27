@@ -1,0 +1,194 @@
+generated: '2026-07-26'
+method: searched
+spec_type: Webhooks
+asyncapi_published: false
+source:
+  - https://developer.kw.com/marketplace-documentation
+  - https://developer.kw.com/docs-subscription-creation
+  - https://developer.kw.com/docs-subscription-creation-teams
+  - https://developer.kw.com/docs-subscription-change
+  - https://developer.kw.com/docs-subscription-cancel
+  - https://developer.kw.com/docs-status-notification
+  - https://developer.kw.com/docs-user-assignment
+  - https://developer.kw.com/docs-user-unassignment
+  - https://developer.kw.com/docs-synchronous-subscription
+  - https://developer.kw.com/docs-asynchronous-subscription
+  - https://developer.kw.com/subscription-lifecycle-walkthrough
+asyncapi_note: >-
+  Keller Williams publishes NO AsyncAPI document. This was confirmed
+  structurally, not just by absence of a link: the DevHub portal's own
+  catalog record for the one anonymous API returns
+  "asyncApiSpecContent": null, "asyncApiSpecId": null and
+  "asyncApiSpecFormat": null, and no other API in the catalog is
+  anonymously visible. What KW does publish is a complete, sample-payload
+  documented webhook catalog for the KW Marketplace, captured verbatim
+  below. No AsyncAPI was generated from it — this is the webhook surface
+  as published, not a fabricated spec.
+summary:
+  events: 7
+  notice_types: 4
+  subscription_states: 5
+  delivery: KW Gateway -> partner-registered HTTPS endpoint
+  direction: outbound (KW is the publisher, the partner is the subscriber)
+transport:
+  protocol: https
+  method: POST
+  content_type: application/json
+  endpoint: >-
+    Partner-supplied secured HTTPS endpoint registered with the KW team.
+    KW recommends one endpoint for sandbox/testing and one for production.
+  auth_to_partner:
+    supported: [basic, oauth2]
+    note: The KW Gateway supports only HTTP Basic authentication or OAuth 2.0 when calling a partner endpoint.
+  signing: none published
+  retries: not documented
+  ordering: not documented
+envelope:
+  fields:
+    app-name: The partner application name.
+    access-token: Per-user OAuth access token, present on SUBSCRIPTION_ORDER and USER_ASSIGNMENT only.
+    refresh-token: Per-user refresh token, present on SUBSCRIPTION_ORDER and USER_ASSIGNMENT only.
+    refresh_token_expires_in: Seconds until the refresh token expires (seen on the teams variant, e.g. "31557599").
+    payload.event.type: The event type — SUBSCRIPTION_ORDER, SUBSCRIPTION_CHANGE, SUBSCRIPTION_CANCEL, SUBSCRIPTION_NOTICE, USER_ASSIGNMENT, USER_UNASSIGNMENT.
+    payload.event.marketplace.baseUrl: https://marketplace.kw.com
+    payload.event.marketplace.partner: KELLERWILLIAMS
+    payload.event.flag: DEVELOPMENT in the published samples — the test/live discriminator.
+    payload.event.link: '{rel: oidcClient, href: .../api/account/v2/subscriptions/{id}/oidcClient} on order events.'
+    payload.event.creator: The KW user who triggered the event (address, email, names, language, locale, openId, uuid).
+    payload.event.payload.account.accountIdentifier: The partner-issued unique subscription identifier.
+    payload.event.payload.account.status: ACTIVE | SUSPENDED | CANCELLED | FREE_TRIAL | FREE_TRIAL_EXPIRED.
+    payload.event.payload.company: Purchasing company/market center (uuid, name, country, phoneNumber, website, externalId).
+    payload.event.payload.configuration.entry: Key/value list — KWID, and on team orders roleId and orgId.
+    payload.event.payload.order: editionCode, pricingDuration, freeTrial.active, customAttributes.
+    payload.event.payload.user: The assigned/unassigned KW user on USER_ASSIGNMENT and USER_UNASSIGNMENT.
+    payload.event.payload.notice.type: DEACTIVATED | REACTIVATED | CLOSED | UPCOMING_INVOICE.
+  note: >-
+    The transport identity of an event is the KWUID delivered in
+    configuration.entry — a missing or invalid KWUID is rejected by the
+    gateway with BAD_KWUID.
+events:
+  - name: Subscription Creation
+    type: SUBSCRIPTION_ORDER
+    docs: https://developer.kw.com/docs-subscription-creation
+    description: A KW agent purchases the partner product in the Marketplace. Carries the per-user access and refresh tokens.
+    carries_tokens: true
+    partner_response:
+      synchronous: '200 {"success": "true", "accountIdentifier": "unique-value-for-subscription-order"}'
+      asynchronous: '202 {"success": "true"}'
+      rejection: '409 {"success": "false", "errorCode": "<partner error code>", "message": "..."}'
+  - name: Subscription Creation (Teams)
+    type: SUBSCRIPTION_ORDER
+    docs: https://developer.kw.com/docs-subscription-creation-teams
+    description: >-
+      Team/organization variant of the order event. Adds roleId and orgId
+      to configuration.entry, a company.externalId, and an
+      order.customAttributes.customAttribute of name external_company_role.
+    carries_tokens: true
+  - name: Subscription Change
+    type: SUBSCRIPTION_CHANGE
+    docs: https://developer.kw.com/docs-subscription-change
+    description: >-
+      Edition switch, seat-count change, or metered-item change. Carries
+      the updated order (e.g. editionCode "Tier 2") and the existing
+      account.accountIdentifier.
+    carries_tokens: false
+    partner_response: '200 {"success": "true"}'
+  - name: Subscription Cancel
+    type: SUBSCRIPTION_CANCEL
+    docs: https://developer.kw.com/docs-subscription-cancel
+    description: The agent cancels; the subscription is removed from the account and charges cease.
+    carries_tokens: false
+    partner_response: '200 {"success": "true"}'
+  - name: Status Notification
+    type: SUBSCRIPTION_NOTICE
+    docs: https://developer.kw.com/docs-status-notification
+    description: Lifecycle state notification carrying a notice.type and the new account.status.
+    notice_types: [DEACTIVATED, REACTIVATED, CLOSED, UPCOMING_INVOICE]
+    account_states: [SUSPENDED, FREE_TRIAL_EXPIRED, ACTIVE, FREE_TRIAL, CANCELLED]
+    carries_tokens: false
+  - name: User Assignment
+    type: USER_ASSIGNMENT
+    docs: https://developer.kw.com/docs-user-assignment
+    description: >-
+      An additional KW user is assigned a seat on an existing
+      subscription. Carries that user's own access and refresh tokens.
+    carries_tokens: true
+  - name: User Unassignment
+    type: USER_UNASSIGNMENT
+    docs: https://developer.kw.com/docs-user-unassignment
+    description: A KW user's seat is removed from the subscription.
+    carries_tokens: false
+subscription_lifecycle:
+  docs: https://developer.kw.com/subscription-lifecycle-walkthrough
+  states: [FREE_TRIAL, ACTIVE, SUSPENDED, FREE_TRIAL_EXPIRED, CANCELLED]
+  transitions:
+    - trigger: Agent subscribes
+      event: SUBSCRIPTION_ORDER
+      to: FREE_TRIAL or ACTIVE
+    - trigger: Edition / seat / metered change
+      event: SUBSCRIPTION_CHANGE
+    - trigger: Free trial expires without conversion
+      event: SUBSCRIPTION_NOTICE (DEACTIVATED)
+      to: FREE_TRIAL_EXPIRED
+    - trigger: Free trial cancelled before expiry
+      event: SUBSCRIPTION_CANCEL
+      to: CANCELLED
+      note: No SUBSCRIPTION_NOTICE is emitted in this path.
+    - trigger: Manual upgrade to a paid edition during trial
+      event: SUBSCRIPTION_CHANGE then SUBSCRIPTION_NOTICE (REACTIVATED)
+      to: ACTIVE
+    - trigger: Automatic upgrade at trial end
+      event: SUBSCRIPTION_NOTICE (REACTIVATED)
+      to: ACTIVE
+      note: No SUBSCRIPTION_CHANGE is emitted in this path.
+    - trigger: Grace period expires after FREE_TRIAL_EXPIRED
+      event: SUBSCRIPTION_NOTICE (CLOSED)
+      to: CANCELLED
+    - trigger: Missed invoice payment
+      event: SUBSCRIPTION_NOTICE (DEACTIVATED)
+      to: SUSPENDED
+      note: company_entitlement suspension reason is set to PAYMENT_OVERDUE. Delinquency defaults to three missed payments.
+    - trigger: Overdue invoice paid
+      event: SUBSCRIPTION_NOTICE (REACTIVATED)
+      to: ACTIVE
+    - trigger: Agent or owner cancels
+      event: SUBSCRIPTION_CANCEL
+      to: CANCELLED
+provisioning_modes:
+  - mode: synchronous
+    docs: https://developer.kw.com/docs-synchronous-subscription
+    description: >-
+      Everything turns on at once. The partner confirms the
+      accountIdentifier in its 200 response and billing begins
+      immediately. KW states most Marketplace partners need only this.
+  - mode: asynchronous
+    docs: https://developer.kw.com/docs-asynchronous-subscription
+    description: >-
+      Used when the partner needs extra steps (profile completion,
+      identity confirmation, onboarding/training). The partner returns 202,
+      the subscription enters PENDING, and NO billing of any kind starts
+      until the partner confirms.
+    confirm_endpoint: https://<ENVIRONMENT>/v1/subscription/async/confirm
+    confirm_body: '{"success": "true", "accountIdentifier": "unique-value-for-subscription-order"}'
+    confirm_response: '201 {"success": true, "kwuid": "1"}'
+    reject_body: '{"success": "false", "errorCode": "USER_ALREADY_EXISTS", "message": "..."}'
+    reject_response: '200 {"success": true, "kwuid": "1"}'
+    enablement: Async subscriptions must be enabled per partner by KW (INTERNAL_SERVER_ERROR otherwise).
+partner_callbacks:
+  errors: errors/keller-williams-error-codes.yml#partner_response_errors
+related_apis:
+  metered_billing:
+    endpoint: https://<ENVIRONMENT>/v1/subscription/billing/usage
+    docs: https://developer.kw.com/metered-billing
+    description: >-
+      Partner reports consumption back to KW against a pre-configured unit
+      type and price. Body is {account.accountIdentifier, items[{quantity, unit}]}.
+    unit_types_published: 130
+    example_units: [USER, ACTIVE_USERS, API_CALLS, CONTACT, EMAIL, TRANSACTION_FEE, PROPERTY, DOCUMENT, LICENSE, SESSION]
+  timelines:
+    docs: https://developer.kw.com/timelines
+    description: >-
+      Third-party authored contact timeline events posted into Command.
+      Common fields type/date/isInteraction/addedBy{author:"THIRDPARTY",id}/attributes,
+      with per-type attribute shapes (NOTE, INFO, ...). Timeline data is
+      persisted asynchronously and may take seconds to appear on GET.

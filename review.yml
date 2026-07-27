@@ -482,3 +482,93 @@ actions:
     and an anonymously readable OIDC discovery document was confirmed —
     even though every credential and every data byte is behind an approved
     partnership and a signed licence.
+
+enrichment:
+  - round: '2026-07-26'
+    method: search/generate/derive
+    contract_discovery:
+      openapi_on_api_host:
+        - {url: 'https://partners.api.kw.com/openapi.json', status: 404}
+        - {url: 'https://partners.api.kw.com/v2/openapi.json', status: 401, note: 'BAD_TOKEN_AUTHENTICATION — gateway, not a spec'}
+        - {url: 'https://partners.api.kw.com/swagger.json', status: 404}
+        - {url: 'https://developer.kw.com/openapi.json', status: 200, note: 'FALSE POSITIVE — 2,138-byte Angular SPA shell'}
+      graphql:
+        found: false
+        evidence: 'DevHub catalog record returns graphqlSchema=null and graphqlEndpointUrl=null'
+      asyncapi:
+        found: false
+        evidence: 'DevHub catalog record returns asyncApiSpecContent/asyncApiSpecId/asyncApiSpecFormat = null'
+      grpc:
+        found: false
+        evidence: 'DevHub catalog record returns grpcFileName=null and grpcZipContent=null'
+      mcp:
+        found: false
+        evidence: 'No hosted server; /.well-known/oauth-protected-resource 404; no llms.txt; zero MCP hits in the 66-URL DevHub sitemap'
+      docs_harvest:
+        endpoint: 'https://developer.kw.com/portals/api/sites/devhub-apigee-prod-kwri/liveportal/page/<slug>'
+        note: >-
+          The Apigee DevHub SPA serves every documentation page body as
+          JSON from this liveportal endpoint. 25 of the 26 sitemap doc
+          pages returned HTTP 200 and were read in full; the two
+          /errors/* pages 404. This is how the error registry, the
+          webhook catalog, the filtering grammar and the OIDC flow were
+          captured verbatim rather than inferred.
+    new_probes:
+      - {url: 'https://status.kw.com/', status: 200, note: 'NEW — "Keller Cloud Status", Atlassian Statuspage, page id mw30p7ghxf0j, live since 2020-12-13. 6 component groups. No component covers the partner API gateway, DevHub, the IdP or the Marketplace.'}
+      - {url: 'https://status.kw.com/api/v2/summary.json', status: 200}
+      - {url: 'https://kw.statuspage.io/', status: 200, note: '"Kw Status - Page Inactive" — superseded by status.kw.com'}
+      - {url: 'https://legal.kw.com/privacy-policy', status: 403, note: 'Cloudflare bot protection, but the URL is linked from the kwri.kw.com and outfront.kw.com footers (both HTTP 200) — real published page'}
+      - {url: 'https://trust.kw.com/', status: 403}
+      - {url: 'https://security.kw.com/', status: 403}
+      - {url: 'https://partners.api.kw.com/.well-known/oauth-protected-resource', status: 404}
+      - {url: 'https://developer.kw.com/llms.txt', status: 200, note: 'FALSE POSITIVE — SPA shell'}
+      - {url: 'https://packagist.org/packages/kwri/kwapi-wrapper', status: 200, note: 'Only first-party package on any registry; abandoned, last release 2017-02-15, source repo archived'}
+      - {url: 'postman.com search "keller williams"', status: 200, note: 'Zero workspaces, zero collections — no Postman pointer emitted'}
+    registries_searched: [npm, pypi, packagist, rubygems, nuget, crates.io, pkg.go.dev, maven-central]
+    artifacts_written:
+      - {path: packages/keller-williams-packages.yml, method: searched}
+      - {path: well-known/keller-williams-well-known.yml, method: searched}
+      - {path: scopes/keller-williams-scopes.yml, method: searched}
+      - {path: authentication/keller-williams-authentication.yml, method: searched}
+      - {path: conventions/keller-williams-conventions.yml, method: searched}
+      - {path: errors/keller-williams-error-codes.yml, method: searched}
+      - {path: errors/keller-williams-problem-types.yml, method: derived}
+      - {path: lifecycle/keller-williams-lifecycle.yml, method: searched}
+      - {path: sandbox/keller-williams-sandbox.yml, method: searched}
+      - {path: asyncapi/keller-williams-marketplace-webhooks.yml, method: searched}
+      - {path: conformance/keller-williams-conformance.yml, method: derived}
+      - {path: data-model/keller-williams-data-model.yml, method: derived}
+      - {path: examples/keller-williams-listings-search-examples.json, method: derived}
+      - {path: overlays/keller-williams-listings-search-overlay.yaml, method: generated}
+      - {path: mcp/keller-williams-mcp.yml, method: derived, pointer: none}
+      - {path: llms/keller-williams-llms.txt, method: generated}
+      - {path: skills/, method: generated, files: 4}
+      - {path: arazzo/keller-williams-publish-listing.yml, method: generated}
+      - {path: security/keller-williams-domain-security.yml, method: probed}
+      - {path: agentic-access/keller-williams-agentic-access.yml, method: generated}
+    pointers_deliberately_withheld:
+      - type: SDKs
+        reason: 'The only first-party client library is abandoned (Packagist "abandoned", GitHub archived 2017) and targets the retired legacy kw-api service. No maintained SDK exists.'
+      - type: Idempotency
+        reason: 'No idempotency key, header or parameter exists anywhere in the spec or the docs. POST /listings is not replay-safe.'
+      - type: MCPServer
+        reason: 'No MCP server is published. mcp/keller-williams-mcp.yml is a derived candidate tool list (status: candidate) only.'
+      - type: Compliance
+        reason: 'No certification or compliance program is published on any anonymously reachable KW surface.'
+      - type: Security
+        reason: 'No security.txt, no vulnerability disclosure page, no bug bounty program found on any KW host.'
+      - type: TrustCenter
+        reason: 'trust.kw.com and security.kw.com return Cloudflare 403; no trust center content is anonymously verifiable.'
+      - type: ChangeLog
+        reason: 'No dated changelog or release-notes page exists anywhere in the 66-URL DevHub sitemap.'
+      - type: RateLimits
+        reason: 'A quota is enforced (429 TOO_MANY_REQUESTS) but no numeric limit, window or RateLimit header is published.'
+      - type: Postman
+        reason: 'No public Postman workspace or collection exists.'
+      - type: Roadmap
+        reason: 'No public roadmap.'
+    outstanding:
+      - 'image: still the shared placeholder icon (icons/groq.png) used across 31 repos in this harvest batch; awaiting the provider icon backfill.'
+      - 'The OIDC discovery document is served at /idp/.well-known/openid-configuration while the issuer claims https://partners.api.kw.com — issuer-root resolution 404s. Worth reporting to KWRI.'
+      - 'The advertised jwks_uri (https://partners.api.kw.com/idp/keys) returns 404 anonymously.'
+      - 'The published Listings OpenAPI declares no components.securitySchemes and omits the required api-key header entirely — a client generated from the spec alone cannot authenticate.'

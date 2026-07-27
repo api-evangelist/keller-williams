@@ -1,0 +1,102 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/keller-williams-listings-search-openapi.json
+format: proprietary
+rfc9457: false
+note: >-
+  Derived from every 4xx/5xx response declared in the published KW
+  Worldwide Listings Search OpenAPI 3.0.1. The spec does not use
+  application/problem+json; all failures return the flat
+  {success, errorCode, message} envelope defined by
+  components.schemas.Error. Status-to-code mapping and the example
+  payloads below are quoted verbatim from the spec's own
+  components.responses examples. See
+  errors/keller-williams-error-codes.yml for the full gateway registry.
+schema:
+  ref: "#/components/schemas/Error"
+  properties:
+    success: string
+    errorCode: string
+    message: string
+  description: Error object. If an error occurred, 'success' field will be 'false.'
+problems:
+  - status: 400
+    component: BadRequestErrorResponse
+    title: Bad request.
+    error_codes: [BAD_REQUEST]
+    examples:
+      - summary: A query parameter is invalid.
+        value: {success: 'false', errorCode: BAD_REQUEST, message: Invalid filter query parameter}
+      - summary: Invalid data type.
+        value: {success: 'false', errorCode: BAD_REQUEST, message: '"list_desc" must be a string'}
+      - summary: Not allowed property.
+    source_operations:
+      - listings-read
+      - listings-create
+      - listings-details-update
+      - listings-read-by-table
+      - listings-region-details-read
+      - listings-region-people-read
+  - status: 401
+    component: UnauthorizedErrorResponse
+    title: Unauthorized.
+    error_codes: [BAD_TOKEN_AUTHENTICATION, BAD_API_KEY]
+    examples:
+      - summary: Bearer token is either invalid or corrupt.
+        value: {success: 'false', errorCode: BAD_TOKEN_AUTHENTICATION, message: Token is not valid or missing}
+      - summary: The API key is either invalid or corrupt.
+        value: {success: 'false', errorCode: BAD_API_KEY, message: 'API key is not valid, missing, or you do not have permission to make this request'}
+    source_operations:
+      - listings-read
+      - listings-create
+      - listings-details-delete
+      - listings-details-update
+      - listings-region-people-read
+  - status: 403
+    component: ForbiddenErrorResponse
+    title: Request forbidden.
+    error_codes: [FORBIDDEN]
+    examples:
+      - summary: Cannot edit non-kww listing.
+        value: {success: 'false', errorCode: FORBIDDEN, message: 'Listing not kww listing, cannot edit'}
+      - summary: Invalid permissions.
+        value: {success: 'false', errorCode: FORBIDDEN, message: You do not have permissions to delete this listing}
+    source_operations:
+      - listings-details-delete
+      - listings-details-update
+  - status: 500
+    component: InternalServerErrorResponse
+    title: Unexpected error happened.
+    error_codes: [INTERNAL_SERVER_ERROR]
+    examples:
+      - value: {success: 'false', errorCode: INTERNAL_SERVER_ERROR, message: Unexpected error happened. Try again later.}
+    source_operations:
+      - listings-read
+      - listings-create
+      - listings-details-delete
+      - listings-details-update
+      - listings-read-by-table
+      - listings-region-details-read
+      - listings-region-people-read
+  - status: 502
+    component: UnhandledErrorResponse
+    title: Unexpected error happened.
+    error_codes: [BAD_GATEWAY]
+    examples:
+      - value: {success: 'false', errorCode: BAD_GATEWAY, message: Unhandled error.}
+    source_operations:
+      - listings-read
+      - listings-create
+      - listings-details-delete
+      - listings-details-update
+      - listings-read-by-table
+      - listings-region-details-read
+      - listings-region-people-read
+coverage:
+  operations_total: 7
+  operations_with_4xx: 7
+  operations_with_5xx: 7
+  gaps:
+    - "listings-read-by-table and listings-region-details-read declare no 401 response even though the Authorization header is a required parameter."
+    - "No 429 response is declared on any operation, although the gateway documents a TOO_MANY_REQUESTS quota error."
+    - "No 404 response is declared on listings/{list_uuid} DELETE or PATCH."

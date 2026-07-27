@@ -1,0 +1,68 @@
+generated: '2026-07-26'
+method: searched
+source: live probes of every apis.yml baseURL host, every OpenAPI servers[] host and the docs host
+summary:
+  documents_found: 1
+  security_txt: false
+  openid_configuration: true
+  oauth_authorization_server: false
+  oauth_protected_resource: false
+  api_catalog: false
+  ai_plugin: false
+  note: >-
+    The only machine-readable discovery document Keller Williams serves is
+    the OpenID Connect configuration, and it is NOT at the RFC 8414 /
+    OIDC-Discovery default location for the issuer. The issuer claims
+    "https://partners.api.kw.com" but the document is served from the
+    /idp path prefix, so a spec-compliant client resolving
+    https://partners.api.kw.com/.well-known/openid-configuration gets a
+    404. This is a real discovery defect worth reporting to KWRI.
+    developer.kw.com is an Angular single-page app that answers every
+    unmatched path with the same 2,138-byte HTML shell at HTTP 200 —
+    those are false positives, not documents, and are recorded as such.
+    kw.com, www.kw.com and legal.kw.com sit behind Cloudflare bot
+    protection and return 403 to any non-browser client.
+hosts:
+  - host: https://partners.api.kw.com
+    role: production API gateway + authorization server
+    documents:
+      - path: /idp/.well-known/openid-configuration
+        status: 200
+        parses: true
+        file: ../authentication/keller-williams-openid-configuration.json
+        note: >-
+          Real OIDC discovery document, fetched anonymously. Harvested in
+          round 1 to authentication/; indexed here rather than duplicated.
+      - path: /.well-known/openid-configuration
+        status: 404
+        note: Issuer-root discovery is not served; only the /idp-prefixed copy.
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://developer.kw.com
+    role: Apigee DevHub developer portal (Angular SPA)
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        parses: false
+        note: FALSE POSITIVE — SPA HTML shell, identical 2,138-byte body.
+      - path: /.well-known/api-catalog
+        status: 200
+        parses: false
+        note: FALSE POSITIVE — SPA HTML shell.
+      - path: /openapi.json
+        status: 200
+        parses: false
+        note: FALSE POSITIVE — SPA HTML shell.
+  - host: https://www.kw.com
+    role: corporate website
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        note: Cloudflare bot protection; not resolvable anonymously.
+      - path: /.well-known/ai-plugin.json
+        status: 403
+        note: Cloudflare bot protection.

@@ -1,0 +1,212 @@
+generated: '2026-07-26'
+method: searched
+source: https://partners.api.kw.com/idp/.well-known/openid-configuration
+docs: https://developer.kw.com/getting-started
+local_source: authentication/keller-williams-openid-configuration.json
+summary:
+  scopes_total: 40
+  advertised_by_discovery: 40
+  documented_in_portal: 8
+  documented_but_not_advertised: 1
+  oidc_standard: 4
+  note: >-
+    Keller Williams advertises 40 OAuth 2.0 / OpenID Connect scopes in its
+    public discovery document, but the DevHub "Getting Started" guide only
+    describes 8 of them as selectable products at application-creation
+    time. The remaining 32 exist on the authorization server and are
+    granted by KWRI on a per-partnership basis; there is no published
+    scope reference page enumerating them. One scope named in the docs
+    (`read_user`) is NOT advertised by the discovery document, which
+    instead exposes `read_all_user` and `read_all_users_lw` — a real
+    docs/server divergence, recorded rather than reconciled.
+    Scope selection happens in the DevHub app-creation UI, and the chosen
+    scopes are what the end user sees on the Command consent screen.
+    `openid` and `profile` are required defaults on every /authorize call.
+schemes:
+  - name: OpenIDConnect
+    type: openIdConnect
+    issuer: https://partners.api.kw.com
+    discovery: https://partners.api.kw.com/idp/.well-known/openid-configuration
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://partners.api.kw.com/idp/authorize
+        tokenUrl: https://partners.api.kw.com/idp/token
+        refreshUrl: https://partners.api.kw.com/idp/token
+        pkce: S256
+      - flow: implicit
+        authorizationUrl: https://partners.api.kw.com/idp/authorize
+      - flow: clientCredentials
+        tokenUrl: https://partners.api.kw.com/idp/token
+      - flow: tokenExchange
+        tokenUrl: https://partners.api.kw.com/idp/token
+        grant_type: urn:ietf:params:oauth:grant-type:token-exchange
+      - flow: jwtBearer
+        tokenUrl: https://partners.api.kw.com/idp/token
+        grant_type: urn:ietf:params:oauth:grant-type:jwt-bearer
+    revocation_endpoint: https://partners.api.kw.com/idp/revoke
+    introspection_endpoint: https://partners.api.kw.com/idp/introspect
+    userinfo_endpoint: https://partners.api.kw.com/idp/userinfo
+    end_session_endpoint: https://partners.api.kw.com/idp/end_session
+    device_authorization_endpoint: https://partners.api.kw.com/idp/device_authorization
+scopes:
+  # --- OIDC standard scopes -------------------------------------------
+  - scope: openid
+    description: Required on every /authorize request; enables the OpenID Connect identity layer.
+    family: oidc
+    documented: true
+    required: true
+  - scope: profile
+    description: Required default scope; basic profile claims (name, family_name, given_name, locale, preferred_username).
+    family: oidc
+    documented: true
+    required: true
+  - scope: email
+    description: Email and email_verified claims.
+    family: oidc
+    documented: false
+  - scope: offline_access
+    description: Issues a refresh token (365-day lifetime) alongside the access token.
+    family: oidc
+    documented: false
+  # --- Documented DevHub products -------------------------------------
+  - scope: read_contact
+    description: Read Contact Data.
+    family: contacts
+    documented: true
+    product: Read Contact Data
+  - scope: write_contact
+    description: Create or Update Contact Data.
+    family: contacts
+    documented: true
+    product: Create or Update Contact Data
+  - scope: read_contact_setting
+    description: Read Command Contact Settings.
+    family: contacts
+    documented: true
+    product: Read Command Contact Settings
+  - scope: write_custom_field
+    description: Create Contact Custom Fields.
+    family: contacts
+    documented: true
+    product: Create Contact Custom Fields
+  - scope: read_organization
+    description: Read KW Organizational Information.
+    family: organizations
+    documented: true
+    product: Read KW Organizational Information
+  - scope: read_task
+    description: Read Task Information.
+    family: tasks
+    documented: true
+    product: Read Task Information
+  - scope: write_task
+    description: Create or Edit Tasks.
+    family: tasks
+    documented: true
+    product: Create or Edit Tasks
+  # --- Listings scopes (bindable to the published OpenAPI) -------------
+  - scope: listings_get
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-read
+  - scope: listings_post
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-create
+  - scope: listings_details_patch
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-details-update
+  - scope: listings_details_delete
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-details-delete
+  - scope: listings_lookup_table_get
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-read-by-table
+  - scope: listings_region_details_get
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-region-details-read
+  - scope: listings_orgs_people_get
+    family: listings
+    documented: false
+    binds_to: openapi/keller-williams-listings-search-openapi.json#listings-region-people-read
+  - scope: listings_people_orgs_get
+    family: listings
+    documented: false
+    note: No corresponding operation in the published Listings OpenAPI; the inverse people-to-orgs lookup is behind the login-gated catalog.
+  - scope: read_all_listings
+    family: listings
+    documented: false
+  - scope: read_all_listings_cors
+    family: listings
+    documented: false
+    note: Browser/CORS-flavoured variant of read_all_listings.
+  - scope: read_all_listings_zendesk
+    family: listings
+    documented: false
+    note: Zendesk-integration variant of read_all_listings.
+  - scope: read_user_listings
+    family: listings
+    documented: false
+  - scope: read_syndicated_listings
+    family: listings
+    documented: false
+  # --- Remaining server-advertised scopes -----------------------------
+  - scope: delete_task
+    family: tasks
+    documented: false
+  - scope: read_all_task_productive
+    family: tasks
+    documented: false
+  - scope: write_all_task_productive
+    family: tasks
+    documented: false
+  - scope: read_all_contact_productive
+    family: contacts
+    documented: false
+  - scope: write_all_contact_productive
+    family: contacts
+    documented: false
+  - scope: read_all_user
+    family: users
+    documented: false
+  - scope: read_all_users_lw
+    family: users
+    documented: false
+    note: >-
+      The "lw" variant, presumed Livian / LW line of business.
+  - scope: read_all_associates
+    family: users
+    documented: false
+  - scope: read_all_organization
+    family: organizations
+    documented: false
+  - scope: read_opportunity
+    family: opportunities
+    documented: false
+  - scope: read_recruit
+    family: recruiting
+    documented: false
+  - scope: write_recruit
+    family: recruiting
+    documented: false
+  - scope: read_agent_marketing_profile
+    family: marketing
+    documented: false
+  - scope: read_user_marketing_profile
+    family: marketing
+    documented: false
+  - scope: read_all_orgs_marketing_profile
+    family: marketing
+    documented: false
+  - scope: webrand
+    family: marketing
+    documented: false
+    note: Undocumented; name suggests the KW web-branding/agent-site surface.
+documented_but_not_advertised:
+  - scope: read_user
+    description: "Read KW User Information — named in the DevHub Getting Started product list, but absent from the discovery document's scopes_supported."
+    docs: https://developer.kw.com/getting-started

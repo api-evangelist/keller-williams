@@ -1,0 +1,15 @@
+generated: '2026-07-26'
+method: derived
+source: arazzo/*.yml
+workflows:
+  - file: keller-williams-publish-listing.yml
+    workflowId: publish-kww-listing
+    title: Publish a KW Worldwide listing
+    summary: >-
+      Resolve the KW controlled vocabularies, create a KWLS listing with
+      the eleven required fields, then read it back to confirm it indexed.
+    api: openapi/keller-williams-listings-search-openapi.json
+    operations:
+      - listings-read-by-table
+      - listings-create
+      - listings-read

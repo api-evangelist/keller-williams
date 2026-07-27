@@ -1,0 +1,70 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Registry sweep of npm, PyPI, Packagist, RubyGems, NuGet, crates.io,
+  pkg.go.dev and Maven Central, plus the KWRI GitHub organization
+  (https://github.com/KWRI, 25 public repositories) and the DevHub
+  developer portal (https://developer.kw.com/).
+summary:
+  official_current: 0
+  official_archived: 1
+  third_party: 0
+  note: >-
+    Keller Williams publishes no current, maintained first-party client
+    library for the partner gateway at partners.api.kw.com. The DevHub
+    portal documents raw curl only — there is no SDK page, no download
+    section and no client-library link anywhere in the 66-URL sitemap. The
+    single first-party package that exists on any public registry is an
+    abandoned 2016-2017 PHP wrapper for the retired legacy kw-api service.
+    Because no maintained SDK exists, no `SDKs` pointer is emitted in
+    apis.yml — recording one would misrepresent the provider.
+packages:
+  - language: php
+    registry: packagist
+    name: kwri/kwapi-wrapper
+    url: https://packagist.org/packages/kwri/kwapi-wrapper
+    repository: https://github.com/KWRI/kwapi-wrapper
+    install: composer require kwri/kwapi-wrapper
+    official: true
+    status: abandoned
+    abandoned: true
+    latest_version: v1.1.0
+    latest_release: '2017-02-15'
+    first_release: '2016-07-06'
+    downloads_total: 3095
+    description: kwapi Client library
+    note: >-
+      Marked "abandoned" on Packagist; the GitHub source repository is
+      archived (read-only since 2017-07-17). It wraps the legacy KWRI
+      "kw-api" service, not the current partners.api.kw.com gateway or the
+      KW Worldwide Listings v2 contract. Retained here as provenance, not
+      as a usable SDK.
+registries_probed:
+  - registry: packagist
+    query: kwri
+    result: 1 first-party package (abandoned)
+  - registry: npm
+    query: keller williams / kw.com
+    result: 0 first-party packages
+  - registry: pypi
+    queries: [kwri, keller-williams, kwls, kw-api]
+    result: 0 (all HTTP 404)
+  - registry: rubygems
+    result: 0
+  - registry: nuget
+    result: 0
+  - registry: crates.io
+    result: 0
+  - registry: pkg.go.dev
+    result: 0
+  - registry: maven-central
+    result: 0
+github_organization:
+  url: https://github.com/KWRI
+  public_repos: 25
+  note: >-
+    The KWRI org is real and active (copilot-skills updated 2026-03-24,
+    mongo-go-pagination 2025-08-20), but it publishes internal Go/PHP
+    infrastructure libraries — Kong/Apigee plugins, a JSON:API serializer,
+    Laravel pub-sub adapters, a Mongo pagination helper — not a client SDK
+    for the public partner APIs.

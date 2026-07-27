@@ -1,0 +1,161 @@
+generated: '2026-07-26'
+method: searched
+source:
+  - https://developer.kw.com/filtering-and-sorting
+  - https://developer.kw.com/docs-authentication
+  - https://developer.kw.com/docs-getting-started
+  - https://developer.kw.com/docs-error-codes-reference
+  - https://developer.kw.com/base-path-migration-guide
+  - openapi/keller-williams-listings-search-openapi.json
+summary: >-
+  Keller Williams runs a conventional Apigee-fronted REST estate: JSON in,
+  JSON out, URI-path versioning, a flat non-standard error envelope, and a
+  pagination/filtering grammar borrowed from JSON:API on the outside with
+  an Elasticsearch response shape leaking through on the inside. The
+  notable absences are idempotency (no idempotency key is documented or
+  present anywhere in the spec) and rate-limit signalling (a quota exists
+  and returns 429 TOO_MANY_REQUESTS, but no RateLimit headers or numbers
+  are published).
+authentication:
+  style: paired credentials — api-key header plus Authorization header
+  headers: [api-key, Authorization]
+  variants: [Basic base64(API_KEY:API_SECRET), Bearer <access token>]
+  artifact: authentication/keller-williams-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key (or equivalent) header, parameter or documentation
+    page exists. The published Listings OpenAPI declares no such parameter
+    on POST /listings or PATCH /listings/{list_uuid}, and no DevHub page
+    in the 66-URL sitemap mentions idempotency, retries or replay safety.
+    Marketplace webhook delivery is at-least-once in practice (the
+    asynchronous subscription flow explicitly supports a PENDING state and
+    re-confirmation) but no de-duplication key is specified for consumers.
+  note: >-
+    Because idempotency is genuinely absent, no `Idempotency` pointer is
+    emitted in apis.yml. This is a real agent-readiness gap for a
+    write-capable listings API.
+pagination:
+  styles:
+    - style: json-api-bracket
+      params: ["page[offset]", "page[limit]"]
+      defaults: {offset: 1, limit: 10}
+      max_limit: 100
+      reference: http://jsonapi.org/format/#fetching-pagination
+      note: Cited directly in the OpenAPI parameter descriptions.
+    - style: flat
+      params: [offset, limit]
+      defaults: {offset: 1, limit: 10}
+      max_limit: 100
+      note: Accepted alongside the bracketed form on GET /listings.
+    - style: scroll
+      params: [scroll, scroll_id]
+      defaults: {scroll: 1m}
+      note: >-
+        Elasticsearch-style scrolling cursor for deep result sets;
+        `scroll` sets how long the search context is retained and
+        `scroll_id` continues it.
+  response_fields:
+    - hits.total.value
+    - hits.total.relation
+    - hits.max_score
+    - took
+    - timed_out
+    - _shards
+  note: >-
+    The listings search response is a raw Elasticsearch envelope
+    (took/timed_out/_shards/hits.hits[]._source) rather than a normalised
+    API resource collection. The orgs-people endpoint uses a different
+    shape again — meta.query{limit,offset,...} + meta.total + data[].
+filtering:
+  styles:
+    - surface: listings
+      style: bracket-operator query parameters
+      grammar: "filter[:attribute_name][:operator]=:value"
+      examples:
+        - "filter[list_kw_uid][is]=<KWUID>"
+        - "filter[list_dt][gte]=2021-08-04"
+    - surface: contacts
+      style: base64-encoded JSON filter document
+      grammar: 'filter=<base64(minified JSON {"version":1,"filter":[{field:{operator:value}}]})>'
+      composition: "$should array for OR groups"
+  operators: [is, like, gt, gte, le, lte, between, radius, coordinate, in]
+  negation: "prefix the operator with ! (e.g. !is, !like)"
+  docs: https://developer.kw.com/filtering-and-sorting
+sorting:
+  param: sort
+  grammar: "sort=field1,-field2,field3"
+  descending: "prefix the field with -"
+  multi: comma-separated
+  geo: >-
+    sort=geo_location requires location[lat] and location[lon] as the
+    reference point.
+  docs: https://developer.kw.com/filtering-and-sorting
+field_expansion:
+  supported: false
+  note: No expand / fields / include parameter is documented or present in the spec.
+metadata:
+  supported: partial
+  note: >-
+    No general-purpose customer metadata bag. Contacts do support custom
+    fields via the write_custom_field scope, and Marketplace subscription
+    events carry a configuration.entry key/value list (KWID, roleId,
+    orgId) plus order.customAttributes.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation-id header is documented. The DevHub
+    portal's own internal API returns a `request_id` in its JSON envelope,
+    but that is the portal, not the partner gateway. Support requests ask
+    partners to supply KWUIDs, OrgIDs and raw error messages instead.
+versioning:
+  scheme: uri-path
+  observed: [v1, v2, v3]
+  mapping:
+    v1: Marketplace subscription billing and async subscription management
+    v2: Listings (KW Worldwide) and the partner token-refresh endpoint
+    v3: Contacts (login-gated catalog)
+  header_versioning: false
+  date_versioning: false
+  artifact: lifecycle/keller-williams-lifecycle.yml
+error_envelope:
+  format: proprietary flat JSON
+  media_type: application/json
+  rfc9457: false
+  shape:
+    success: string ("false" — a string, not a boolean, on errors)
+    errorCode: string (SCREAMING_SNAKE_CASE registry value)
+    message: string (human readable)
+  success_shape:
+    success: boolean true (metered billing and async-confirm responses use a real boolean)
+  note: >-
+    The `success` field is a string on errors and a boolean on some
+    success responses — an inconsistency present in the provider's own
+    published examples, recorded here rather than corrected.
+  artifact: errors/keller-williams-error-codes.yml
+rate_limiting:
+  documented_limits: false
+  quota: true
+  signal:
+    status: 429
+    error_code: TOO_MANY_REQUESTS
+    message: Quota exceeded
+  headers: none published
+  increase: "contact KW"
+  note: >-
+    An Apigee quota is enforced per partner app but no numeric limit,
+    window, or RateLimit/Retry-After header is published anywhere, so no
+    rate-limits artifact with a limit_count can be recorded honestly.
+content_types:
+  request: [application/json, application/x-www-form-urlencoded]
+  response: [application/json]
+  note: All KW APIs return response data in a JSON object.
+webhooks:
+  direction: KW -> partner (partner registers a secured HTTPS endpoint with the KW team)
+  auth_to_partner: Basic authentication or OAuth 2.0 (partner-side; KW Gateway supports only these two)
+  artifact: asyncapi/keller-williams-marketplace-webhooks.yml
+environments:
+  production: https://partners.api.kw.com
+  sandbox: https://sandbox.partners.api.kw.com
+  artifact: sandbox/keller-williams-sandbox.yml

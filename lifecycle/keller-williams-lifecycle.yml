@@ -1,0 +1,107 @@
+generated: '2026-07-26'
+method: searched
+source:
+  - https://developer.kw.com/base-path-migration-guide
+  - https://developer.kw.com/base-path-migration-announcement
+  - https://status.kw.com/
+  - https://status.kw.com/api/v2/summary.json
+  - openapi/keller-williams-listings-search-openapi.json
+versioning:
+  scheme: uri-path
+  current:
+    listings: v2
+    contacts: v3
+    marketplace_billing: v1
+  observed: [v1, v2, v3]
+  spec_version: '2'
+  policy_url: null
+  note: >-
+    No published versioning policy. Version numbers are per-service path
+    segments; the Listings OpenAPI declares info.version "2" matching the
+    /v2 base path. There is no documented support policy, no version
+    sunset schedule and no statement of how long a major version is
+    supported.
+deprecation:
+  policy_url: https://developer.kw.com/base-path-migration-guide
+  standing_policy: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  events:
+    - name: Legacy Apigee base-path retirement
+      announced: '2023-09-12'
+      migration_window_opens: '2023-09-12'
+      migration_window_closes: '2024-03-01'
+      effective: '2024-03-02'
+      retired:
+        - https://kw-prod-prod.apigee.net/
+        - https://kw-nonprod-stage.apigee.net/
+        - https://kw-nonprod-qa.apigee.net/
+      replaced_by:
+        - https://partners.api.kw.com/
+        - https://sandbox.partners.api.kw.com/
+      credential_impact: >-
+        None — existing API keys, secrets and user authorization tokens
+        continued to work across both base paths during the window.
+      consolidation: The legacy Stage and QA environments were collapsed into the single Sandbox base path.
+      docs: https://developer.kw.com/base-path-migration-guide
+  note: >-
+    Keller Williams publishes deprecation as a dated migration guide with
+    an explicit announcement date, a six-month migration window and a hard
+    cut-over date — real, communicated deprecation. It is NOT a standing
+    policy document: there is one migration event on record, no Sunset or
+    Deprecation response headers, and no commitment about future notice
+    periods. Recorded exactly at that strength.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA. Uptime commitments, if any, live in the KW API License
+    Agreement and the individual partnership contract, neither of which
+    states a numeric target on the public pages.
+status_page:
+  url: https://status.kw.com/
+  name: Keller Cloud Status
+  provider: Atlassian Statuspage
+  api: https://status.kw.com/api/v2/summary.json
+  page_id: mw30p7ghxf0j
+  time_zone: America/Chicago
+  since: '2020-12-13'
+  component_groups:
+    - Command Platforms
+    - Command Applets
+    - Connect Applets
+    - CommandMC Applets
+    - KW Consumer
+    - Legacy
+  components:
+    - Command
+    - Command MC
+    - Connect
+    - Command System
+    - CommandMC
+    - "Command Applets: Home, Contacts, Tasks, Smartplans, Referrals, Opportunities, Campaigns, Reports, Designs, Listings, Consumers"
+    - "CommandMC Applets: Home, Opportunities, Reports, Tasks, Smartplans, Agents, Directory, Sites, Accounting, Transactions CMC"
+    - "Connect Applets: Home, Training, Scripts"
+    - "KW Consumer: KW.com"
+    - "Legacy: WinMORE, myKW, KWLS 1.0, Reports"
+  gap: >-
+    The status page covers the Command/Connect end-user applets and the
+    consumer site. There is NO component for the partner API gateway
+    (partners.api.kw.com), the DevHub portal, the authorization server or
+    the Marketplace — a partner cannot see API-surface health here.
+changelog:
+  url: null
+  note: >-
+    No dated changelog, release-notes page or version history is published
+    anywhere on developer.kw.com. The only dated engineering
+    communications in the portal are the two base-path migration pages
+    (2023). No ChangeLog artifact or pointer is emitted.
+roadmap:
+  url: null
+  note: No public roadmap.
+support:
+  email: PartnerTechSupport@KW.com
+  url: https://developer.kw.com/support
+  response_target: 24-48 business hours

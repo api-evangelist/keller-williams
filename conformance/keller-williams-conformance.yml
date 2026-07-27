@@ -1,0 +1,130 @@
+generated: '2026-07-26'
+method: derived
+source:
+  - openapi/keller-williams-listings-search-openapi.json
+  - authentication/keller-williams-openid-configuration.json
+  - https://developer.kw.com/getting-started
+  - https://developer.kw.com/filtering-and-sorting
+  - https://www.reso.org/certificates/
+note: >-
+  Derived from the published contract and discovery document plus the
+  DevHub documentation. Keller Williams makes no explicit conformance or
+  certification claim anywhere on its public developer surface, so nothing
+  here is a provider assertion — each entry records what the artifacts
+  themselves demonstrate. No `Compliance` pointer is emitted: KW publishes
+  no certification program, no SOC 2 / ISO 27001 / PCI attestation page
+  and no trust center that an anonymous client can reach.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Discovery document advertises authorization_code, implicit,
+      refresh_token, client_credentials, token-exchange and jwt-bearer
+      grant types with authorize/token/revoke/introspect endpoints.
+  - id: oidc-core
+    conforms: true
+    evidence: >-
+      openid/profile/email scopes, RS256 id_token signing, public subject
+      type, userinfo and end_session endpoints, standard claims set
+      (sub, aud, exp, iat, iss, auth_time, nonce, acr, amr, c_hash, at_hash).
+  - id: oidc-discovery
+    conforms: partial
+    evidence: >-
+      A valid discovery document is served, but at
+      /idp/.well-known/openid-configuration while the issuer claims
+      https://partners.api.kw.com — a client resolving the issuer-root
+      well-known path receives 404. Non-conformant placement.
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported = ["S256"].
+  - id: rfc7009-token-revocation
+    conforms: true
+    evidence: revocation_endpoint https://partners.api.kw.com/idp/revoke with client_secret_basic / client_secret_post.
+  - id: rfc7662-token-introspection
+    conforms: true
+    evidence: introspection_endpoint https://partners.api.kw.com/idp/introspect (client_secret_basic only).
+  - id: rfc8628-device-authorization
+    conforms: true
+    evidence: device_authorization_endpoint advertised in the discovery document.
+  - id: rfc8693-token-exchange
+    conforms: true
+    evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:token-exchange.
+  - id: rfc7523-jwt-bearer
+    conforms: true
+    evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:jwt-bearer.
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: false
+    evidence: /.well-known/oauth-authorization-server returns 404 on partners.api.kw.com.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: No /.well-known/security.txt on any reachable KW host.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use a proprietary flat {success, errorCode, message} JSON
+      envelope with media type application/json; no
+      application/problem+json anywhere in the spec or docs.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation response headers documented; deprecation is communicated as a portal migration page.
+  - id: json-api
+    conforms: partial
+    evidence: >-
+      The Listings OpenAPI cites jsonapi.org/format/#fetching-pagination
+      and accepts page[offset]/page[limit], and KWRI publishes a
+      jsonapi.org-style serializer (github.com/KWRI/jsonapi) — but
+      responses are raw Elasticsearch envelopes, not JSON:API documents,
+      and the media type is application/json.
+  - id: openapi-3
+    conforms: true
+    evidence: openapi/keller-williams-listings-search-openapi.json declares openapi 3.0.1 and parses; 5 paths, 7 operations.
+  - id: asyncapi
+    conforms: false
+    evidence: DevHub catalog record returns asyncApiSpecContent/asyncApiSpecId/asyncApiSpecFormat = null; no AsyncAPI is published.
+  - id: graphql
+    conforms: false
+    evidence: DevHub catalog record returns graphqlSchema and graphqlEndpointUrl = null.
+  - id: grpc
+    conforms: false
+    evidence: DevHub catalog record returns grpcFileName and grpcZipContent = null.
+  - id: mcp
+    conforms: false
+    evidence: No hosted MCP server, no /.well-known/oauth-protected-resource, no llms.txt.
+  - id: reso-web-api
+    conforms: false
+    evidence: >-
+      Keller Williams / KWRI does not appear among the 578 organizations
+      in the RESO certification directory. No RESO Web API, OData
+      $metadata, Data Dictionary mapping or Universal Property Identifier
+      reference appears anywhere in the developer portal or the spec.
+  - id: reso-data-dictionary
+    conforms: false
+    evidence: >-
+      The Listings schema uses proprietary KWLS field names (list_uuid,
+      list_kw_uid, kwls_status, prop_subtype_id, list_category_id) and a
+      proprietary lookup-table vocabulary, not RESO Data Dictionary
+      standard names. The spec's own description states the service "is
+      not a substitution for or tied to any Multiple Listings Services
+      database records."
+  - id: odata
+    conforms: false
+    evidence: Filtering uses filter[field][operator] brackets and a base64 JSON filter document, not $filter/$select/$expand.
+  - id: idempotency-key
+    conforms: false
+    evidence: No Idempotency-Key header or parameter in the spec or docs; see conventions/keller-williams-conventions.yml.
+  - id: fhir-r4
+    conforms: false
+  - id: scim2
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: psd2
+    conforms: false
+certifications:
+  published: []
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or CSA STAR attestation
+    is published on any anonymously reachable Keller Williams surface. A
+    live probe of trust.kw.com, security.kw.com, kw.com/security and
+    kw.com/compliance returned Cloudflare 403 for all; the DevHub portal
+    contains no compliance page.

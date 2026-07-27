@@ -85,6 +85,19 @@ apis:
         url: https://developer.kw.com/filtering-and-sorting
       - type: Sandbox
         url: https://sandbox.partners.api.kw.com/v2
+      - type: Sandbox
+        url: sandbox/keller-williams-sandbox.yml
+      - type: Overlay
+        url: overlays/keller-williams-listings-search-overlay.yaml
+      - type: Examples
+        url: examples/keller-williams-listings-search-examples.json
+      - type: ErrorCatalog
+        url: errors/keller-williams-problem-types.yml
+      - type: DataModel
+        url: data-model/keller-williams-data-model.yml
+      - type: Arazzo
+        name: Publish a KW Worldwide listing
+        url: arazzo/keller-williams-publish-listing.yml
   - aid: keller-williams:keller-williams-partner-identity-api
     name: KW Partner Identity API (OpenID Connect)
     description: >-
@@ -116,6 +129,12 @@ apis:
         url: https://developer.kw.com/docs-authentication
       - type: Documentation
         url: https://developer.kw.com/docs-refresh-token
+      - type: Authentication
+        url: authentication/keller-williams-authentication.yml
+      - type: OAuthScopes
+        url: scopes/keller-williams-scopes.yml
+      - type: WellKnown
+        url: well-known/keller-williams-well-known.yml
   - aid: keller-williams:keller-williams-marketplace-subscription-api
     name: KW Marketplace Subscription & Metered Billing API
     description: >-
@@ -150,19 +169,66 @@ apis:
         url: https://developer.kw.com/docs-asynchronous-subscription
       - type: Documentation
         url: https://developer.kw.com/docs-error-codes-reference
+      - type: Webhooks
+        url: asyncapi/keller-williams-marketplace-webhooks.yml
+      - type: ErrorCatalog
+        url: errors/keller-williams-error-codes.yml
+      - type: AgentSkill
+        url: skills/keller-williams-handle-marketplace-subscriptions.md
 common:
+  - type: AgenticAccess
+    url: agentic-access/keller-williams-agentic-access.yml
+  - type: DomainSecurity
+    url: security/keller-williams-domain-security.yml
+  - type: Authentication
+    url: authentication/keller-williams-authentication.yml
+  - type: OAuthScopes
+    url: scopes/keller-williams-scopes.yml
+  - type: Conventions
+    url: conventions/keller-williams-conventions.yml
+  - type: ErrorCatalog
+    url: errors/keller-williams-error-codes.yml
+  - type: Lifecycle
+    url: lifecycle/keller-williams-lifecycle.yml
+  - type: StatusPage
+    url: https://status.kw.com/
+  - type: Deprecation
+    url: https://developer.kw.com/base-path-migration-guide
+  - type: Conformance
+    url: conformance/keller-williams-conformance.yml
+  - type: DataModel
+    url: data-model/keller-williams-data-model.yml
+  - type: Packages
+    url: packages/keller-williams-packages.yml
+  - type: WellKnown
+    url: well-known/keller-williams-well-known.yml
+  - type: Webhooks
+    url: asyncapi/keller-williams-marketplace-webhooks.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Arazzo
+    name: Publish a KW Worldwide listing
+    url: arazzo/keller-williams-publish-listing.yml
+  - type: LLMsTxt
+    url: llms/keller-williams-llms.txt
   - type: Website
     url: https://www.kw.com/
   - type: DeveloperPortal
     url: https://developer.kw.com/
   - type: Documentation
     url: https://developer.kw.com/getting-started
+  - type: GettingStarted
+    url: https://developer.kw.com/getting-started
+  - type: APIReference
+    url: https://developer.kw.com/docs/listingskww/1/overview
   - type: APICatalog
     url: https://developer.kw.com/apis
   - type: SignUp
     url: https://share.hsforms.com/2JQHe7zfKRLSo_cXKjy-5nwbg45/
   - type: TermsOfService
     url: https://developer.kw.com/terms-and-conditions
+  - type: PrivacyPolicy
+    url: https://legal.kw.com/privacy-policy
   - type: License
     url: https://developer.kw.com/api-license-agreement
   - type: Support

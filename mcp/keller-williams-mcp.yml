@@ -1,0 +1,74 @@
+generated: '2026-07-26'
+method: derived
+status: candidate
+published: false
+source: openapi/keller-williams-listings-search-openapi.json
+search_note: >-
+  No Keller Williams MCP server exists. Searched the DevHub portal (66-URL
+  sitemap, zero hits for "MCP", "agent" or "llms"), the KWRI GitHub
+  organization (25 public repos — the one agent-adjacent repo,
+  "copilot-skills", is a set of Copilot CLI skills for KW's own internal
+  agents, not an MCP server for the partner APIs), npm under
+  @modelcontextprotocol, and the public MCP registries. Probed
+  https://partners.api.kw.com/.well-known/oauth-protected-resource (404)
+  and every docs host for /llms.txt (SPA shell only). Because no server is
+  published, NO `MCPServer` pointer is emitted in apis.yml — the tool list
+  below is a derived candidate for a partner or for KWRI to implement, not
+  a claim that a server exists.
+server:
+  name: keller-williams
+  transport: http
+  url: null
+  auth: >-
+    Would require the paired KW credential model — an `api-key` header
+    plus either Basic base64(API_KEY:API_SECRET) or a per-user OAuth
+    Bearer token from https://partners.api.kw.com/idp/token. Both are
+    partner-gated; no anonymous MCP surface is possible.
+tools:
+  - name: search_listings
+    description: Search KW Worldwide (KWLS) listings with filtering, sorting and pagination.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-read
+    read_only: true
+    scopes: [listings_get]
+  - name: create_listing
+    description: Create a KW Worldwide listing. Requires the eleven ListingsCreate required fields.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-create
+    read_only: false
+    scopes: [listings_post]
+    caution: No idempotency key — a retried call may duplicate the listing.
+  - name: update_listing
+    description: Patch one or more fields on an existing listing by list_uuid.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-details-update
+    read_only: false
+    scopes: [listings_details_patch]
+  - name: delete_listing
+    description: Delete a listing by list_uuid. Only KW Worldwide listings are editable.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-details-delete
+    read_only: false
+    destructive: true
+    scopes: [listings_details_delete]
+  - name: get_lookup_table
+    description: Fetch the controlled vocabularies (property types, statuses, flooring, roof type, appliances, currency, country, state/province and more) that resolve every numeric *_id on a listing.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-read-by-table
+    read_only: true
+    scopes: [listings_lookup_table_get]
+  - name: get_region_details
+    description: Fetch KW Worldwide region details by region id.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-region-details-read
+    read_only: true
+    scopes: [listings_region_details_get]
+  - name: list_org_people
+    description: List the people associated with a KW organization id.
+    source_operation: openapi/keller-williams-listings-search-openapi.json#listings-region-people-read
+    read_only: true
+    scopes: [listings_orgs_people_get]
+coverage:
+  rest_operations: 7
+  tools_derived: 7
+  mcp_only: 0
+  note: >-
+    One-to-one with the only public contract. The much larger login-gated
+    catalog (Command MC, Contact & Lead Data, Tasks, Opportunity/Deal/
+    Transaction Data, User/Organization/Role Information, Marketplace
+    Subscription Management, Internal) has no anonymously readable spec,
+    so no tools can be derived for it without fabrication.
