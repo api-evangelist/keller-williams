@@ -1,0 +1,21 @@
+{
+  "repo": "keller-williams",
+  "feeds": [
+    {
+      "source": "https://kwri.kw.com/",
+      "feed_url": "https://kwri.kw.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://outfront.kw.com/",
+      "feed_url": "https://outfront.kw.com/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-08-01T15:49:00Z"
+}
