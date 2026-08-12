@@ -176,6 +176,8 @@ apis:
       - type: AgentSkill
         url: skills/keller-williams-handle-marketplace-subscriptions.md
 common:
+  - type: MCPServer
+    url: mcp/keller-williams-mcp.yml
   - type: AgenticAccess
     url: agentic-access/keller-williams-agentic-access.yml
   - type: DomainSecurity
