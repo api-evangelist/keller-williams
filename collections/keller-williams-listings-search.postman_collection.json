@@ -1,0 +1,2149 @@
+{
+  "item": [
+    {
+      "id": "640392dd-bd03-408f-811e-b19b2c7339d4",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c34babf-e973-44e5-bdfd-f0ea525d6d9b",
+          "name": "Listings search",
+          "request": {
+            "name": "Listings search",
+            "description": {
+              "content": "This endpoint returns listings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<number>",
+                  "description": "Could be Ascendant or Descendant (-). Visit [Filtering and Sorting](/filtering-and-sorting) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "1",
+                  "description": "Page Number you would like to retrieve. Offset defaults to 1. Requesting an offset less than 1 will default to 1 as this is the starting set of listings.\n`GET ?page[offset]=2&page[limit]=12`.- **[Page](http://jsonapi.org/format/#fetching-pagination)\n\n  This retreives the second page.\n  `GET ?page[offset]=2"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of listings return size. `GET ?limit=10`.  Limit should be 100 or less and use offset get the next set of listings"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "1",
+                  "description": "The next set of listings number you would like to retrieve. Offset defaults to 1. Requesting an offset less than 1 will default to 1 as this is the starting set of listings.\n`GET ?offset=2&limit]=10`.- **[Page](http://jsonapi.org/format/#fetching-pagination)\n\n  This retreives the second set of listings from 11-20.\n  `GET ?offset=2"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[limit]",
+                  "value": "10",
+                  "description": "Page size. [Size](http://jsonapi.org/format/#fetching-pagination)\n  `GET ?page[limit]=12`.  Page limit should be 100 or less and use offset get the next set of listings"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[:attribute_name][:operator]=:value",
+                  "value": "<string>",
+                  "description": "Dynamic filtering. Visit [Filtering and Sorting](/filtering-and-sorting) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "scroll_id",
+                  "value": "<string>",
+                  "description": "Scroll ID of the search. `GET ?scroll=1m&scroll_id=FGluY2x1ZGVfY29udGV4dF91dWlkDnF1ZXJ5VGhlbkZldGNoBRR6c0ZfTzNjQmppWDR5MjB6azI1aQAAAAAAMeioFnpRQTVMVHdTVEVXeVZkT3Zfc0Jld2cUNVh0X08zY0JuSF9zWmtIY2t3MWkAAAAAADHa0hY5M1VrWkM0dlRHYWUyLUtsZXczQ0RRFFBYZF9PM2NCdEZiektwOW5rM0poAAAAAAAx4SUWZnNoTzVEQzBSZFdldGFaY01vVTJkURRObGxfTzNjQjlSaU40a2JaazdKagAAAAAAMca2FmVuS3dpSXNQU3o2ZUFlZnBwNjREM2cUTjFsX08zY0I5UmlONGtiWms3Sm0AAAAAADHGtxZlbkt3aUlzUFN6NmVBZWZwcDY0RDNn`\n\t\nUse this parameter in conjunction with scroll."
+                },
+                {
+                  "disabled": false,
+                  "key": "scroll",
+                  "value": "1m",
+                  "description": "Period to retain the search context for scrolling. `GET ?scroll=1m`"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "196e86e5-daed-4eb1-a42d-7b9c1037e6ad",
+              "name": "All listings match your filter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[:attribute_name][:operator]",
+                      "value": ":value=<string>"
+                    },
+                    {
+                      "key": "scroll_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scroll",
+                      "value": "1m"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"took\": 51,\n  \"timed_out\": false,\n  \"_shards\": {\n    \"total\": 25,\n    \"successful\": 25,\n    \"skipped\": 0,\n    \"failed\": 0\n  },\n  \"hits\": {\n    \"total\": {\n      \"value\": 10000,\n      \"relation\": \"gte\"\n    },\n    \"max_score\": null,\n    \"hits\": [\n      {\n        \"_index\": \"kwls_qa\",\n        \"_type\": \"_doc\",\n        \"_id\": \"f2274b2928a1e609372e697f\",\n        \"_score\": null,\n        \"_source\": {\n          \"brokerage\": {\n            \"email\": null,\n            \"name\": \"Hey Realty, Inc.\",\n            \"phone\": null\n          },\n          \"close_dt\": null,\n          \"close_price\": null,\n          \"co_list_agent_office\": null,\n          \"co_list_kw_uid\": null,\n          \"co_sell_agent_office\": null,\n          \"commissions\": null,\n          \"contract_expiry_dt\": null,\n          \"contract_expiry_dt_lock\": false,\n          \"currency_code\": \"USD\",\n          \"current_list_price\": 179900,\n          \"expenses\": null,\n          \"full_bath\": 1,\n          \"geo\": {\n            \"address_id\": [\n              5884694383689711000\n            ],\n            \"city\": [\n              1421451\n            ],\n            \"county\": [\n              961661\n            ],\n            \"mcd\": [\n              979845\n            ],\n            \"neighborhood\": [\n              147131\n            ],\n            \"postal_code\": [\n              174181\n            ],\n            \"property_id\": null,\n            \"school_attendance\": [\n              807885,\n              807884,\n              807882\n            ],\n            \"school_district\": [\n              920096\n            ],\n            \"state\": [\n              964406\n            ]\n          },\n          \"green_home\": null,\n          \"half_bath\": 0,\n          \"history\": null,\n          \"hoa\": [\n            {\n              \"assoc_amenities\": [\n                \"Security\"\n              ],\n              \"assoc_fee\": 278,\n              \"assoc_fee_freq\": \"Monthly\",\n              \"assoc_fee_freq_search\": null,\n              \"assoc_fee_includes\": [\n                \"Trash\",\n                \"Snow Removal\",\n                \"Lawn Care\",\n                \"Maintenance Grounds\",\n                \"Water\",\n                \"Professional Mgmt\"\n              ],\n              \"assoc_fee_search\": null,\n              \"assoc_req\": null,\n              \"has_assoc\": true\n            }\n          ],\n          \"is_deleted\": false,\n          \"is_kww_listing\": false,\n          \"kw_agent\": false,\n          \"kw_attribute\": null,\n          \"kw_created_at\": \"2021-07-26T17:20:03.000000\",\n          \"kw_expiry_dt\": \"2022-05-28T00:00:00.000000\",\n          \"kw_expiry_dt_lock\": false,\n          \"kw_listing\": false,\n          \"kw_mc\": false,\n          \"kw_updated_at\": \"2022-05-13T15:48:21.169000\",\n          \"kw_updated_by\": \"Smarter Agent\",\n          \"kwls_status\": \"Accepted\",\n          \"kww_region\": null,\n          \"lease_price\": null,\n          \"list_address\": {\n            \"address\": \"2512 2518 8 New Brighton MN 55112\",\n            \"city\": \"New Brighton\",\n            \"coordinates_gp\": {\n              \"lat\": 45.0687556746,\n              \"lon\": -93.2334300785\n            },\n            \"coordinates_gs\": {\n              \"coordinates\": [\n                -93.2198750785,\n                45.0689851746\n              ],\n              \"type\": \"Point\"\n            },\n            \"country\": null,\n            \"full_street_address\": \"2512 Innsbruck Trail\",\n            \"postal_code\": \"54112\",\n            \"state_prov\": \"MN\",\n            \"street_direction\": null,\n            \"street_name\": \"Innsbruck\",\n            \"street_number\": \"2412\",\n            \"street_post_dir\": null,\n            \"street_suffix\": \"Trail\",\n            \"unit_number\": null,\n            \"zip_4\": null\n          },\n          \"list_agent_office\": {\n            \"list_agent_email\": \"dawrt@realty.com\",\n            \"list_agent_fax\": null,\n            \"list_agent_first_name\": \"Hey\",\n            \"list_agent_full_name\": \"Hey Peddycoart\",\n            \"list_agent_key\": \"MN_RMLS-NST8850-NST506099572\",\n            \"list_agent_key_2\": \"MN_RMLS-NST16866-NST77948\",\n            \"list_agent_last_name\": \"Peddycoart\",\n            \"list_agent_mls_id\": \"NST506099581\",\n            \"list_agent_mls_id_2\": \"NST77941\",\n            \"list_agent_office_phone\": null,\n            \"list_agent_preferred_phone\": \"763-134-0963\",\n            \"list_agent_url\": null,\n            \"list_office_address\": null,\n            \"list_office_email\": \"example@realty.com\",\n            \"list_office_fax\": null,\n            \"list_office_key\": \"MN_RMLS-NST8660\",\n            \"list_office_key_2\": \"MN_RMLS-NST18866\",\n            \"list_office_mls_id\": \"NST8850\",\n            \"list_office_mls_id_2\": \"NST18866\",\n            \"list_office_name\": \"Example Realty, Inc.\",\n            \"list_office_phone\": \"763-795-9800\",\n            \"list_office_url\": null\n          },\n          \"list_category\": \"For Sale\",\n          \"list_category_id\": 2,\n          \"list_desc\": \"Welcome Home! Come fall in love with this open concept one level living on the main floor of the building.\",\n          \"list_desc_en\": null,\n          \"list_desc_lock\": false,\n          \"list_dt\": \"2021-07-26T00:00:00.000000\",\n          \"list_id\": 5920294489286458000,\n          \"list_key\": \"MN_RMLS-NST8428612\",\n          \"list_kw_uid\": null,\n          \"list_status\": \"Active\",\n          \"list_status_id\": 1,\n          \"list_status_lock\": false,\n          \"list_type\": \"MLS Listing\",\n          \"list_type_id\": 2,\n          \"list_uuid\": \"f2274b2928dk460a4d2e697f\",\n          \"living_area\": 1020,\n          \"living_area_units\": \"SF\",\n          \"location\": {\n            \"county\": \"Ramsey\",\n            \"municipality\": null,\n            \"neighborhoods\": null,\n            \"prop_directions\": \"698 to Golden Lake Rd, go north to 1st stoplight by Burger King, go left (east) to Fox Trail right home.\",\n            \"region\": null,\n            \"schools\": null,\n            \"subdivision\": \"Condo 217 SpringField Place Co\",\n            \"township\": null,\n            \"zoning\": \"Residential-Single Family\"\n          },\n          \"lot_depth_area\": null,\n          \"lot_depth_units\": null,\n          \"lot_front_area\": null,\n          \"lot_front_units\": null,\n          \"lot_size_area\": 0.02,\n          \"lot_size_units\": \"AC\",\n          \"luxury_home\": false,\n          \"manual_entry\": false,\n          \"market_center\": null,\n          \"marketing_info\": {\n            \"courtesy_label\": \"Courtesy of\",\n            \"courtesy_location\": \"BOTTOM\",\n            \"courtesy_of_detail\": \"Edina Realty, Inc.\",\n            \"courtesy_of_list\": null,\n            \"display_address\": true,\n            \"display_internet\": true,\n            \"display_list_price\": true,\n            \"display_listing\": true,\n            \"display_photo\": true,\n            \"legal_accept_disclaimer\": false,\n            \"legal_description\": null,\n            \"legal_exclusive_rights\": false,\n            \"living_area_display\": \"1021\",\n            \"photo_courtesy_required\": false,\n            \"vow\": false\n          },\n          \"mls_id\": \"MN_RMLS\",\n          \"mls_name\": \"Regional MLS of MN\",\n          \"mls_number\": \"NST6068612\",\n          \"mls_source_id\": 131,\n          \"mls_updated_at\": \"2021-07-26T16:45:16.000000\",\n          \"office_size\": null,\n          \"office_size_units\": null,\n          \"one_quarter_bath\": 0,\n          \"open_houses\": null,\n          \"open_houses_lock\": false,\n          \"original_list_category\": \"For Sale\",\n          \"original_list_category_id\": 2,\n          \"original_list_price\": 179900,\n          \"other_area_size\": null,\n          \"other_area_size_units\": null,\n          \"partial_bath\": 0,\n          \"photos\": null,\n          \"photos_lock\": false,\n          \"price_history\": [\n            {\n              \"current_list_price\": 179900,\n              \"in_use\": false,\n              \"percent_change\": 0,\n              \"previous_list_price\": 0,\n              \"price_updated_at\": \"2021-07-26T13:20:03.000Z\"\n            }\n          ],\n          \"price_tax_suffix\": false,\n          \"prop_subtype\": \"Single Family Detached\",\n          \"prop_subtype_id\": 15,\n          \"prop_subtype_lock\": false,\n          \"prop_type\": \"Residential\",\n          \"prop_type_id\": 8,\n          \"prop_type_lock\": false,\n          \"property_address\": {\n            \"address\": \"9512 Trail New SpringField MN 53412\",\n            \"city_long\": \"New SpringField\",\n            \"city_short\": null,\n            \"coordinates_gp\": {\n              \"lat\": 45.0587631756,\n              \"lon\": -93.2193300774\n            },\n            \"coordinates_gs\": {\n              \"coordinates\": [\n                -93.2193300773,\n                45.0787631745\n              ],\n              \"type\": \"Point\"\n            },\n            \"country_long\": null,\n            \"country_short\": null,\n            \"county\": \"Ramsey\",\n            \"county_fips\": null,\n            \"full_street_address\": \"2532 Fox Trail\",\n            \"habitation_name\": null,\n            \"level_number\": null,\n            \"postal_code_long\": null,\n            \"postal_code_short\": \"55112\",\n            \"rural_address\": null,\n            \"state_prov_short\": \"MN\",\n            \"street_direction\": null,\n            \"street_long\": null,\n            \"street_number\": null,\n            \"street_suffix_short\": null,\n            \"unit_number\": null,\n            \"unit_type\": null,\n            \"zip_4\": null\n          },\n          \"raw\": {\n            \"co_list_kw_uid\": null,\n            \"co_list_market_center\": null,\n            \"display_listing\": \"true\",\n            \"lambda_updated_at\": \"2021-07-26T17:20:04.494000\",\n            \"list_kw_uid\": null,\n            \"list_status\": \"Active\",\n            \"list_status_id\": \"1\",\n            \"market_center\": null,\n            \"parking_total\": \"1\",\n            \"prop_type\": \"Manor/Village\",\n            \"prop_type_id\": \"1\",\n            \"signature_id\": null,\n            \"source_list_id\": \"131_2234264255\",\n            \"trace_id\": null\n          },\n          \"retail_size\": null,\n          \"retail_size_units\": null,\n          \"sell_agent_office\": null,\n          \"sell_kw_uid\": null,\n          \"source_system_name\": \"smarteragent\",\n          \"special_list_condition\": null,\n          \"structure\": {\n            \"appliances\": [\n              \"Range\",\n              \"Microwave\",\n              \"Dishwasher\",\n              \"Refrigerator\",\n              \"Washer\",\n              \"Dryer\",\n              \"Water Softener Owned\",\n              \"Electric Water Heater\",\n              \"Gas Water Heater\"\n            ],\n            \"architectural_styles\": null,\n            \"basement_desc\": null,\n            \"building_name\": null,\n            \"construction_materials\": [\n              \"Materials: Block\",\n              \"Materials: Vinyl Siding\"\n            ],\n            \"dining_room_desc\": null,\n            \"exterior_features\": {\n              \"has_barbecue_area\": false,\n              \"has_deck\": false,\n              \"has_disabled_access\": false,\n              \"has_dock\": false,\n              \"has_garden\": false,\n              \"has_gated_entry\": false,\n              \"has_green_house\": false,\n              \"has_hot_tub_spa\": false,\n              \"has_patio\": false,\n              \"has_pond\": false,\n              \"has_pool\": false,\n              \"has_porch\": false,\n              \"has_rv_parking\": false,\n              \"has_sports_court\": false,\n              \"has_sprinkler_system\": false,\n              \"is_water_front\": false\n            },\n            \"fireplace_desc\": \"Yes,1,Living Room,Gas\",\n            \"fireplaces_total\": null,\n            \"floorings\": null,\n            \"foundation_details\": [\n              \"Area: 1020\"\n            ],\n            \"has_garage\": true,\n            \"has_parking\": true,\n            \"heating_cooling\": [\n              \"Forced Air\"\n            ],\n            \"interior_features\": {\n              \"has_ceiling_fan\": false,\n              \"has_fireplace\": true,\n              \"has_jetted_bath_tub\": false,\n              \"has_mother_in_law\": false,\n              \"has_sauna\": false,\n              \"has_security_system\": false,\n              \"has_skylight\": false,\n              \"has_vaulted_ceiling\": false,\n              \"has_wet_bar\": false,\n              \"is_cable_ready\": false,\n              \"is_wired\": false\n            },\n            \"is_new_construction\": false,\n            \"parking_features\": [\n              \"Attached Garage\",\n              \"Asphalt\",\n              \"Storage\",\n              \"Garage Door Opener\",\n              \"SQFT: 171\"\n            ],\n            \"parking_total\": 1,\n            \"roof_types\": [\n              \"Asphalt\",\n              \"Age 8 Years or Less\"\n            ],\n            \"rooms_total\": null,\n            \"stories\": null,\n            \"total_buildings\": null,\n            \"total_units\": null,\n            \"unit_level\": null,\n            \"utilities\": null,\n            \"views\": null,\n            \"water_source\": [\n              \"City Water/Connected\"\n            ]\n          },\n          \"syndicate\": {\n            \"all_kw_apps\": true,\n            \"brokerage_id\": null,\n            \"command_only\": false,\n            \"consumer_only\": false,\n            \"list_org_id\": null,\n            \"list_team_id\": null\n          },\n          \"system\": {\n            \"processed_by\": \"qa-run-manual-reprocessing-l1-es-2022-05-13-15-80-42\",\n            \"reprocessed\": true\n          },\n          \"taxes\": [\n            {\n              \"tax_amt\": 1954,\n              \"tax_id\": null,\n              \"tax_year\": \"2021\"\n            }\n          ],\n          \"three_quarter_bath\": 0,\n          \"total_bath\": 1,\n          \"total_bed\": 2,\n          \"version\": \"4.1.0\",\n          \"virtual_tours\": [\n            {\n              \"vt_short_desc\": null,\n              \"vt_updated_at\": null,\n              \"vt_url\": null,\n              \"vt_url_branded\": false\n            }\n          ],\n          \"virtual_tours_lock\": false,\n          \"warehouse_size\": null,\n          \"warehouse_size_units\": null,\n          \"year_built\": 1991,\n          \"days_on_market\": 295,\n          \"lot_size_units_transkey\": \"listings.ac\",\n          \"living_area_units_transkey\": \"listings.sf\",\n          \"list_status_transkey\": \"listings.active\",\n          \"prop_type_transkey\": \"listings.residential\",\n          \"list_type_transkey\": \"listings.mls_listing\",\n          \"kwls_status_transkey\": \"listings.accepted\",\n          \"list_category_transkey\": \"listings.for_sale\"\n        },\n        \"sort\": [\n          5920294403786638000\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cf11718-2d08-450c-af3b-aefbfad0e58c",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[:attribute_name][:operator]",
+                      "value": ":value=<string>"
+                    },
+                    {
+                      "key": "scroll_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scroll",
+                      "value": "1m"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"Invalid filter query parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fc1a4f3-007c-4a8d-93eb-85d1fa93031b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[:attribute_name][:operator]",
+                      "value": ":value=<string>"
+                    },
+                    {
+                      "key": "scroll_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scroll",
+                      "value": "1m"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_TOKEN_AUTHENTICATION\",\n  \"message\": \"Token is not valid or missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1522ae2a-ea26-48bd-be1d-0906f5d17f1c",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[:attribute_name][:operator]",
+                      "value": ":value=<string>"
+                    },
+                    {
+                      "key": "scroll_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scroll",
+                      "value": "1m"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2989e6c-9d66-4f7d-a275-15cc53273545",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[:attribute_name][:operator]",
+                      "value": ":value=<string>"
+                    },
+                    {
+                      "key": "scroll_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scroll",
+                      "value": "1m"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5865a016-a089-4be8-85de-b4d107f5db51",
+          "name": "Create Listings",
+          "request": {
+            "name": "Create Listings",
+            "description": {
+              "content": "This endpoint creates listings.  Note: Avoid using special charater like % in the listing description which will create problems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mls_id\": \"<string>\",\n  \"source_system_name\": \"<string>\",\n  \"mls_number\": \"<string>\",\n  \"current_list_price\": \"<number>\",\n  \"list_status_id\": \"<number>\",\n  \"list_category\": \"<string>\",\n  \"list_category_id\": \"<number>\",\n  \"prop_type\": \"<string>\",\n  \"prop_type_id\": \"<number>\",\n  \"prop_subtype\": \"<string>\",\n  \"prop_subtype_id\": \"<number>\",\n  \"list_kw_uid\": \"<number>\",\n  \"list_desc\": \"<string>\",\n  \"co_list_kw_uid\": \"<number>\",\n  \"list_type\": \"<string>\",\n  \"version\": \"<string>\",\n  \"list_type_id\": \"<number>\",\n  \"kwls_status\": \"<string>\",\n  \"list_status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7d94572-3807-48cb-b42c-4114600363af",
+              "name": "Listings response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"list_kw_uid\": 556396,\n    \"list_desc\": \"This is test list\",\n    \"co_list_kw_uid\": null,\n    \"list_type\": \"MLS Listing\",\n    \"source_system_name\": \"KW Sourced\",\n    \"version\": \"2.0.0\",\n    \"list_type_id\": 1,\n    \"kwls_status\": \"Accepted\",\n    \"current_list_price\": 387000,\n    \"list_status_id\": 18,\n    \"list_category\": \"Off Market\",\n    \"list_category_id\": 4,\n    \"prop_type\": \"Residential\",\n    \"prop_type_id\": 8,\n    \"prop_subtype\": \"Condominium\",\n    \"prop_subtype_id\": 4,\n    \"list_status\": \"Draft\",\n    \"mls_id\": \"KWW\",\n    \"mls_number\": \"1257243\",\n    \"is_kww_listing\": false,\n    \"kww_region\": null,\n    \"sell_kw_uid\": null,\n    \"is_deleted\": false,\n    \"mls_source_id\": null,\n    \"market_center\": null,\n    \"syndicate\": {\n      \"list_team_id\": null,\n      \"list_org_id\": null,\n      \"brokerage_id\": [],\n      \"all_kw_apps\": true,\n      \"command_only\": false,\n      \"consumer_only\": false\n    },\n    \"list_address\": {\n      \"street_number\": null,\n      \"street_direction\": null,\n      \"street_name\": null,\n      \"street_suffix\": null,\n      \"street_post_dir\": null,\n      \"full_street_address\": \"\",\n      \"unit_number\": null,\n      \"city\": null,\n      \"state_prov\": null,\n      \"country\": null,\n      \"postal_code\": null,\n      \"zip_4\": null,\n      \"address\": null,\n      \"coordinates_gp\": null,\n      \"coordinates_gs\": null\n    },\n    \"property_address\": {\n      \"full_street_address\": null,\n      \"street_number\": null,\n      \"street_number_low\": null,\n      \"street_number_high\": null,\n      \"street_long\": null,\n      \"street_short\": null,\n      \"street_suffix_long\": null,\n      \"street_suffix_short\": null,\n      \"street_unit\": null,\n      \"unit_number\": null,\n      \"unit_type\": null,\n      \"city_long\": null,\n      \"city_short\": null,\n      \"state_prov_long\": null,\n      \"state_prov_short\": null,\n      \"country_long\": null,\n      \"country_short\": null,\n      \"postal_code_long\": null,\n      \"postal_code_short\": null,\n      \"zip_4\": null,\n      \"address\": null,\n      \"habitation_name\": null,\n      \"level_number\": null,\n      \"street_direction\": null,\n      \"rural_address\": null,\n      \"coordinates_gp\": null,\n      \"coordinates_gs\": null\n    },\n    \"currency_code\": null,\n    \"lease_price\": null,\n    \"close_price\": null,\n    \"original_list_price\": null,\n    \"price_tax_suffix\": false,\n    \"price_history\": null,\n    \"list_dt\": \"2022-05-16T14:01:24.317Z\",\n    \"kw_expiry_dt\": null,\n    \"kw_expiry_dt_lock\": false,\n    \"contract_expiry_dt\": null,\n    \"contract_expiry_dt_lock\": false,\n    \"close_dt\": null,\n    \"list_status_lock\": false,\n    \"original_list_category\": null,\n    \"original_list_category_id\": null,\n    \"luxury_home\": false,\n    \"prop_type_lock\": false,\n    \"prop_subtype_lock\": false,\n    \"special_list_condition\": null,\n    \"year_built\": null,\n    \"living_area\": null,\n    \"living_area_units\": null,\n    \"lot_size_area\": null,\n    \"lot_size_units\": null,\n    \"lot_front_area\": null,\n    \"lot_front_units\": null,\n    \"lot_depth_area\": null,\n    \"lot_depth_units\": null,\n    \"office_size\": null,\n    \"office_size_units\": null,\n    \"warehouse_size\": null,\n    \"warehouse_size_units\": null,\n    \"retail_size\": null,\n    \"retail_size_units\": null,\n    \"other_area_size\": null,\n    \"other_area_size_units\": null,\n    \"total_bed\": null,\n    \"total_bath\": 0,\n    \"full_bath\": 0,\n    \"half_bath\": 0,\n    \"one_quarter_bath\": 0,\n    \"three_quarter_bath\": 0,\n    \"partial_bath\": 0,\n    \"list_desc_en\": null,\n    \"list_desc_lock\": false,\n    \"brokerage\": {\n      \"name\": null,\n      \"email\": null,\n      \"phone\": null\n    },\n    \"list_agent_office\": {\n      \"list_agent_mls_id\": null,\n      \"list_agent_key\": null,\n      \"list_agent_mls_id_2\": null,\n      \"list_agent_key_2\": null,\n      \"list_agent_first_name\": null,\n      \"list_agent_last_name\": null,\n      \"list_agent_full_name\": null,\n      \"list_agent_preferred_phone\": null,\n      \"list_agent_office_phone\": null,\n      \"list_agent_fax\": null,\n      \"list_agent_email\": null,\n      \"list_agent_url\": null,\n      \"list_agent_license\": null,\n      \"list_office_mls_id\": null,\n      \"list_office_key\": null,\n      \"list_office_mls_id_2\": null,\n      \"list_office_key_2\": null,\n      \"list_office_name\": null,\n      \"list_office_address\": {\n        \"full_street_address\": null,\n        \"unit_number\": null,\n        \"city\": null,\n        \"state_prov\": null,\n        \"postal_code\": null,\n        \"country\": null,\n        \"address\": null\n      },\n      \"list_office_phone\": null,\n      \"list_office_fax\": null,\n      \"list_office_email\": null,\n      \"list_office_url\": null\n    },\n    \"co_list_agent_office\": {\n      \"co_list_agent_mls_id\": null,\n      \"co_list_agent_key\": null,\n      \"co_list_agent_mls_id_2\": null,\n      \"co_list_agent_key_2\": null,\n      \"co_list_agent_first_name\": null,\n      \"co_list_agent_last_name\": null,\n      \"co_list_agent_full_name\": null,\n      \"co_list_agent_preferred_phone\": null,\n      \"co_list_agent_office_phone\": null,\n      \"co_list_agent_fax\": null,\n      \"co_list_agent_email\": null,\n      \"co_list_agent_url\": null,\n      \"co_list_office_mls_id\": null,\n      \"co_list_office_key\": null,\n      \"co_list_office_name\": null,\n      \"co_list_office_phone\": null\n    },\n    \"sell_agent_office\": {\n      \"sell_agent_mls_id\": null,\n      \"sell_office_mls_id_2\": null,\n      \"sell_office_key_2\": null,\n      \"sell_agent_key\": null,\n      \"sell_agent_mls_id_2\": null,\n      \"sell_agent_key_2\": null,\n      \"sell_agent_full_name\": null,\n      \"sell_office_mls_id\": null,\n      \"sell_office_key\": null,\n      \"sell_office_name\": null\n    },\n    \"co_sell_agent_office\": {\n      \"co_sell_agent_mls_id\": null,\n      \"co_sell_agent_key\": null,\n      \"co_sell_agent_mls_id_2\": null,\n      \"co_sell_agent_key_2\": null,\n      \"co_sell_agent_full_name\": null,\n      \"co_sell_office_mls_id\": null,\n      \"co_sell_office_key\": null,\n      \"co_sell_office_name\": null\n    },\n    \"location\": {\n      \"county\": null,\n      \"township\": null,\n      \"region\": null,\n      \"subdivision\": null,\n      \"elevation\": null,\n      \"zoning\": null,\n      \"schools\": null,\n      \"neighborhoods\": null,\n      \"prop_directions\": null,\n      \"municipality\": null\n    },\n    \"structure\": {\n      \"builder_name\": null,\n      \"stories\": null,\n      \"total_units\": null,\n      \"total_buildings\": null,\n      \"unit_level\": null,\n      \"building_name\": null,\n      \"has_garage\": false,\n      \"has_parking\": false,\n      \"parking_total\": null,\n      \"parking_features\": null,\n      \"appliances\": null,\n      \"architectural_styles\": null,\n      \"architectural_design\": null,\n      \"interior_features\": {\n        \"has_fireplace\": false,\n        \"has_ceiling_fan\": false,\n        \"has_jetted_bath_tub\": false,\n        \"has_mother_in_law\": false,\n        \"has_sauna\": false,\n        \"has_security_system\": false,\n        \"has_skylight\": false,\n        \"has_vaulted_ceiling\": false,\n        \"has_wet_bar\": false,\n        \"is_cable_ready\": false,\n        \"is_wired\": false\n      },\n      \"exterior_features\": {\n        \"has_hot_tub_spa\": false,\n        \"has_barbecue_area\": false,\n        \"has_deck\": false,\n        \"has_disabled_access\": false,\n        \"has_dock\": false,\n        \"has_garden\": false,\n        \"has_gated_entry\": false,\n        \"has_green_house\": false,\n        \"has_patio\": false,\n        \"has_pond\": false,\n        \"has_pool\": false,\n        \"has_porch\": false,\n        \"has_rv_parking\": false,\n        \"has_sports_court\": false,\n        \"has_sprinkler_system\": false,\n        \"is_water_front\": false\n      },\n      \"views\": null,\n      \"roof_types\": null,\n      \"foundation_details\": null,\n      \"construction_materials\": null,\n      \"heating_cooling\": null,\n      \"floorings\": null,\n      \"basement_desc\": null,\n      \"master_bedroom_desc\": null,\n      \"family_room_desc\": null,\n      \"dining_room_desc\": null,\n      \"living_room_desc\": null,\n      \"fireplace_desc\": null,\n      \"utilities\": null,\n      \"water_source\": null,\n      \"rooms_total\": null,\n      \"fireplaces_total\": null,\n      \"is_new_construction\": false\n    },\n    \"green_home\": {\n      \"indoor_air_quality\": null,\n      \"water_conservation\": null,\n      \"energy_efficient\": null,\n      \"energy_generation\": null,\n      \"building_verification_type\": null,\n      \"energy_grade_level\": null,\n      \"co2_class\": null\n    },\n    \"expenses\": null,\n    \"hoa\": null,\n    \"taxes\": null,\n    \"marketing_info\": {\n      \"display_listing\": true,\n      \"display_address\": true,\n      \"display_internet\": true,\n      \"display_list_price\": true,\n      \"display_photo\": true,\n      \"courtesy_location\": null,\n      \"courtesy_label\": null,\n      \"courtesy_of_list\": null,\n      \"courtesy_of_detail\": null,\n      \"photo_courtesy_required\": false,\n      \"vow\": false,\n      \"legal_exclusive_rights\": false,\n      \"legal_accept_disclaimer\": false,\n      \"living_area_display\": null,\n      \"legal_description\": null\n    },\n    \"virtual_tours\": null,\n    \"virtual_tours_lock\": false,\n    \"open_houses\": null,\n    \"open_houses_lock\": false,\n    \"photos\": null,\n    \"photos_lock\": false,\n    \"links\": null,\n    \"links_lock\": false,\n    \"mls_updated_at\": null,\n    \"kw_updated_at\": \"2022-05-16T14:01:24.317Z\",\n    \"kw_updated_by\": \"KW Sourced-1\",\n    \"raw\": {\n      \"lambda_updated_at\": \"2022-05-16T14:01:24.317Z\"\n    },\n    \"history\": null,\n    \"kw_attribute\": {\n      \"kw_active\": false,\n      \"list_team_id\": null,\n      \"membership\": {\n        \"luxury\": false,\n        \"commercial\": false,\n        \"land\": false,\n        \"kwyp\": false,\n        \"gps\": false,\n        \"maps_client\": false,\n        \"maps_coach\": false,\n        \"maps_mastery_client\": false,\n        \"keller_mortgage\": false,\n        \"kww\": false\n      }\n    },\n    \"geo\": {\n      \"neighborhood\": null,\n      \"city\": null,\n      \"postal_code\": null,\n      \"state\": null,\n      \"mcd\": null,\n      \"county\": null,\n      \"school_attendance\": null,\n      \"school_district\": null,\n      \"address_id\": null,\n      \"property_id\": null\n    },\n    \"system\": {\n      \"reprocessed\": false,\n      \"processed_by\": \"pipeline\"\n    },\n    \"list_key\": \"KWW_KIWI-1156\",\n    \"list_uuid\": \"41acf64a5115b155acae1618\",\n    \"list_id\": 1111,\n    \"kw_created_at\": \"2022-05-16T14:01:24.317Z\",\n    \"kw_created_by\": \"KW Sourced-1\",\n    \"manual_entry\": false,\n    \"kw_mc\": true,\n    \"kw_listing\": true,\n    \"kw_agent\": true,\n    \"mls_name\": \"Keller Williams Realty\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "510f579c-e831-4814-b2a0-07a3fe0df382",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"Invalid filter query parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b3ccb51-5eb1-4ca2-a8ac-0af7f031c559",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_TOKEN_AUTHENTICATION\",\n  \"message\": \"Token is not valid or missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2b6b82d-cece-4fce-8483-a4aca6fe683e",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e070c10-97d6-43f1-bd40-259d59826cab",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33361610-f31b-4023-9922-eedb303f9014",
+          "name": "Delete Listings",
+          "request": {
+            "name": "Delete Listings",
+            "description": {
+              "content": "This endpoint removes listings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":list_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed37d3f3-8a16-415c-899f-62a9bae68986",
+              "name": "Delete Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"list_type\": \"MLS Listing\",\n    \"list_type_id\": 1,\n    \"mls_id\": \"KWW_KIWI\",\n    \"source_system_name\": \"KW Sourced\",\n    \"kw_mc\": true,\n    \"kw_listing\": true,\n    \"version\": \"2.0.0\",\n    \"list_id\": 1254243,\n    \"list_key\": \"KWW_KIWI-123456\",\n    \"kwls_status\": \"Accepted\",\n    \"manual_entry\": false,\n    \"mls_number\": \"1254243\",\n    \"kw_agent\": true,\n    \"list_uuid\": \"668c51b17c9422975e4f12d6\",\n    \"current_list_price\": 385000,\n    \"list_status\": \"Draft\",\n    \"list_status_id\": 18,\n    \"list_category\": \"Off Market\",\n    \"list_category_id\": 4,\n    \"prop_type\": \"Residential\",\n    \"prop_type_id\": 8,\n    \"prop_subtype\": \"Condominium\",\n    \"prop_subtype_id\": 4,\n    \"mls_name\": \"Keller Williams Realty\",\n    \"is_kww_listing\": true,\n    \"kww_region\": null,\n    \"co_list_kw_uid\": null,\n    \"sell_kw_uid\": null,\n    \"is_deleted\": true,\n    \"mls_source_id\": null,\n    \"list_kw_uid\": 556396,\n    \"market_center\": null,\n    \"syndicate\": {\n      \"list_team_id\": null,\n      \"list_org_id\": null,\n      \"brokerage_id\": null,\n      \"all_kw_apps\": true,\n      \"command_only\": false,\n      \"consumer_only\": false\n    },\n    \"list_address\": null,\n    \"property_address\": null,\n    \"currency_code\": null,\n    \"lease_price\": null,\n    \"close_price\": null,\n    \"original_list_price\": 385000,\n    \"price_tax_suffix\": false,\n    \"price_history\": null,\n    \"list_dt\": \"2021-11-15T15:45:08.873000\",\n    \"kw_expiry_dt\": null,\n    \"kw_expiry_dt_lock\": false,\n    \"contract_expiry_dt\": null,\n    \"contract_expiry_dt_lock\": false,\n    \"close_dt\": null,\n    \"list_status_lock\": false,\n    \"original_list_category\": \"Off Market\",\n    \"original_list_category_id\": 4,\n    \"luxury_home\": false,\n    \"prop_type_lock\": false,\n    \"prop_subtype_lock\": false,\n    \"special_list_condition\": null,\n    \"year_built\": null,\n    \"living_area\": null,\n    \"living_area_units\": null,\n    \"lot_size_area\": null,\n    \"lot_size_units\": null,\n    \"lot_front_area\": null,\n    \"lot_front_units\": null,\n    \"lot_depth_area\": null,\n    \"lot_depth_units\": null,\n    \"office_size\": null,\n    \"office_size_units\": null,\n    \"warehouse_size\": null,\n    \"warehouse_size_units\": null,\n    \"retail_size\": null,\n    \"retail_size_units\": null,\n    \"other_area_size\": null,\n    \"other_area_size_units\": null,\n    \"total_bed\": null,\n    \"total_bath\": 0,\n    \"full_bath\": 0,\n    \"half_bath\": 0,\n    \"one_quarter_bath\": 0,\n    \"three_quarter_bath\": 0,\n    \"partial_bath\": 0,\n    \"list_desc\": \"This is test list from Taras2\",\n    \"list_desc_en\": null,\n    \"list_desc_lock\": false,\n    \"brokerage\": null,\n    \"list_agent_office\": null,\n    \"co_list_agent_office\": null,\n    \"sell_agent_office\": null,\n    \"co_sell_agent_office\": null,\n    \"location\": null,\n    \"structure\": {\n      \"builder_name\": null,\n      \"stories\": null,\n      \"total_units\": null,\n      \"total_buildings\": null,\n      \"unit_level\": null,\n      \"building_name\": null,\n      \"has_garage\": false,\n      \"has_parking\": false,\n      \"parking_total\": null,\n      \"parking_features\": null,\n      \"appliances\": null,\n      \"architectural_styles\": null,\n      \"architectural_design\": null,\n      \"interior_features\": {\n        \"has_fireplace\": false,\n        \"has_ceiling_fan\": false,\n        \"has_jetted_bath_tub\": false,\n        \"has_mother_in_law\": false,\n        \"has_sauna\": false,\n        \"has_security_system\": false,\n        \"has_skylight\": false,\n        \"has_vaulted_ceiling\": false,\n        \"has_wet_bar\": false,\n        \"is_cable_ready\": false,\n        \"is_wired\": false\n      },\n      \"exterior_features\": {\n        \"has_hot_tub_spa\": false,\n        \"has_barbecue_area\": false,\n        \"has_deck\": false,\n        \"has_disabled_access\": false,\n        \"has_dock\": false,\n        \"has_garden\": false,\n        \"has_gated_entry\": false,\n        \"has_green_house\": false,\n        \"has_patio\": false,\n        \"has_pond\": false,\n        \"has_pool\": false,\n        \"has_porch\": false,\n        \"has_rv_parking\": false,\n        \"has_sports_court\": false,\n        \"has_sprinkler_system\": false,\n        \"is_water_front\": false\n      },\n      \"views\": null,\n      \"roof_types\": null,\n      \"foundation_details\": null,\n      \"construction_materials\": null,\n      \"heating_cooling\": null,\n      \"floorings\": null,\n      \"basement_desc\": null,\n      \"master_bedroom_desc\": null,\n      \"family_room_desc\": null,\n      \"dining_room_desc\": null,\n      \"living_room_desc\": null,\n      \"fireplace_desc\": null,\n      \"utilities\": null,\n      \"water_source\": null,\n      \"rooms_total\": null,\n      \"fireplaces_total\": null,\n      \"is_new_construction\": false\n    },\n    \"green_home\": null,\n    \"expenses\": null,\n    \"hoa\": null,\n    \"taxes\": null,\n    \"marketing_info\": {\n      \"display_listing\": true,\n      \"display_address\": true,\n      \"display_internet\": true,\n      \"display_list_price\": true,\n      \"display_photo\": true,\n      \"courtesy_location\": null,\n      \"courtesy_label\": null,\n      \"courtesy_of_list\": null,\n      \"courtesy_of_detail\": null,\n      \"photo_courtesy_required\": false,\n      \"vow\": false,\n      \"legal_exclusive_rights\": false,\n      \"legal_accept_disclaimer\": false,\n      \"living_area_display\": null,\n      \"legal_description\": null\n    },\n    \"virtual_tours\": null,\n    \"virtual_tours_lock\": false,\n    \"open_houses\": null,\n    \"open_houses_lock\": false,\n    \"photos\": null,\n    \"photos_lock\": false,\n    \"links\": null,\n    \"links_lock\": false,\n    \"mls_updated_at\": null,\n    \"kw_updated_at\": \"2021-11-15T15:45:18.113Z\",\n    \"kw_updated_by\": \"KW Sourced-556396\",\n    \"raw\": {\n      \"lambda_updated_at\": \"2021-11-15T15:45:18.113Z\"\n    },\n    \"history\": null,\n    \"kw_attribute\": {\n      \"kw_active\": false,\n      \"list_team_id\": null,\n      \"membership\": {\n        \"luxury\": false,\n        \"commercial\": false,\n        \"land\": false,\n        \"kwyp\": false,\n        \"gps\": false,\n        \"maps_client\": false,\n        \"maps_coach\": false,\n        \"maps_mastery_client\": false,\n        \"keller_mortgage\": false,\n        \"kww\": false\n      }\n    },\n    \"geo\": null,\n    \"system\": {\n      \"reprocessed\": false,\n      \"processed_by\": \"pipeline\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cce6f66e-ac8d-4681-a83c-d4112b396935",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_TOKEN_AUTHENTICATION\",\n  \"message\": \"Token is not valid or missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dfa4795-31f7-4dcd-a5ca-88433a5f77d1",
+              "name": "Request forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"message\": \"Listing not kww listing, cannot edit\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63a0d376-a912-4233-b85e-1c41e41e4e16",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "863615a0-a3f3-4322-bd8a-e974c2302067",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70bc7070-9925-4b95-897b-07ba807b620f",
+          "name": "Update Listings",
+          "request": {
+            "name": "Update Listings",
+            "description": {
+              "content": "This endpoint updates listings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":list_uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"list_kw_uid\": \"<number>\",\n  \"list_desc\": \"<string>\",\n  \"co_list_kw_uid\": \"<number>\",\n  \"list_type\": \"<string>\",\n  \"source_system_name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"kwls_status\": \"<string>\",\n  \"current_list_price\": \"<number>\",\n  \"list_status_id\": \"<number>\",\n  \"list_category\": \"<string>\",\n  \"list_category_id\": \"<number>\",\n  \"prop_type\": \"<string>\",\n  \"prop_type_id\": \"<number>\",\n  \"prop_subtype\": \"<string>\",\n  \"prop_subtype_id\": \"<number>\",\n  \"list_status\": \"<string>\",\n  \"mls_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b21b4217-1c1f-47a2-809e-75f0a498c90b",
+              "name": "Listings response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"data\": {\n    \"list_kw_uid\": 556396,\n    \"list_desc\": \"This is test list\",\n    \"co_list_kw_uid\": null,\n    \"list_type\": \"MLS Listing\",\n    \"source_system_name\": \"KW Sourced\",\n    \"version\": \"2.0.0\",\n    \"list_type_id\": 1,\n    \"kwls_status\": \"Accepted\",\n    \"current_list_price\": 387000,\n    \"list_status_id\": 18,\n    \"list_category\": \"Off Market\",\n    \"list_category_id\": 4,\n    \"prop_type\": \"Residential\",\n    \"prop_type_id\": 8,\n    \"prop_subtype\": \"Condominium\",\n    \"prop_subtype_id\": 4,\n    \"list_status\": \"Draft\",\n    \"mls_id\": \"KWW\",\n    \"mls_number\": \"1257243\",\n    \"is_kww_listing\": false,\n    \"kww_region\": null,\n    \"sell_kw_uid\": null,\n    \"is_deleted\": false,\n    \"mls_source_id\": null,\n    \"market_center\": null,\n    \"syndicate\": {\n      \"list_team_id\": null,\n      \"list_org_id\": null,\n      \"brokerage_id\": [],\n      \"all_kw_apps\": true,\n      \"command_only\": false,\n      \"consumer_only\": false\n    },\n    \"list_address\": {\n      \"street_number\": null,\n      \"street_direction\": null,\n      \"street_name\": null,\n      \"street_suffix\": null,\n      \"street_post_dir\": null,\n      \"full_street_address\": \"\",\n      \"unit_number\": null,\n      \"city\": null,\n      \"state_prov\": null,\n      \"country\": null,\n      \"postal_code\": null,\n      \"zip_4\": null,\n      \"address\": null,\n      \"coordinates_gp\": null,\n      \"coordinates_gs\": null\n    },\n    \"property_address\": {\n      \"full_street_address\": null,\n      \"street_number\": null,\n      \"street_number_low\": null,\n      \"street_number_high\": null,\n      \"street_long\": null,\n      \"street_short\": null,\n      \"street_suffix_long\": null,\n      \"street_suffix_short\": null,\n      \"street_unit\": null,\n      \"unit_number\": null,\n      \"unit_type\": null,\n      \"city_long\": null,\n      \"city_short\": null,\n      \"state_prov_long\": null,\n      \"state_prov_short\": null,\n      \"country_long\": null,\n      \"country_short\": null,\n      \"postal_code_long\": null,\n      \"postal_code_short\": null,\n      \"zip_4\": null,\n      \"address\": null,\n      \"habitation_name\": null,\n      \"level_number\": null,\n      \"street_direction\": null,\n      \"rural_address\": null,\n      \"coordinates_gp\": null,\n      \"coordinates_gs\": null\n    },\n    \"currency_code\": null,\n    \"lease_price\": null,\n    \"close_price\": null,\n    \"original_list_price\": null,\n    \"price_tax_suffix\": false,\n    \"price_history\": null,\n    \"list_dt\": \"2022-05-16T14:01:24.317Z\",\n    \"kw_expiry_dt\": null,\n    \"kw_expiry_dt_lock\": false,\n    \"contract_expiry_dt\": null,\n    \"contract_expiry_dt_lock\": false,\n    \"close_dt\": null,\n    \"list_status_lock\": false,\n    \"original_list_category\": null,\n    \"original_list_category_id\": null,\n    \"luxury_home\": false,\n    \"prop_type_lock\": false,\n    \"prop_subtype_lock\": false,\n    \"special_list_condition\": null,\n    \"year_built\": null,\n    \"living_area\": null,\n    \"living_area_units\": null,\n    \"lot_size_area\": null,\n    \"lot_size_units\": null,\n    \"lot_front_area\": null,\n    \"lot_front_units\": null,\n    \"lot_depth_area\": null,\n    \"lot_depth_units\": null,\n    \"office_size\": null,\n    \"office_size_units\": null,\n    \"warehouse_size\": null,\n    \"warehouse_size_units\": null,\n    \"retail_size\": null,\n    \"retail_size_units\": null,\n    \"other_area_size\": null,\n    \"other_area_size_units\": null,\n    \"total_bed\": null,\n    \"total_bath\": 0,\n    \"full_bath\": 0,\n    \"half_bath\": 0,\n    \"one_quarter_bath\": 0,\n    \"three_quarter_bath\": 0,\n    \"partial_bath\": 0,\n    \"list_desc_en\": null,\n    \"list_desc_lock\": false,\n    \"brokerage\": {\n      \"name\": null,\n      \"email\": null,\n      \"phone\": null\n    },\n    \"list_agent_office\": {\n      \"list_agent_mls_id\": null,\n      \"list_agent_key\": null,\n      \"list_agent_mls_id_2\": null,\n      \"list_agent_key_2\": null,\n      \"list_agent_first_name\": null,\n      \"list_agent_last_name\": null,\n      \"list_agent_full_name\": null,\n      \"list_agent_preferred_phone\": null,\n      \"list_agent_office_phone\": null,\n      \"list_agent_fax\": null,\n      \"list_agent_email\": null,\n      \"list_agent_url\": null,\n      \"list_agent_license\": null,\n      \"list_office_mls_id\": null,\n      \"list_office_key\": null,\n      \"list_office_mls_id_2\": null,\n      \"list_office_key_2\": null,\n      \"list_office_name\": null,\n      \"list_office_address\": {\n        \"full_street_address\": null,\n        \"unit_number\": null,\n        \"city\": null,\n        \"state_prov\": null,\n        \"postal_code\": null,\n        \"country\": null,\n        \"address\": null\n      },\n      \"list_office_phone\": null,\n      \"list_office_fax\": null,\n      \"list_office_email\": null,\n      \"list_office_url\": null\n    },\n    \"co_list_agent_office\": {\n      \"co_list_agent_mls_id\": null,\n      \"co_list_agent_key\": null,\n      \"co_list_agent_mls_id_2\": null,\n      \"co_list_agent_key_2\": null,\n      \"co_list_agent_first_name\": null,\n      \"co_list_agent_last_name\": null,\n      \"co_list_agent_full_name\": null,\n      \"co_list_agent_preferred_phone\": null,\n      \"co_list_agent_office_phone\": null,\n      \"co_list_agent_fax\": null,\n      \"co_list_agent_email\": null,\n      \"co_list_agent_url\": null,\n      \"co_list_office_mls_id\": null,\n      \"co_list_office_key\": null,\n      \"co_list_office_name\": null,\n      \"co_list_office_phone\": null\n    },\n    \"sell_agent_office\": {\n      \"sell_agent_mls_id\": null,\n      \"sell_office_mls_id_2\": null,\n      \"sell_office_key_2\": null,\n      \"sell_agent_key\": null,\n      \"sell_agent_mls_id_2\": null,\n      \"sell_agent_key_2\": null,\n      \"sell_agent_full_name\": null,\n      \"sell_office_mls_id\": null,\n      \"sell_office_key\": null,\n      \"sell_office_name\": null\n    },\n    \"co_sell_agent_office\": {\n      \"co_sell_agent_mls_id\": null,\n      \"co_sell_agent_key\": null,\n      \"co_sell_agent_mls_id_2\": null,\n      \"co_sell_agent_key_2\": null,\n      \"co_sell_agent_full_name\": null,\n      \"co_sell_office_mls_id\": null,\n      \"co_sell_office_key\": null,\n      \"co_sell_office_name\": null\n    },\n    \"location\": {\n      \"county\": null,\n      \"township\": null,\n      \"region\": null,\n      \"subdivision\": null,\n      \"elevation\": null,\n      \"zoning\": null,\n      \"schools\": null,\n      \"neighborhoods\": null,\n      \"prop_directions\": null,\n      \"municipality\": null\n    },\n    \"structure\": {\n      \"builder_name\": null,\n      \"stories\": null,\n      \"total_units\": null,\n      \"total_buildings\": null,\n      \"unit_level\": null,\n      \"building_name\": null,\n      \"has_garage\": false,\n      \"has_parking\": false,\n      \"parking_total\": null,\n      \"parking_features\": null,\n      \"appliances\": null,\n      \"architectural_styles\": null,\n      \"architectural_design\": null,\n      \"interior_features\": {\n        \"has_fireplace\": false,\n        \"has_ceiling_fan\": false,\n        \"has_jetted_bath_tub\": false,\n        \"has_mother_in_law\": false,\n        \"has_sauna\": false,\n        \"has_security_system\": false,\n        \"has_skylight\": false,\n        \"has_vaulted_ceiling\": false,\n        \"has_wet_bar\": false,\n        \"is_cable_ready\": false,\n        \"is_wired\": false\n      },\n      \"exterior_features\": {\n        \"has_hot_tub_spa\": false,\n        \"has_barbecue_area\": false,\n        \"has_deck\": false,\n        \"has_disabled_access\": false,\n        \"has_dock\": false,\n        \"has_garden\": false,\n        \"has_gated_entry\": false,\n        \"has_green_house\": false,\n        \"has_patio\": false,\n        \"has_pond\": false,\n        \"has_pool\": false,\n        \"has_porch\": false,\n        \"has_rv_parking\": false,\n        \"has_sports_court\": false,\n        \"has_sprinkler_system\": false,\n        \"is_water_front\": false\n      },\n      \"views\": null,\n      \"roof_types\": null,\n      \"foundation_details\": null,\n      \"construction_materials\": null,\n      \"heating_cooling\": null,\n      \"floorings\": null,\n      \"basement_desc\": null,\n      \"master_bedroom_desc\": null,\n      \"family_room_desc\": null,\n      \"dining_room_desc\": null,\n      \"living_room_desc\": null,\n      \"fireplace_desc\": null,\n      \"utilities\": null,\n      \"water_source\": null,\n      \"rooms_total\": null,\n      \"fireplaces_total\": null,\n      \"is_new_construction\": false\n    },\n    \"green_home\": {\n      \"indoor_air_quality\": null,\n      \"water_conservation\": null,\n      \"energy_efficient\": null,\n      \"energy_generation\": null,\n      \"building_verification_type\": null,\n      \"energy_grade_level\": null,\n      \"co2_class\": null\n    },\n    \"expenses\": null,\n    \"hoa\": null,\n    \"taxes\": null,\n    \"marketing_info\": {\n      \"display_listing\": true,\n      \"display_address\": true,\n      \"display_internet\": true,\n      \"display_list_price\": true,\n      \"display_photo\": true,\n      \"courtesy_location\": null,\n      \"courtesy_label\": null,\n      \"courtesy_of_list\": null,\n      \"courtesy_of_detail\": null,\n      \"photo_courtesy_required\": false,\n      \"vow\": false,\n      \"legal_exclusive_rights\": false,\n      \"legal_accept_disclaimer\": false,\n      \"living_area_display\": null,\n      \"legal_description\": null\n    },\n    \"virtual_tours\": null,\n    \"virtual_tours_lock\": false,\n    \"open_houses\": null,\n    \"open_houses_lock\": false,\n    \"photos\": null,\n    \"photos_lock\": false,\n    \"links\": null,\n    \"links_lock\": false,\n    \"mls_updated_at\": null,\n    \"kw_updated_at\": \"2022-05-16T14:01:24.317Z\",\n    \"kw_updated_by\": \"KW Sourced-1\",\n    \"raw\": {\n      \"lambda_updated_at\": \"2022-05-16T14:01:24.317Z\"\n    },\n    \"history\": null,\n    \"kw_attribute\": {\n      \"kw_active\": false,\n      \"list_team_id\": null,\n      \"membership\": {\n        \"luxury\": false,\n        \"commercial\": false,\n        \"land\": false,\n        \"kwyp\": false,\n        \"gps\": false,\n        \"maps_client\": false,\n        \"maps_coach\": false,\n        \"maps_mastery_client\": false,\n        \"keller_mortgage\": false,\n        \"kww\": false\n      }\n    },\n    \"geo\": {\n      \"neighborhood\": null,\n      \"city\": null,\n      \"postal_code\": null,\n      \"state\": null,\n      \"mcd\": null,\n      \"county\": null,\n      \"school_attendance\": null,\n      \"school_district\": null,\n      \"address_id\": null,\n      \"property_id\": null\n    },\n    \"system\": {\n      \"reprocessed\": false,\n      \"processed_by\": \"pipeline\"\n    },\n    \"list_key\": \"KWW_KIWI-1156\",\n    \"list_uuid\": \"41acf64a5115b155acae1618\",\n    \"list_id\": 1111,\n    \"kw_created_at\": \"2022-05-16T14:01:24.317Z\",\n    \"kw_created_by\": \"KW Sourced-1\",\n    \"manual_entry\": false,\n    \"kw_mc\": true,\n    \"kw_listing\": true,\n    \"kw_agent\": true,\n    \"mls_name\": \"Keller Williams Realty\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ff57163-6c2f-4093-891b-205761b0304d",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"Invalid filter query parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ab97646-5190-4e59-90b9-8174b95ed1fe",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_TOKEN_AUTHENTICATION\",\n  \"message\": \"Token is not valid or missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01b1ab4f-86f9-4cbc-bb10-4cac88a2ebbc",
+              "name": "Request forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"FORBIDDEN\",\n  \"message\": \"Listing not kww listing, cannot edit\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b526a65-f997-4b93-98c2-8bd833b67520",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49d255eb-a0ba-4ee8-b1d4-c9875b4361cc",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":list_uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2f33a4f-4bfe-4445-95e9-5526c44b730b",
+          "name": "Find table",
+          "request": {
+            "name": "Find table",
+            "description": {
+              "content": "This endpoint returns table",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "lookup-table"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a475a04-01b4-408b-8965-6468b08acd55",
+              "name": "Get all IDs by lookup-table",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "lookup-table"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"took\": 3,\n  \"timed_out\": false,\n  \"_shards\": {\n    \"total\": 5,\n    \"successful\": 5,\n    \"skipped\": 0,\n    \"failed\": 0\n  },\n  \"hits\": {\n    \"total\": {\n      \"value\": 22,\n      \"relation\": \"eq\"\n    },\n    \"max_score\": 1,\n    \"hits\": [\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"list_type\",\n        \"_score\": 1,\n        \"_source\": {\n          \"list_type\": {\n            \"id\": 1,\n            \"value\": \"Prospective\",\n            \"value_transkey\": \"listings.prospective\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"currency\",\n        \"_score\": 1,\n        \"_source\": {\n          \"currency\": {\n            \"id\": 1,\n            \"label\": \"Emirati Dirham\",\n            \"value\": \"AED\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"country\",\n        \"_score\": 1,\n        \"_source\": {\n          \"country\": {\n            \"id\": 3,\n            \"label\": \"Albania\",\n            \"value\": \"ALB\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"unit\",\n        \"_score\": 1,\n        \"_source\": {\n          \"unit\": {\n            \"id\": 1,\n            \"label\": \"Square Feet\",\n            \"value\": \"sqft\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"kwls_status\",\n        \"_score\": 1,\n        \"_source\": {\n          \"kwls_status\": {\n            \"id\": 1,\n            \"value\": \"Initiated\",\n            \"value_transkey\": \"listings.initiated\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"appliance\",\n        \"_score\": 1,\n        \"_source\": {\n          \"appliance\": {\n            \"id\": 1,\n            \"value\": \"Barbeque or Grill\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"list_category\",\n        \"_score\": 1,\n        \"_source\": {\n          \"list_category\": {\n            \"id\": 0,\n            \"value\": \"Other\",\n            \"sa_mapping\": {\n              \"id\": 0,\n              \"value\": \"Other\"\n            },\n            \"value_transkey\": \"listings.other\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"expense_type\",\n        \"_score\": 1,\n        \"_source\": {\n          \"expense_type\": {\n            \"id\": 1,\n            \"value\": \"AC Maintenance Fee\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"oh_status\",\n        \"_score\": 1,\n        \"_source\": {\n          \"oh_status\": {\n            \"id\": 1,\n            \"value\": \"Active\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"flooring\",\n        \"_score\": 1,\n        \"_source\": {\n          \"flooring\": {\n            \"id\": 1,\n            \"value\": \"Bamboo\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"syndicate\",\n        \"_score\": 1,\n        \"_source\": {\n          \"syndicate\": {\n            \"id\": 1,\n            \"value\": \"KW My MC\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"frequency\",\n        \"_score\": 1,\n        \"_source\": {\n          \"frequency\": {\n            \"id\": 1,\n            \"value\": \"Annually\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"arch_style\",\n        \"_score\": 1,\n        \"_source\": {\n          \"arch_style\": {\n            \"id\": 1,\n            \"value\": \"A Frame\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"parking_feature\",\n        \"_score\": 1,\n        \"_source\": {\n          \"parking_feature\": {\n            \"id\": 1,\n            \"value\": \"Alley\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"construction_material\",\n        \"_score\": 1,\n        \"_source\": {\n          \"construction_material\": {\n            \"id\": 1,\n            \"value\": \"Adobe\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"prop_type\",\n        \"_score\": 1,\n        \"_source\": {\n          \"prop_type\": {\n            \"id\": 8,\n            \"value\": \"Residential\",\n            \"sa_mapping\": {\n              \"id\": 1,\n              \"value\": \"Single Family Residence\"\n            },\n            \"value_transkey\": \"listings.residential\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"roof_type\",\n        \"_score\": 1,\n        \"_source\": {\n          \"roof_type\": {\n            \"id\": 1,\n            \"value\": \"Aluminum\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"list_status\",\n        \"_score\": 1,\n        \"_source\": {\n          \"list_status\": {\n            \"id\": 6,\n            \"value\": \"Pending Contingent\",\n            \"sa_mapping\": {\n              \"id\": 7,\n              \"value\": \"Contingent-No Show\"\n            },\n            \"value_transkey\": \"listings.pending_contingent\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"prop_sub_type\",\n        \"_score\": 1,\n        \"_source\": {\n          \"prop_sub_type\": {\n            \"id\": 1,\n            \"value\": \"Apartment\",\n            \"sa_mapping\": {\n              \"id\": 1,\n              \"value\": \"Residential-Unit/Flat/Apartment\"\n            },\n            \"value_transkey\": \"listings.apartment\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"special_condition\",\n        \"_score\": 1,\n        \"_source\": {\n          \"special_condition\": {\n            \"id\": 1,\n            \"value\": \"Auction\"\n          }\n        }\n      },\n      {\n        \"_index\": \"kwls_lookup\",\n        \"_type\": \"_doc\",\n        \"_id\": \"state_province\",\n        \"_score\": 1,\n        \"_source\": {\n          \"state_province\": {\n            \"id\": 1,\n            \"label\": \"Alabama, USA\",\n            \"value\": \"AL\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5021672-af88-4c10-8f5c-15f71b440b7d",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "lookup-table"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"Invalid filter query parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82a21ef0-08c5-4024-acc7-96ce2433be39",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "lookup-table"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8baa95c-3cc5-414c-a38e-d3b18fba880b",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "lookup-table"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acbb4757-9886-40a8-a66c-fa586064495a",
+          "name": "Region details by ID",
+          "request": {
+            "name": "Region details by ID",
+            "description": {
+              "content": "This endpoint returns region details by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "region",
+                ":regionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "regionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83a3cc97-2056-42d5-8b78-fb2b970bec75",
+              "name": "All listings match your filter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "region",
+                    ":regionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"took\": 51,\n  \"timed_out\": false,\n  \"_shards\": {\n    \"total\": 25,\n    \"successful\": 25,\n    \"skipped\": 0,\n    \"failed\": 0\n  },\n  \"hits\": {\n    \"total\": {\n      \"value\": 10000,\n      \"relation\": \"gte\"\n    },\n    \"max_score\": null,\n    \"hits\": [\n      {\n        \"_index\": \"kwls_qa\",\n        \"_type\": \"_doc\",\n        \"_id\": \"f2274b2928a1e609372e697f\",\n        \"_score\": null,\n        \"_source\": {\n          \"brokerage\": {\n            \"email\": null,\n            \"name\": \"Hey Realty, Inc.\",\n            \"phone\": null\n          },\n          \"close_dt\": null,\n          \"close_price\": null,\n          \"co_list_agent_office\": null,\n          \"co_list_kw_uid\": null,\n          \"co_sell_agent_office\": null,\n          \"commissions\": null,\n          \"contract_expiry_dt\": null,\n          \"contract_expiry_dt_lock\": false,\n          \"currency_code\": \"USD\",\n          \"current_list_price\": 179900,\n          \"expenses\": null,\n          \"full_bath\": 1,\n          \"geo\": {\n            \"address_id\": [\n              5884694383689711000\n            ],\n            \"city\": [\n              1421451\n            ],\n            \"county\": [\n              961661\n            ],\n            \"mcd\": [\n              979845\n            ],\n            \"neighborhood\": [\n              147131\n            ],\n            \"postal_code\": [\n              174181\n            ],\n            \"property_id\": null,\n            \"school_attendance\": [\n              807885,\n              807884,\n              807882\n            ],\n            \"school_district\": [\n              920096\n            ],\n            \"state\": [\n              964406\n            ]\n          },\n          \"green_home\": null,\n          \"half_bath\": 0,\n          \"history\": null,\n          \"hoa\": [\n            {\n              \"assoc_amenities\": [\n                \"Security\"\n              ],\n              \"assoc_fee\": 278,\n              \"assoc_fee_freq\": \"Monthly\",\n              \"assoc_fee_freq_search\": null,\n              \"assoc_fee_includes\": [\n                \"Trash\",\n                \"Snow Removal\",\n                \"Lawn Care\",\n                \"Maintenance Grounds\",\n                \"Water\",\n                \"Professional Mgmt\"\n              ],\n              \"assoc_fee_search\": null,\n              \"assoc_req\": null,\n              \"has_assoc\": true\n            }\n          ],\n          \"is_deleted\": false,\n          \"is_kww_listing\": false,\n          \"kw_agent\": false,\n          \"kw_attribute\": null,\n          \"kw_created_at\": \"2021-07-26T17:20:03.000000\",\n          \"kw_expiry_dt\": \"2022-05-28T00:00:00.000000\",\n          \"kw_expiry_dt_lock\": false,\n          \"kw_listing\": false,\n          \"kw_mc\": false,\n          \"kw_updated_at\": \"2022-05-13T15:48:21.169000\",\n          \"kw_updated_by\": \"Smarter Agent\",\n          \"kwls_status\": \"Accepted\",\n          \"kww_region\": null,\n          \"lease_price\": null,\n          \"list_address\": {\n            \"address\": \"2512 2518 8 New Brighton MN 55112\",\n            \"city\": \"New Brighton\",\n            \"coordinates_gp\": {\n              \"lat\": 45.0687556746,\n              \"lon\": -93.2334300785\n            },\n            \"coordinates_gs\": {\n              \"coordinates\": [\n                -93.2198750785,\n                45.0689851746\n              ],\n              \"type\": \"Point\"\n            },\n            \"country\": null,\n            \"full_street_address\": \"2512 Innsbruck Trail\",\n            \"postal_code\": \"54112\",\n            \"state_prov\": \"MN\",\n            \"street_direction\": null,\n            \"street_name\": \"Innsbruck\",\n            \"street_number\": \"2412\",\n            \"street_post_dir\": null,\n            \"street_suffix\": \"Trail\",\n            \"unit_number\": null,\n            \"zip_4\": null\n          },\n          \"list_agent_office\": {\n            \"list_agent_email\": \"dawrt@realty.com\",\n            \"list_agent_fax\": null,\n            \"list_agent_first_name\": \"Hey\",\n            \"list_agent_full_name\": \"Hey Peddycoart\",\n            \"list_agent_key\": \"MN_RMLS-NST8850-NST506099572\",\n            \"list_agent_key_2\": \"MN_RMLS-NST16866-NST77948\",\n            \"list_agent_last_name\": \"Peddycoart\",\n            \"list_agent_mls_id\": \"NST506099581\",\n            \"list_agent_mls_id_2\": \"NST77941\",\n            \"list_agent_office_phone\": null,\n            \"list_agent_preferred_phone\": \"763-134-0963\",\n            \"list_agent_url\": null,\n            \"list_office_address\": null,\n            \"list_office_email\": \"example@realty.com\",\n            \"list_office_fax\": null,\n            \"list_office_key\": \"MN_RMLS-NST8660\",\n            \"list_office_key_2\": \"MN_RMLS-NST18866\",\n            \"list_office_mls_id\": \"NST8850\",\n            \"list_office_mls_id_2\": \"NST18866\",\n            \"list_office_name\": \"Example Realty, Inc.\",\n            \"list_office_phone\": \"763-795-9800\",\n            \"list_office_url\": null\n          },\n          \"list_category\": \"For Sale\",\n          \"list_category_id\": 2,\n          \"list_desc\": \"Welcome Home! Come fall in love with this open concept one level living on the main floor of the building.\",\n          \"list_desc_en\": null,\n          \"list_desc_lock\": false,\n          \"list_dt\": \"2021-07-26T00:00:00.000000\",\n          \"list_id\": 5920294489286458000,\n          \"list_key\": \"MN_RMLS-NST8428612\",\n          \"list_kw_uid\": null,\n          \"list_status\": \"Active\",\n          \"list_status_id\": 1,\n          \"list_status_lock\": false,\n          \"list_type\": \"MLS Listing\",\n          \"list_type_id\": 2,\n          \"list_uuid\": \"f2274b2928dk460a4d2e697f\",\n          \"living_area\": 1020,\n          \"living_area_units\": \"SF\",\n          \"location\": {\n            \"county\": \"Ramsey\",\n            \"municipality\": null,\n            \"neighborhoods\": null,\n            \"prop_directions\": \"698 to Golden Lake Rd, go north to 1st stoplight by Burger King, go left (east) to Fox Trail right home.\",\n            \"region\": null,\n            \"schools\": null,\n            \"subdivision\": \"Condo 217 SpringField Place Co\",\n            \"township\": null,\n            \"zoning\": \"Residential-Single Family\"\n          },\n          \"lot_depth_area\": null,\n          \"lot_depth_units\": null,\n          \"lot_front_area\": null,\n          \"lot_front_units\": null,\n          \"lot_size_area\": 0.02,\n          \"lot_size_units\": \"AC\",\n          \"luxury_home\": false,\n          \"manual_entry\": false,\n          \"market_center\": null,\n          \"marketing_info\": {\n            \"courtesy_label\": \"Courtesy of\",\n            \"courtesy_location\": \"BOTTOM\",\n            \"courtesy_of_detail\": \"Edina Realty, Inc.\",\n            \"courtesy_of_list\": null,\n            \"display_address\": true,\n            \"display_internet\": true,\n            \"display_list_price\": true,\n            \"display_listing\": true,\n            \"display_photo\": true,\n            \"legal_accept_disclaimer\": false,\n            \"legal_description\": null,\n            \"legal_exclusive_rights\": false,\n            \"living_area_display\": \"1021\",\n            \"photo_courtesy_required\": false,\n            \"vow\": false\n          },\n          \"mls_id\": \"MN_RMLS\",\n          \"mls_name\": \"Regional MLS of MN\",\n          \"mls_number\": \"NST6068612\",\n          \"mls_source_id\": 131,\n          \"mls_updated_at\": \"2021-07-26T16:45:16.000000\",\n          \"office_size\": null,\n          \"office_size_units\": null,\n          \"one_quarter_bath\": 0,\n          \"open_houses\": null,\n          \"open_houses_lock\": false,\n          \"original_list_category\": \"For Sale\",\n          \"original_list_category_id\": 2,\n          \"original_list_price\": 179900,\n          \"other_area_size\": null,\n          \"other_area_size_units\": null,\n          \"partial_bath\": 0,\n          \"photos\": null,\n          \"photos_lock\": false,\n          \"price_history\": [\n            {\n              \"current_list_price\": 179900,\n              \"in_use\": false,\n              \"percent_change\": 0,\n              \"previous_list_price\": 0,\n              \"price_updated_at\": \"2021-07-26T13:20:03.000Z\"\n            }\n          ],\n          \"price_tax_suffix\": false,\n          \"prop_subtype\": \"Single Family Detached\",\n          \"prop_subtype_id\": 15,\n          \"prop_subtype_lock\": false,\n          \"prop_type\": \"Residential\",\n          \"prop_type_id\": 8,\n          \"prop_type_lock\": false,\n          \"property_address\": {\n            \"address\": \"9512 Trail New SpringField MN 53412\",\n            \"city_long\": \"New SpringField\",\n            \"city_short\": null,\n            \"coordinates_gp\": {\n              \"lat\": 45.0587631756,\n              \"lon\": -93.2193300774\n            },\n            \"coordinates_gs\": {\n              \"coordinates\": [\n                -93.2193300773,\n                45.0787631745\n              ],\n              \"type\": \"Point\"\n            },\n            \"country_long\": null,\n            \"country_short\": null,\n            \"county\": \"Ramsey\",\n            \"county_fips\": null,\n            \"full_street_address\": \"2532 Fox Trail\",\n            \"habitation_name\": null,\n            \"level_number\": null,\n            \"postal_code_long\": null,\n            \"postal_code_short\": \"55112\",\n            \"rural_address\": null,\n            \"state_prov_short\": \"MN\",\n            \"street_direction\": null,\n            \"street_long\": null,\n            \"street_number\": null,\n            \"street_suffix_short\": null,\n            \"unit_number\": null,\n            \"unit_type\": null,\n            \"zip_4\": null\n          },\n          \"raw\": {\n            \"co_list_kw_uid\": null,\n            \"co_list_market_center\": null,\n            \"display_listing\": \"true\",\n            \"lambda_updated_at\": \"2021-07-26T17:20:04.494000\",\n            \"list_kw_uid\": null,\n            \"list_status\": \"Active\",\n            \"list_status_id\": \"1\",\n            \"market_center\": null,\n            \"parking_total\": \"1\",\n            \"prop_type\": \"Manor/Village\",\n            \"prop_type_id\": \"1\",\n            \"signature_id\": null,\n            \"source_list_id\": \"131_2234264255\",\n            \"trace_id\": null\n          },\n          \"retail_size\": null,\n          \"retail_size_units\": null,\n          \"sell_agent_office\": null,\n          \"sell_kw_uid\": null,\n          \"source_system_name\": \"smarteragent\",\n          \"special_list_condition\": null,\n          \"structure\": {\n            \"appliances\": [\n              \"Range\",\n              \"Microwave\",\n              \"Dishwasher\",\n              \"Refrigerator\",\n              \"Washer\",\n              \"Dryer\",\n              \"Water Softener Owned\",\n              \"Electric Water Heater\",\n              \"Gas Water Heater\"\n            ],\n            \"architectural_styles\": null,\n            \"basement_desc\": null,\n            \"building_name\": null,\n            \"construction_materials\": [\n              \"Materials: Block\",\n              \"Materials: Vinyl Siding\"\n            ],\n            \"dining_room_desc\": null,\n            \"exterior_features\": {\n              \"has_barbecue_area\": false,\n              \"has_deck\": false,\n              \"has_disabled_access\": false,\n              \"has_dock\": false,\n              \"has_garden\": false,\n              \"has_gated_entry\": false,\n              \"has_green_house\": false,\n              \"has_hot_tub_spa\": false,\n              \"has_patio\": false,\n              \"has_pond\": false,\n              \"has_pool\": false,\n              \"has_porch\": false,\n              \"has_rv_parking\": false,\n              \"has_sports_court\": false,\n              \"has_sprinkler_system\": false,\n              \"is_water_front\": false\n            },\n            \"fireplace_desc\": \"Yes,1,Living Room,Gas\",\n            \"fireplaces_total\": null,\n            \"floorings\": null,\n            \"foundation_details\": [\n              \"Area: 1020\"\n            ],\n            \"has_garage\": true,\n            \"has_parking\": true,\n            \"heating_cooling\": [\n              \"Forced Air\"\n            ],\n            \"interior_features\": {\n              \"has_ceiling_fan\": false,\n              \"has_fireplace\": true,\n              \"has_jetted_bath_tub\": false,\n              \"has_mother_in_law\": false,\n              \"has_sauna\": false,\n              \"has_security_system\": false,\n              \"has_skylight\": false,\n              \"has_vaulted_ceiling\": false,\n              \"has_wet_bar\": false,\n              \"is_cable_ready\": false,\n              \"is_wired\": false\n            },\n            \"is_new_construction\": false,\n            \"parking_features\": [\n              \"Attached Garage\",\n              \"Asphalt\",\n              \"Storage\",\n              \"Garage Door Opener\",\n              \"SQFT: 171\"\n            ],\n            \"parking_total\": 1,\n            \"roof_types\": [\n              \"Asphalt\",\n              \"Age 8 Years or Less\"\n            ],\n            \"rooms_total\": null,\n            \"stories\": null,\n            \"total_buildings\": null,\n            \"total_units\": null,\n            \"unit_level\": null,\n            \"utilities\": null,\n            \"views\": null,\n            \"water_source\": [\n              \"City Water/Connected\"\n            ]\n          },\n          \"syndicate\": {\n            \"all_kw_apps\": true,\n            \"brokerage_id\": null,\n            \"command_only\": false,\n            \"consumer_only\": false,\n            \"list_org_id\": null,\n            \"list_team_id\": null\n          },\n          \"system\": {\n            \"processed_by\": \"qa-run-manual-reprocessing-l1-es-2022-05-13-15-80-42\",\n            \"reprocessed\": true\n          },\n          \"taxes\": [\n            {\n              \"tax_amt\": 1954,\n              \"tax_id\": null,\n              \"tax_year\": \"2021\"\n            }\n          ],\n          \"three_quarter_bath\": 0,\n          \"total_bath\": 1,\n          \"total_bed\": 2,\n          \"version\": \"4.1.0\",\n          \"virtual_tours\": [\n            {\n              \"vt_short_desc\": null,\n              \"vt_updated_at\": null,\n              \"vt_url\": null,\n              \"vt_url_branded\": false\n            }\n          ],\n          \"virtual_tours_lock\": false,\n          \"warehouse_size\": null,\n          \"warehouse_size_units\": null,\n          \"year_built\": 1991,\n          \"days_on_market\": 295,\n          \"lot_size_units_transkey\": \"listings.ac\",\n          \"living_area_units_transkey\": \"listings.sf\",\n          \"list_status_transkey\": \"listings.active\",\n          \"prop_type_transkey\": \"listings.residential\",\n          \"list_type_transkey\": \"listings.mls_listing\",\n          \"kwls_status_transkey\": \"listings.accepted\",\n          \"list_category_transkey\": \"listings.for_sale\"\n        },\n        \"sort\": [\n          5920294403786638000\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "250916f1-03a5-4008-985f-64ff001c5855",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "region",
+                    ":regionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"Invalid filter query parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb3996e9-13e9-4d1a-9116-6118c71603d4",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "region",
+                    ":regionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c982d37b-76ff-454f-b957-c6eb733a0bc6",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "region",
+                    ":regionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f752b889-38cf-48ec-a82d-93035185dd98",
+          "name": "People Orgs",
+          "request": {
+            "name": "People Orgs",
+            "description": {
+              "content": "This endpoint returns People Orgs by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "orgs",
+                ":orgId",
+                "people"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8335fb6-e127-4a62-bef3-c22b9dabe0da",
+              "name": "Orgs People by ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "orgs",
+                    ":orgId",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"query\": {\n      \"limit\": 15,\n      \"offset\": 0,\n      \"cache\": true,\n      \"is_org_legacy_team\": false,\n      \"is_org_legacy_id\": false,\n      \"include_inactive\": false,\n      \"include_active\": true,\n      \"include_person_kwid\": false\n    },\n    \"total\": 35\n  },\n  \"data\": [\n    {\n      \"kw_uid\": 1,\n      \"username\": \"1\",\n      \"first_name\": \"1\",\n      \"last_name\": \"QA\",\n      \"kw_email\": \"1kwemail@kw.com\",\n      \"default_org_id\": 1,\n      \"recovery_email\": null,\n      \"email\": \"1wpemail@kw.com\",\n      \"marketing_email\": \"1marketing_email@kw.com\",\n      \"kw_start_dt\": \"2017-07-01\",\n      \"re_start_dt\": null,\n      \"photo\": \"https://avatar.kwconnect.com/1.jpeg\",\n      \"phone\": null,\n      \"mobile_phone\": null,\n      \"address_1\": \"000 Main St.\",\n      \"address_2\": null,\n      \"city\": \"CESKÁ REPUBLIKA\",\n      \"state\": null,\n      \"postal_code\": \"110 00\",\n      \"country\": \"CZ\",\n      \"luxury\": 0,\n      \"luxury_dt\": null,\n      \"commercial\": 0,\n      \"land\": 0,\n      \"kwyp\": 0,\n      \"gps\": 0,\n      \"maps_client\": 1,\n      \"maps_coach\": 0,\n      \"maps_mastery_client\": 1,\n      \"active\": 1,\n      \"km_active\": 0,\n      \"kww\": 1,\n      \"military\": 0,\n      \"designations\": null,\n      \"vested\": 0,\n      \"birth_dt\": \"1971-06-06\",\n      \"service_areas\": null,\n      \"org_start_dt\": \"2020-02-03\",\n      \"recruit_id\": null,\n      \"languages\": [],\n      \"license\": [],\n      \"teams\": [],\n      \"person_role_orgs\": [\n        {\n          \"role\": {\n            \"id\": 7,\n            \"name\": \"Operating Principal\",\n            \"legacy_role_id\": 11\n          },\n          \"end_dt\": null,\n          \"kw_uid\": 2,\n          \"org_id\": 3,\n          \"org_key\": \"W00247\",\n          \"role_id\": 7,\n          \"start_dt\": \"2020-04-01\",\n          \"legacy_org_id\": 6,\n          \"legacy_team_id\": null\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cc21471-301e-4304-a877-09835ad34ea8",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "orgs",
+                    ":orgId",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"Invalid filter query parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b8c7863-0839-40a8-81a0-ffd91db42272",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "orgs",
+                    ":orgId",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_TOKEN_AUTHENTICATION\",\n  \"message\": \"Token is not valid or missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ad65523-50f0-461d-87b0-254bca05a836",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "orgs",
+                    ":orgId",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"Unexpected error happened. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a33baa2-1864-475a-b28d-fb96619761e7",
+              "name": "Unexpected error happened.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "orgs",
+                    ":orgId",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Basic token is created by base 64 encoding your credentials: <Basic base64Encode(API_KEY:API_SECRET)>",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": \"false\",\n  \"errorCode\": \"BAD_GATEWAY\",\n  \"message\": \"Unhandled error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partners.api.kw.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "86c7ed5c-61e4-4430-a6ab-dfbb07d3a973",
+    "name": "KW Listings Search",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Listings service returns all Keller Williams Listing Service listings specific to an agent. This is not a substitution for or tied to any Multiple Listings Services database records.\n\nContact Support:\n Name: Kellerwilliams",
+      "type": "text/plain"
+    }
+  }
+}

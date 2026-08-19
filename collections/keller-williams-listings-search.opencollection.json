@@ -1,0 +1,223 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "KW Listings Search",
+    "version": "2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Listings search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.api.kw.com/v2/listings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Could be Ascendant or Descendant (-). Visit [Filtering and Sorting](/filtering-and-sorting) for more details."
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Page Number you would like to retrieve. Offset defaults to 1. Requesting an offset less than 1 will default to 1 as this is the starting set of listings.\n`GET ?page[offset]=2&page[limit]=12`.- **[Page](http://jsonapi.org/format/#fetching-pagination)\n\n  This retreives the second page.\n  `GET ?page[offset]=2"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of listings return size. `GET ?limit=10`.  Limit should be 100 or less and use offset get the next set of listings"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The next set of listings number you would like to retrieve. Offset defaults to 1. Requesting an offset less than 1 will default to 1 as this is the starting set of listings.\n`GET ?offset=2&limit]=10`.- **[Page](http://jsonapi.org/format/#fetching-pagination)\n\n  This retreives the second set of listings from 11-20.\n  `GET ?offset=2"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Page size. [Size](http://jsonapi.org/format/#fetching-pagination)\n  `GET ?page[limit]=12`.  Page limit should be 100 or less and use offset get the next set of listings"
+              },
+              {
+                "name": "filter[:attribute_name][:operator]=:value",
+                "value": "",
+                "type": "query",
+                "description": "Dynamic filtering. Visit [Filtering and Sorting](/filtering-and-sorting) for more details."
+              },
+              {
+                "name": "scroll_id",
+                "value": "",
+                "type": "query",
+                "description": "Scroll ID of the search. `GET ?scroll=1m&scroll_id=FGluY2x1ZGVfY29udGV4dF91dWlkDnF1ZXJ5VGhlbkZldGNoBRR6c0ZfTzNjQmppWDR5MjB6azI1aQAAAAAAMeioFnpRQTVMVHdTVEVXeVZkT3Zfc0Jld2cUNVh0X08zY0JuSF9zWmtIY2t3MWkAAAAAADHa0hY5M1VrWkM0dlRHYWUyLUtsZXczQ0RRFFBYZF9PM2NCdEZiektwOW5rM0poAAAAAAAx4SUWZnNoTzVEQzBSZFdldGFaY01vVTJkURRObGxfTzNjQjlSaU40a2JaazdKagAAAAAAMca2FmVuS3dpSXNQU3o2ZUFlZnBwNjREM2cUTjFsX08zY0I5UmlONGtiWms3Sm0AAAAAADHGtxZlbkt3aUlzUFN6NmVBZWZwcDY0RDNn`\n\t\nUse this parameter in conjunction with scroll."
+              },
+              {
+                "name": "scroll",
+                "value": "",
+                "type": "query",
+                "description": "Period to retain the search context for scrolling. `GET ?scroll=1m`"
+              }
+            ]
+          },
+          "docs": "This endpoint returns listings."
+        },
+        {
+          "info": {
+            "name": "Create Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partners.api.kw.com/v2/listings",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates listings.  Note: Avoid using special charater like % in the listing description which will create problems."
+        },
+        {
+          "info": {
+            "name": "Update Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://partners.api.kw.com/v2/listings/:list_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "list_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates listings."
+        },
+        {
+          "info": {
+            "name": "Delete Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://partners.api.kw.com/v2/listings/:list_uuid",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "list_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint removes listings."
+        },
+        {
+          "info": {
+            "name": "Find table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.api.kw.com/v2/listings/lookup-table",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "This endpoint returns table"
+        },
+        {
+          "info": {
+            "name": "Region details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.api.kw.com/v2/listings/region/:regionId",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "regionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns region details by ID."
+        },
+        {
+          "info": {
+            "name": "People Orgs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partners.api.kw.com/v2/listings/orgs/:orgId/people",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint returns People Orgs by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
