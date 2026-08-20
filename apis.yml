@@ -36,6 +36,19 @@ description: >-
   standard.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
 tags:
+  - Real-Estate
+  - United States
+  - Residential Real Estate
+  - Brokerage
+  - Franchise
+  - Property Listings
+  - PropTech
+  - Agent Platform
+  - CRM
+  - Partner APIs
+  - Marketplace
+  - Austin Texas
+tags_raw:
   - Real Estate
   - United States
   - Residential Real Estate
@@ -118,6 +131,10 @@ apis:
     tags:
       - Authentication
       - OpenID Connect
+      - Scopes
+    tags_raw:
+      - Authentication
+      - OpenID Connect
       - OAuth 2.0
       - Scopes
     properties:
@@ -152,6 +169,11 @@ apis:
     humanURL: https://developer.kw.com/marketplace-documentation
     baseURL: https://partners.api.kw.com/v1
     tags:
+      - Marketplace
+      - Subscription
+      - Billing
+      - Event
+    tags_raw:
       - Marketplace
       - Subscriptions
       - Billing
