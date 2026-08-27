@@ -71,139 +71,116 @@ created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.23'
 apis:
-  - aid: keller-williams:keller-williams-worldwide-listings-search-api
-    name: KW Worldwide Listings Search API
-    description: >-
-      The only Keller Williams API whose specification is published anonymously
-      in the DevHub API catalog. The KW Worldwide Listings service returns
-      Keller Williams Listing Service (KWLS) listings scoped to a KW Worldwide
-      region, and supports listing create, update and delete plus a lookup
-      table of controlled vocabularies (property types, statuses, flooring,
-      roof type, appliances, currency, country, state/province and more) and an
-      organization-people lookup. The published OpenAPI 3.0.1 document declares
-      5 paths and 8 operations against a production and a sandbox server. The
-      spec's own description states the service is not a substitution for, or
-      tied to, any Multiple Listing Service database records. Access requires
-      an approved DevHub application; requests carry an API key plus a Basic or
-      Bearer credential.
-    humanURL: https://developer.kw.com/docs/listingskww/1/overview
-    baseURL: https://partners.api.kw.com/v2
-    tags:
-      - Property Listings
-      - Search
-      - KW Worldwide
-      - KWLS
-    properties:
-      - type: OpenAPI
-        url: openapi/keller-williams-listings-search-openapi.json
-      - type: Documentation
-        url: https://developer.kw.com/docs/listingskww/1/overview
-      - type: APIReference
-        url: https://developer.kw.com/docs/listingskww/1/routes/listings/get
-      - type: Documentation
-        url: https://developer.kw.com/filtering-and-sorting
-      - type: Sandbox
-        url: https://sandbox.partners.api.kw.com/v2
-      - type: Sandbox
-        url: sandbox/keller-williams-sandbox.yml
-      - type: Overlay
-        url: overlays/keller-williams-listings-search-overlay.yaml
-      - type: Examples
-        url: examples/keller-williams-listings-search-examples.json
-      - type: ErrorCatalog
-        url: errors/keller-williams-problem-types.yml
-      - type: DataModel
-        url: data-model/keller-williams-data-model.yml
-      - type: Arazzo
-        name: Publish a KW Worldwide listing
-        url: arazzo/keller-williams-publish-listing.yml
-  - aid: keller-williams:keller-williams-partner-identity-api
-    name: KW Partner Identity API (OpenID Connect)
-    description: >-
-      Keller Williams uses OpenID Connect on top of OAuth 2.0 to grant a
-      partner application access to an individual KW user's Command data. The
-      authorization server at partners.api.kw.com/idp serves a publicly
-      readable OpenID Connect discovery document advertising authorize, token,
-      introspect, userinfo, revoke, end_session and device_authorization
-      endpoints, RS256 ID tokens, PKCE S256, and 40 supported scopes covering
-      contacts, tasks, listings, organizations, users, opportunities,
-      recruiting and marketing profiles. The DevHub Getting Started guide
-      documents the authorization-code flow, the consent screen, token
-      exchange with base64 client_secret_basic credentials, and logout via the
-      revoke endpoint. A separate partner token-refresh endpoint is documented
-      under /v2/oauth2/partner/token.
-    humanURL: https://developer.kw.com/getting-started
-    baseURL: https://partners.api.kw.com/idp
-    tags:
-      - Authentication
-      - OpenID Connect
-      - Scopes
-    tags_raw:
-      - Authentication
-      - OpenID Connect
-      - OAuth 2.0
-      - Scopes
-    properties:
-      - type: OpenIDConnectDiscovery
-        url: authentication/keller-williams-openid-configuration.json
-      - type: Documentation
-        url: https://developer.kw.com/getting-started
-      - type: Documentation
-        url: https://developer.kw.com/docs-authentication
-      - type: Documentation
-        url: https://developer.kw.com/docs-refresh-token
-      - type: Authentication
-        url: authentication/keller-williams-authentication.yml
-      - type: OAuthScopes
-        url: scopes/keller-williams-scopes.yml
-      - type: WellKnown
-        url: well-known/keller-williams-well-known.yml
-  - aid: keller-williams:keller-williams-marketplace-subscription-api
-    name: KW Marketplace Subscription & Metered Billing API
-    description: >-
-      The partner-facing surface behind the KW Marketplace, where vendors sell
-      products to Keller Williams agents. Keller Williams pushes subscription
-      lifecycle events — subscription creation, subscription creation for
-      teams, subscription change, subscription cancel, status notification,
-      user assignment and user unassignment — to a partner's secured HTTPS
-      endpoint registered with the KW team, and partners report consumption
-      back through a pre-configured metered billing endpoint that accepts a
-      quantity and unit type per account. Sample payloads, synchronous and
-      asynchronous subscription flows, an error-code reference and a
-      subscription lifecycle walkthrough are published publicly on DevHub; no
-      OpenAPI document is offered for this surface.
-    humanURL: https://developer.kw.com/marketplace-documentation
-    baseURL: https://partners.api.kw.com/v1
-    tags:
-      - Marketplace
-      - Subscription
-      - Billing
-      - Event
-    tags_raw:
-      - Marketplace
-      - Subscriptions
-      - Billing
-      - Events
-    properties:
-      - type: Documentation
-        url: https://developer.kw.com/marketplace-documentation
-      - type: Documentation
-        url: https://developer.kw.com/metered-billing
-      - type: Documentation
-        url: https://developer.kw.com/subscription-lifecycle-walkthrough
-      - type: Documentation
-        url: https://developer.kw.com/docs-synchronous-subscription
-      - type: Documentation
-        url: https://developer.kw.com/docs-asynchronous-subscription
-      - type: Documentation
-        url: https://developer.kw.com/docs-error-codes-reference
-      - type: Webhooks
-        url: asyncapi/keller-williams-marketplace-webhooks.yml
-      - type: ErrorCatalog
-        url: errors/keller-williams-error-codes.yml
-      - type: AgentSkill
-        url: skills/keller-williams-handle-marketplace-subscriptions.md
+- aid: keller-williams:keller-williams-partner-identity-api
+  name: KW Partner Identity API (OpenID Connect)
+  description: >-
+    Keller Williams uses OpenID Connect on top of OAuth 2.0 to grant a partner application access to an
+    individual KW user's Command data. The authorization server at partners.api.kw.com/idp serves a publicly
+    readable OpenID Connect discovery document advertising authorize, token, introspect, userinfo, revoke,
+    end_session and device_authorization endpoints, RS256 ID tokens, PKCE S256, and 40 supported scopes
+    covering contacts, tasks, listings, organizations, users, opportunities, recruiting and marketing
+    profiles. The DevHub Getting Started guide documents the authorization-code flow, the consent screen,
+    token exchange with base64 client_secret_basic credentials, and logout via the revoke endpoint. A
+    separate partner token-refresh endpoint is documented under /v2/oauth2/partner/token.
+  humanURL: https://developer.kw.com/getting-started
+  baseURL: https://partners.api.kw.com/idp
+  tags:
+  - Authentication
+  - OpenID Connect
+  - Scopes
+  tags_raw:
+  - Authentication
+  - OpenID Connect
+  - OAuth 2.0
+  - Scopes
+  properties:
+  - type: OpenIDConnectDiscovery
+    url: authentication/keller-williams-openid-configuration.json
+  - type: Documentation
+    url: https://developer.kw.com/getting-started
+  - type: Documentation
+    url: https://developer.kw.com/docs-authentication
+  - type: Documentation
+    url: https://developer.kw.com/docs-refresh-token
+  - type: Authentication
+    url: authentication/keller-williams-authentication.yml
+  - type: OAuthScopes
+    url: scopes/keller-williams-scopes.yml
+  - type: WellKnown
+    url: well-known/keller-williams-well-known.yml
+- aid: keller-williams:keller-williams-marketplace-subscription-api
+  name: KW Marketplace Subscription & Metered Billing API
+  description: >-
+    The partner-facing surface behind the KW Marketplace, where vendors sell products to Keller Williams
+    agents. Keller Williams pushes subscription lifecycle events — subscription creation, subscription
+    creation for teams, subscription change, subscription cancel, status notification, user assignment
+    and user unassignment — to a partner's secured HTTPS endpoint registered with the KW team, and partners
+    report consumption back through a pre-configured metered billing endpoint that accepts a quantity
+    and unit type per account. Sample payloads, synchronous and asynchronous subscription flows, an error-code
+    reference and a subscription lifecycle walkthrough are published publicly on DevHub; no OpenAPI document
+    is offered for this surface.
+  humanURL: https://developer.kw.com/marketplace-documentation
+  baseURL: https://partners.api.kw.com/v1
+  tags:
+  - Marketplace
+  - Subscription
+  - Billing
+  - Event
+  tags_raw:
+  - Marketplace
+  - Subscriptions
+  - Billing
+  - Events
+  properties:
+  - type: Documentation
+    url: https://developer.kw.com/marketplace-documentation
+  - type: Documentation
+    url: https://developer.kw.com/metered-billing
+  - type: Documentation
+    url: https://developer.kw.com/subscription-lifecycle-walkthrough
+  - type: Documentation
+    url: https://developer.kw.com/docs-synchronous-subscription
+  - type: Documentation
+    url: https://developer.kw.com/docs-asynchronous-subscription
+  - type: Documentation
+    url: https://developer.kw.com/docs-error-codes-reference
+  - type: Webhooks
+    url: asyncapi/keller-williams-marketplace-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/keller-williams-error-codes.yml
+  - type: AgentSkill
+    url: skills/keller-williams-handle-marketplace-subscriptions.md
+- aid: keller-williams:keller-williams-search-api
+  name: Keller Williams Search API
+  description: The Search API from Keller Williams — 5 operation(s) for search.
+  humanURL: https://developer.kw.com/docs/listingskww/1/overview
+  baseURL: https://partners.api.kw.com/v2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/keller-williams-search-api-openapi.yml
+  - type: Documentation
+    url: https://developer.kw.com/docs/listingskww/1/overview
+  - type: APIReference
+    url: https://developer.kw.com/docs/listingskww/1/routes/listings/get
+  - type: Documentation
+    url: https://developer.kw.com/filtering-and-sorting
+  - type: Sandbox
+    url: https://sandbox.partners.api.kw.com/v2
+  - type: Sandbox
+    url: sandbox/keller-williams-sandbox.yml
+  - type: Examples
+    url: examples/keller-williams-listings-search-examples.json
+  - type: ErrorCatalog
+    url: errors/keller-williams-problem-types.yml
+  - type: DataModel
+    url: data-model/keller-williams-data-model.yml
+  - type: Arazzo
+    url: arazzo/keller-williams-publish-listing.yml
 common:
+  - type: Overlay
+    url: overlays/keller-williams-listings-search-overlay.yaml
   - type: MCPServer
     url: mcp/keller-williams-mcp.yml
   - type: AgenticAccess
