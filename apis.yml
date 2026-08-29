@@ -190,6 +190,9 @@ apis:
   - type: Arazzo
     url: arazzo/keller-williams-publish-listing.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/keller-williams-capability-edges.yml
+    name: Keller Williams Business Capability Map
   - type: Overlay
     url: overlays/keller-williams-listings-search-overlay.yaml
   - type: MCPServer
