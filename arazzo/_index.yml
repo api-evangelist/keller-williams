@@ -1,6 +1,6 @@
-generated: '2026-07-26'
-method: derived
-source: arazzo/*.yml
+x-generated: '2026-07-26'
+x-method: derived
+x-source: arazzo/*.yml
 workflows:
   - file: keller-williams-publish-listing.yml
     workflowId: publish-kww-listing

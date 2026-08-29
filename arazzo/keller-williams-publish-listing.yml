@@ -12,134 +12,134 @@ info:
     first — the spec declares both servers.
   version: 1.0.0
 sourceDescriptions:
-  - name: listings
-    url: ../openapi/keller-williams-listings-search-openapi.json
-    type: openapi
+- name: searchApi
+  url: ../openapi/keller-williams-search-api-openapi.yml
+  type: openapi
 workflows:
-  - workflowId: publish-kww-listing
-    summary: Look up the vocabularies, create a listing, and verify it.
+- workflowId: publish-kww-listing
+  summary: Look up the vocabularies, create a listing, and verify it.
+  description: >-
+    KW rejects a create whose numeric ids do not match its controlled
+    vocabulary, so the lookup table is resolved first. There is no
+    idempotency key on the create — the final read-back is how you
+    confirm exactly one listing exists.
+  inputs:
+    type: object
+    required:
+    - authorization
+    - apiKey
+    - mlsId
+    - mlsNumber
+    - sourceSystemName
+    - currentListPrice
+    - listStatusId
+    - listCategory
+    - listCategoryId
+    - propType
+    - propTypeId
+    - propSubtype
+    - propSubtypeId
+    properties:
+      authorization:
+        type: string
+        description: "Basic base64Encode(API_KEY:API_SECRET)"
+      apiKey:
+        type: string
+        description: The DevHub application API key, sent as the api-key header.
+      mlsId:
+        type: string
+      mlsNumber:
+        type: string
+      sourceSystemName:
+        type: string
+      currentListPrice:
+        type: number
+      listStatusId:
+        type: integer
+      listCategory:
+        type: string
+      listCategoryId:
+        type: integer
+      propType:
+        type: string
+      propTypeId:
+        type: integer
+      propSubtype:
+        type: string
+      propSubtypeId:
+        type: integer
+      listDesc:
+        type: string
+        description: "Avoid special characters such as % — the provider documents that they break the listing."
+  steps:
+  - stepId: resolve-vocabularies
     description: >-
-      KW rejects a create whose numeric ids do not match its controlled
-      vocabulary, so the lookup table is resolved first. There is no
-      idempotency key on the create — the final read-back is how you
-      confirm exactly one listing exists.
-    inputs:
-      type: object
-      required:
-        - authorization
-        - apiKey
-        - mlsId
-        - mlsNumber
-        - sourceSystemName
-        - currentListPrice
-        - listStatusId
-        - listCategory
-        - listCategoryId
-        - propType
-        - propTypeId
-        - propSubtype
-        - propSubtypeId
-      properties:
-        authorization:
-          type: string
-          description: "Basic base64Encode(API_KEY:API_SECRET)"
-        apiKey:
-          type: string
-          description: The DevHub application API key, sent as the api-key header.
-        mlsId:
-          type: string
-        mlsNumber:
-          type: string
-        sourceSystemName:
-          type: string
-        currentListPrice:
-          type: number
-        listStatusId:
-          type: integer
-        listCategory:
-          type: string
-        listCategoryId:
-          type: integer
-        propType:
-          type: string
-        propTypeId:
-          type: integer
-        propSubtype:
-          type: string
-        propSubtypeId:
-          type: integer
-        listDesc:
-          type: string
-          description: "Avoid special characters such as % — the provider documents that they break the listing."
-    steps:
-      - stepId: resolve-vocabularies
-        description: >-
-          Fetch the controlled vocabularies so every numeric id on the
-          create body can be validated against KW's own tables.
-        operationId: listings-read-by-table
-        parameters:
-          - name: Authorization
-            in: header
-            value: $inputs.authorization
-        successCriteria:
-          - condition: $statusCode == 200
-        outputs:
-          lookupHits: $response.body#/hits/hits
-
-      - stepId: create-listing
-        description: Create the KWLS listing with the eleven required fields.
-        operationId: listings-create
-        dependsOn:
-          - resolve-vocabularies
-        parameters:
-          - name: Authorization
-            in: header
-            value: $inputs.authorization
-        requestBody:
-          contentType: application/json
-          payload:
-            mls_id: $inputs.mlsId
-            mls_number: $inputs.mlsNumber
-            source_system_name: $inputs.sourceSystemName
-            current_list_price: $inputs.currentListPrice
-            list_status_id: $inputs.listStatusId
-            list_category: $inputs.listCategory
-            list_category_id: $inputs.listCategoryId
-            prop_type: $inputs.propType
-            prop_type_id: $inputs.propTypeId
-            prop_subtype: $inputs.propSubtype
-            prop_subtype_id: $inputs.propSubtypeId
-            list_desc: $inputs.listDesc
-        successCriteria:
-          - condition: $statusCode == 201
-          - condition: $response.body#/success == true
-        outputs:
-          listUuid: $response.body#/data/list_uuid
-          listKey: $response.body#/data/list_key
-          kwlsStatus: $response.body#/data/kwls_status
-
-      - stepId: verify-listing
-        description: >-
-          Read the listing back by its KW composite key. Indexing is
-          asynchronous, so allow a few seconds before this step.
-        operationId: listings-read
-        dependsOn:
-          - create-listing
-        parameters:
-          - name: Authorization
-            in: header
-            value: $inputs.authorization
-          - name: limit
-            in: query
-            value: 1
-        successCriteria:
-          - condition: $statusCode == 200
-        outputs:
-          total: $response.body#/hits/total/value
-          firstHit: $response.body#/hits/hits
-
+      Fetch the controlled vocabularies so every numeric id on the
+      create body can be validated against KW's own tables.
+    operationId: listings-read-by-table
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    successCriteria:
+    - condition: $statusCode == 200
     outputs:
-      listUuid: $steps.create-listing.outputs.listUuid
-      listKey: $steps.create-listing.outputs.listKey
-      kwlsStatus: $steps.create-listing.outputs.kwlsStatus
-      verifiedTotal: $steps.verify-listing.outputs.total
+      lookupHits: $response.body#/hits/hits
+
+  - stepId: create-listing
+    description: Create the KWLS listing with the eleven required fields.
+    operationId: listings-create
+    dependsOn:
+    - resolve-vocabularies
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    requestBody:
+      contentType: application/json
+      payload:
+        mls_id: $inputs.mlsId
+        mls_number: $inputs.mlsNumber
+        source_system_name: $inputs.sourceSystemName
+        current_list_price: $inputs.currentListPrice
+        list_status_id: $inputs.listStatusId
+        list_category: $inputs.listCategory
+        list_category_id: $inputs.listCategoryId
+        prop_type: $inputs.propType
+        prop_type_id: $inputs.propTypeId
+        prop_subtype: $inputs.propSubtype
+        prop_subtype_id: $inputs.propSubtypeId
+        list_desc: $inputs.listDesc
+    successCriteria:
+    - condition: $statusCode == 201
+    - condition: $response.body#/success == true
+    outputs:
+      listUuid: $response.body#/data/list_uuid
+      listKey: $response.body#/data/list_key
+      kwlsStatus: $response.body#/data/kwls_status
+
+  - stepId: verify-listing
+    description: >-
+      Read the listing back by its KW composite key. Indexing is
+      asynchronous, so allow a few seconds before this step.
+    operationId: listings-read
+    dependsOn:
+    - create-listing
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.authorization
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      total: $response.body#/hits/total/value
+      firstHit: $response.body#/hits/hits
+
+  outputs:
+    listUuid: $steps.create-listing.outputs.listUuid
+    listKey: $steps.create-listing.outputs.listKey
+    kwlsStatus: $steps.create-listing.outputs.kwlsStatus
+    verifiedTotal: $steps.verify-listing.outputs.total
