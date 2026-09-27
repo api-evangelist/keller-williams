@@ -42,7 +42,7 @@ imageNote: >-
   No correct icon has been sourced yet. Shipping the wrong company's mark is worse
   than shipping none; re-run the icon backfill once a real asset exists.
 tags:
-  - Real-Estate
+  - Real Estate
   - United States
   - Residential Real Estate
   - Brokerage
@@ -67,6 +67,7 @@ tags_raw:
   - Partner APIs
   - Marketplace
   - Austin Texas
+  - Real-Estate
 deliveryModel:
   model: saas
   open_source: false
