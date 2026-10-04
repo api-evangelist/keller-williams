@@ -261,7 +261,7 @@ paths:
           $ref: '#/components/responses/UnhandledErrorResponse'
 components:
   schemas:
-    LookupTableHitCountry:
+    LookupTableHitArchStyle:
       type: object
       properties:
         _index:
@@ -271,505 +271,19 @@ components:
         _id:
           type: string
           enum:
-          - country
+          - arch_style
         _score:
           type: integer
         _source:
           type: object
           properties:
-            country:
+            arch_style:
               type: array
               items:
                 type: object
                 properties:
                   id:
                     type: integer
-                  label:
-                    type: string
-                  value:
-                    type: string
-    LookupTableHitListStatus:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - list_status
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            list_status:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-                  value_transkey:
-                    type: string
-                  sa_mapping:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      value:
-                        type: string
-    LookupTableHitPropSupType:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - prop_sub_type
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            prop_sub_type:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-                  value_transkey:
-                    type: string
-                  sa_mapping:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      value:
-                        type: string
-    LookupTableHitConstructionMaterial:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - construction_material
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            construction_material:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableHitAppliance:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - appliance
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            appliance:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableHitSyndicate:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - syndicate
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            syndicate:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableHitParkingFeature:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - parking_feature
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            parking_feature:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableHitCurrency:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - currency
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            currency:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  label:
-                    type: string
-                  value:
-                    type: string
-    LookupTableHitPropType:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - prop_type
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            prop_type:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-                  value_transkey:
-                    type: string
-                  sa_mapping:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      value:
-                        type: string
-    LookupTableHitKWLSStatus:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - kwls_status
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            kwls_status:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value_transkey:
-                    type: string
-                  value:
-                    type: string
-    LookupTableHitListCategory:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - list_category
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            list_category:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-                  sa_mapping:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      value:
-                        type: string
-                  value_transkey:
-                    type: string
-    LookupTableHitStateProvince:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - state_province
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            state_province:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  label:
-                    type: string
-                  value:
-                    type: string
-    Error:
-      type: object
-      properties:
-        success:
-          type: string
-        errorCode:
-          type: string
-        message:
-          type: string
-      description: Error object. If an error occurred, 'success' field will be 'false.'
-    LookupTableHitSpecialCondition:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - special_condition
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            special_condition:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableHitFrequency:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - frequency
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            frequency:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableHitRoofType:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - roof_type
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            roof_type:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    LookupTableResponse:
-      type: object
-      properties:
-        took:
-          type: integer
-        timed_out:
-          type: boolean
-        _shards:
-          type: object
-          properties:
-            total:
-              type: integer
-            successful:
-              type: integer
-            skipped:
-              type: integer
-            failed:
-              type: integer
-        hits:
-          type: object
-          properties:
-            total:
-              type: object
-              properties:
-                value:
-                  type: integer
-                relation:
-                  type: string
-            max_score:
-              type: integer
-            hits:
-              type: array
-              items:
-                oneOf:
-                - $ref: '#/components/schemas/LookupTableHitListType'
-                - $ref: '#/components/schemas/LookupTableHitCurrency'
-                - $ref: '#/components/schemas/LookupTableHitCountry'
-                - $ref: '#/components/schemas/LookupTableHitUnit'
-                - $ref: '#/components/schemas/LookupTableHitKWLSStatus'
-                - $ref: '#/components/schemas/LookupTableHitAppliance'
-                - $ref: '#/components/schemas/LookupTableHitListCategory'
-                - $ref: '#/components/schemas/LookupTableHitExpenseType'
-                - $ref: '#/components/schemas/LookupTableHitOhStatus'
-                - $ref: '#/components/schemas/LookupTableHitFlooring'
-                - $ref: '#/components/schemas/LookupTableHitSyndicate'
-                - $ref: '#/components/schemas/LookupTableHitFrequency'
-                - $ref: '#/components/schemas/LookupTableHitArchStyle'
-                - $ref: '#/components/schemas/LookupTableHitParkingFeature'
-                - $ref: '#/components/schemas/LookupTableHitConstructionMaterial'
-                - $ref: '#/components/schemas/LookupTableHitRoofType'
-                - $ref: '#/components/schemas/LookupTableHitSpecialCondition'
-                - $ref: '#/components/schemas/LookupTableHitStateProvince'
-                - $ref: '#/components/schemas/LookupTableHitPropType'
-                - $ref: '#/components/schemas/LookupTableHitPropSupType'
-                - $ref: '#/components/schemas/LookupTableHitListStatus'
-    LookupTableHitUnit:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - unit
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            unit:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  label:
-                    type: string
                   value:
                     type: string
     LookupTableHitListType:
@@ -799,157 +313,7 @@ components:
                     type: string
                   value_transkey:
                     type: string
-    OrgsPeople:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            query:
-              type: object
-              properties:
-                limit:
-                  type: integer
-                offset:
-                  type: integer
-                cache:
-                  type: boolean
-                is_org_legacy_team:
-                  type: boolean
-                is_org_legacy_id:
-                  type: boolean
-                include_inactive:
-                  type: boolean
-                include_active:
-                  type: boolean
-                include_person_kwid:
-                  type: boolean
-            total:
-              type: integer
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              kw_uid:
-                type: integer
-              username:
-                type: string
-              first_name:
-                type: string
-              last_name:
-                type: string
-              kw_email:
-                type: string
-              default_org_id:
-                type: integer
-              recovery_email:
-                type: string
-              email:
-                type: string
-              marketing_email:
-                type: string
-              kw_start_dt:
-                type: string
-              re_start_dt:
-                type: string
-              photo:
-                type: string
-              phone:
-                type: string
-              mobile_phone:
-                type: string
-              address_1:
-                type: string
-              address_2:
-                type: string
-              city:
-                type: string
-              state:
-                type: string
-              postal_code:
-                type: string
-              country:
-                type: string
-              luxury:
-                type: integer
-              luxury_dt:
-                type: string
-              commercial:
-                type: integer
-              land:
-                type: integer
-              kwyp:
-                type: integer
-              gps:
-                type: integer
-              maps_client:
-                type: integer
-              maps_coach:
-                type: integer
-              maps_mastery_client:
-                type: integer
-              active:
-                type: integer
-              km_active:
-                type: integer
-              kww:
-                type: integer
-              military:
-                type: integer
-              designations:
-                type: string
-              vested:
-                type: integer
-              birth_dt:
-                type: string
-              service_areas:
-                type: string
-              org_start_dt:
-                type: string
-              recruit_id:
-                type: integer
-              languages:
-                type: array
-                items: {}
-              license:
-                type: array
-                items: {}
-              teams:
-                type: array
-                items: {}
-              person_role_orgs:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    role:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        legacy_role_id:
-                          type: integer
-                    end_dt:
-                      type: string
-                    kw_uid:
-                      type: integer
-                    org_id:
-                      type: integer
-                    org_key:
-                      type: string
-                    role_id:
-                      type: integer
-                    start_dt:
-                      type: string
-                    legacy_org_id:
-                      type: integer
-                    legacy_team_id:
-                      type: integer
-      description: Orgs people object
-    LookupTableHitOhStatus:
+    LookupTableHitParkingFeature:
       type: object
       properties:
         _index:
@@ -959,13 +323,13 @@ components:
         _id:
           type: string
           enum:
-          - oh_status
+          - parking_feature
         _score:
           type: integer
         _source:
           type: object
           properties:
-            oh_status:
+            parking_feature:
               type: array
               items:
                 type: object
@@ -974,7 +338,7 @@ components:
                     type: integer
                   value:
                     type: string
-    LookupTableHitFlooring:
+    LookupTableHitSpecialCondition:
       type: object
       properties:
         _index:
@@ -984,13 +348,13 @@ components:
         _id:
           type: string
           enum:
-          - flooring
+          - special_condition
         _score:
           type: integer
         _source:
           type: object
           properties:
-            flooring:
+            special_condition:
               type: array
               items:
                 type: object
@@ -1016,84 +380,6 @@ components:
           type: object
           properties:
             expense_type:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  value:
-                    type: string
-    ListingsCreate:
-      type: object
-      required:
-      - mls_id
-      - source_system_name
-      - mls_number
-      - current_list_price
-      - list_status_id
-      - list_category
-      - list_category_id
-      - prop_type
-      - prop_type_id
-      - prop_subtype
-      - prop_subtype_id
-      properties:
-        list_kw_uid:
-          type: number
-        list_desc:
-          type: string
-        co_list_kw_uid:
-          type: number
-        list_type:
-          type: string
-        source_system_name:
-          type: string
-        version:
-          type: string
-        list_type_id:
-          type: number
-        kwls_status:
-          type: string
-        current_list_price:
-          type: number
-        list_status_id:
-          type: number
-        list_category:
-          type: string
-        list_category_id:
-          type: number
-        prop_type:
-          type: string
-        prop_type_id:
-          type: number
-        prop_subtype:
-          type: string
-        prop_subtype_id:
-          type: number
-        list_status:
-          type: string
-        mls_id:
-          type: string
-        mls_number:
-          type: string
-    LookupTableHitArchStyle:
-      type: object
-      properties:
-        _index:
-          type: string
-        _type:
-          type: string
-        _id:
-          type: string
-          enum:
-          - arch_style
-        _score:
-          type: integer
-        _source:
-          type: object
-          properties:
-            arch_style:
               type: array
               items:
                 type: object
@@ -1858,6 +1144,67 @@ components:
               type: boolean
             mls_name:
               type: string
+    LookupTableHitListStatus:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - list_status
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            list_status:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+                  value_transkey:
+                    type: string
+                  sa_mapping:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: string
+    LookupTableHitCountry:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - country
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            country:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  label:
+                    type: string
+                  value:
+                    type: string
     ListingsResponse:
       type: object
       properties:
@@ -2667,286 +2014,874 @@ components:
           type: string
         mls_id:
           type: string
-  responses:
-    BadRequestErrorResponse:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidFilterQueryParameter:
-              summary: A query parameter is invalid.
-              value:
-                success: 'false'
-                errorCode: BAD_REQUEST
-                message: Invalid filter query parameter
-            payloadFieldInvalidType:
-              summary: Invalid data type.
-              value:
-                success: 'false'
-                errorCode: BAD_REQUEST
-                message: '"list_desc" must be a string'
-            payloadFieldNotAllowed:
-              summary: Not allowed property.
-              value:
-                success: 'false'
-                errorCode: BAD_REQUEST
-                message: '"test" is not allowed'
-            payloadFieldRequired:
-              summary: Missing required property.
-              value:
-                success: 'false'
-                errorCode: BAD_REQUEST
-                message: '"mls_id" is required'
-    UnauthorizedErrorResponse:
-      description: Unauthorized.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            token:
-              summary: Bearer token is either invalid or corrupt.
-              value:
-                success: 'false'
-                errorCode: BAD_TOKEN_AUTHENTICATION
-                message: Token is not valid or missing
-            apikey:
-              summary: The API key is either invalid or corrupt.
-              value:
-                success: 'false'
-                errorCode: BAD_API_KEY
-                message: API key is not valid, missing, or you do not have permission to make this request
-    ForbiddenErrorResponse:
-      description: Request forbidden.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notKWWListing:
-              summary: Cannot edit non-kww listing.
-              value:
-                success: 'false'
-                errorCode: FORBIDDEN
-                message: Listing not kww listing, cannot edit
-            invlidPermissions:
-              summary: Invalid permissions.
-              value:
-                success: 'false'
-                errorCode: FORBIDDEN
-                message: You do not have permissions to delete this listing
+    LookupTableHitFlooring:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - flooring
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            flooring:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+    LookupTableHitOhStatus:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - oh_status
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            oh_status:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+    LookupTableHitKWLSStatus:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - kwls_status
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            kwls_status:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value_transkey:
+                    type: string
+                  value:
+                    type: string
+    LookupTableHitFrequency:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - frequency
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            frequency:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+    LookupTableHitAppliance:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - appliance
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            appliance:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+    LookupTableHitStateProvince:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - state_province
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            state_province:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  label:
+                    type: string
+                  value:
+                    type: string
+    LookupTableHitSyndicate:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - syndicate
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            syndicate:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+    ListingsCreate:
+      type: object
+      required:
+      - mls_id
+      - source_system_name
+      - mls_number
+      - current_list_price
+      - list_status_id
+      - list_category
+      - list_category_id
+      - prop_type
+      - prop_type_id
+      - prop_subtype
+      - prop_subtype_id
+      properties:
+        list_kw_uid:
+          type: number
+        list_desc:
+          type: string
+        co_list_kw_uid:
+          type: number
+        list_type:
+          type: string
+        source_system_name:
+          type: string
+        version:
+          type: string
+        list_type_id:
+          type: number
+        kwls_status:
+          type: string
+        current_list_price:
+          type: number
+        list_status_id:
+          type: number
+        list_category:
+          type: string
+        list_category_id:
+          type: number
+        prop_type:
+          type: string
+        prop_type_id:
+          type: number
+        prop_subtype:
+          type: string
+        prop_subtype_id:
+          type: number
+        list_status:
+          type: string
+        mls_id:
+          type: string
+        mls_number:
+          type: string
+    LookupTableHitListCategory:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - list_category
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            list_category:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+                  sa_mapping:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: string
+                  value_transkey:
+                    type: string
+    LookupTableHitCurrency:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - currency
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            currency:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  label:
+                    type: string
+                  value:
+                    type: string
+    LookupTableHitUnit:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - unit
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            unit:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  label:
+                    type: string
+                  value:
+                    type: string
+    LookupTableHitPropSupType:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - prop_sub_type
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            prop_sub_type:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+                  value_transkey:
+                    type: string
+                  sa_mapping:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: string
     LookupTableResponse:
-      description: Get all IDs by lookup-table
+      type: object
+      properties:
+        took:
+          type: integer
+        timed_out:
+          type: boolean
+        _shards:
+          type: object
+          properties:
+            total:
+              type: integer
+            successful:
+              type: integer
+            skipped:
+              type: integer
+            failed:
+              type: integer
+        hits:
+          type: object
+          properties:
+            total:
+              type: object
+              properties:
+                value:
+                  type: integer
+                relation:
+                  type: string
+            max_score:
+              type: integer
+            hits:
+              type: array
+              items:
+                oneOf:
+                - $ref: '#/components/schemas/LookupTableHitListType'
+                - $ref: '#/components/schemas/LookupTableHitCurrency'
+                - $ref: '#/components/schemas/LookupTableHitCountry'
+                - $ref: '#/components/schemas/LookupTableHitUnit'
+                - $ref: '#/components/schemas/LookupTableHitKWLSStatus'
+                - $ref: '#/components/schemas/LookupTableHitAppliance'
+                - $ref: '#/components/schemas/LookupTableHitListCategory'
+                - $ref: '#/components/schemas/LookupTableHitExpenseType'
+                - $ref: '#/components/schemas/LookupTableHitOhStatus'
+                - $ref: '#/components/schemas/LookupTableHitFlooring'
+                - $ref: '#/components/schemas/LookupTableHitSyndicate'
+                - $ref: '#/components/schemas/LookupTableHitFrequency'
+                - $ref: '#/components/schemas/LookupTableHitArchStyle'
+                - $ref: '#/components/schemas/LookupTableHitParkingFeature'
+                - $ref: '#/components/schemas/LookupTableHitConstructionMaterial'
+                - $ref: '#/components/schemas/LookupTableHitRoofType'
+                - $ref: '#/components/schemas/LookupTableHitSpecialCondition'
+                - $ref: '#/components/schemas/LookupTableHitStateProvince'
+                - $ref: '#/components/schemas/LookupTableHitPropType'
+                - $ref: '#/components/schemas/LookupTableHitPropSupType'
+                - $ref: '#/components/schemas/LookupTableHitListStatus'
+    Error:
+      type: object
+      properties:
+        success:
+          type: string
+        errorCode:
+          type: string
+        message:
+          type: string
+      description: Error object. If an error occurred, 'success' field will be 'false.'
+    OrgsPeople:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            query:
+              type: object
+              properties:
+                limit:
+                  type: integer
+                offset:
+                  type: integer
+                cache:
+                  type: boolean
+                is_org_legacy_team:
+                  type: boolean
+                is_org_legacy_id:
+                  type: boolean
+                include_inactive:
+                  type: boolean
+                include_active:
+                  type: boolean
+                include_person_kwid:
+                  type: boolean
+            total:
+              type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              kw_uid:
+                type: integer
+              username:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              kw_email:
+                type: string
+              default_org_id:
+                type: integer
+              recovery_email:
+                type: string
+              email:
+                type: string
+              marketing_email:
+                type: string
+              kw_start_dt:
+                type: string
+              re_start_dt:
+                type: string
+              photo:
+                type: string
+              phone:
+                type: string
+              mobile_phone:
+                type: string
+              address_1:
+                type: string
+              address_2:
+                type: string
+              city:
+                type: string
+              state:
+                type: string
+              postal_code:
+                type: string
+              country:
+                type: string
+              luxury:
+                type: integer
+              luxury_dt:
+                type: string
+              commercial:
+                type: integer
+              land:
+                type: integer
+              kwyp:
+                type: integer
+              gps:
+                type: integer
+              maps_client:
+                type: integer
+              maps_coach:
+                type: integer
+              maps_mastery_client:
+                type: integer
+              active:
+                type: integer
+              km_active:
+                type: integer
+              kww:
+                type: integer
+              military:
+                type: integer
+              designations:
+                type: string
+              vested:
+                type: integer
+              birth_dt:
+                type: string
+              service_areas:
+                type: string
+              org_start_dt:
+                type: string
+              recruit_id:
+                type: integer
+              languages:
+                type: array
+                items: {}
+              license:
+                type: array
+                items: {}
+              teams:
+                type: array
+                items: {}
+              person_role_orgs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    role:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        legacy_role_id:
+                          type: integer
+                    end_dt:
+                      type: string
+                    kw_uid:
+                      type: integer
+                    org_id:
+                      type: integer
+                    org_key:
+                      type: string
+                    role_id:
+                      type: integer
+                    start_dt:
+                      type: string
+                    legacy_org_id:
+                      type: integer
+                    legacy_team_id:
+                      type: integer
+      description: Orgs people object
+    LookupTableHitPropType:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - prop_type
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            prop_type:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+                  value_transkey:
+                    type: string
+                  sa_mapping:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      value:
+                        type: string
+    LookupTableHitRoofType:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - roof_type
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            roof_type:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+    LookupTableHitConstructionMaterial:
+      type: object
+      properties:
+        _index:
+          type: string
+        _type:
+          type: string
+        _id:
+          type: string
+          enum:
+          - construction_material
+        _score:
+          type: integer
+        _source:
+          type: object
+          properties:
+            construction_material:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  value:
+                    type: string
+  responses:
+    DeleteResponse:
+      description: Delete Response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/LookupTableResponse'
+            $ref: '#/components/schemas/ListingsCreated'
           example:
-            took: 3
-            timed_out: false
-            _shards:
-              total: 5
-              successful: 5
-              skipped: 0
-              failed: 0
-            hits:
-              total:
-                value: 22
-                relation: eq
-              max_score: 1
-              hits:
-              - _index: kwls_lookup
-                _type: _doc
-                _id: list_type
-                _score: 1
-                _source:
-                  list_type:
-                    id: 1
-                    value: Prospective
-                    value_transkey: listings.prospective
-              - _index: kwls_lookup
-                _type: _doc
-                _id: currency
-                _score: 1
-                _source:
-                  currency:
-                    id: 1
-                    label: Emirati Dirham
-                    value: AED
-              - _index: kwls_lookup
-                _type: _doc
-                _id: country
-                _score: 1
-                _source:
-                  country:
-                    id: 3
-                    label: Albania
-                    value: ALB
-              - _index: kwls_lookup
-                _type: _doc
-                _id: unit
-                _score: 1
-                _source:
-                  unit:
-                    id: 1
-                    label: Square Feet
-                    value: sqft
-              - _index: kwls_lookup
-                _type: _doc
-                _id: kwls_status
-                _score: 1
-                _source:
-                  kwls_status:
-                    id: 1
-                    value: Initiated
-                    value_transkey: listings.initiated
-              - _index: kwls_lookup
-                _type: _doc
-                _id: appliance
-                _score: 1
-                _source:
-                  appliance:
-                    id: 1
-                    value: Barbeque or Grill
-              - _index: kwls_lookup
-                _type: _doc
-                _id: list_category
-                _score: 1
-                _source:
-                  list_category:
-                    id: 0
-                    value: Other
-                    sa_mapping:
-                      id: 0
-                      value: Other
-                    value_transkey: listings.other
-              - _index: kwls_lookup
-                _type: _doc
-                _id: expense_type
-                _score: 1
-                _source:
-                  expense_type:
-                    id: 1
-                    value: AC Maintenance Fee
-              - _index: kwls_lookup
-                _type: _doc
-                _id: oh_status
-                _score: 1
-                _source:
-                  oh_status:
-                    id: 1
-                    value: Active
-              - _index: kwls_lookup
-                _type: _doc
-                _id: flooring
-                _score: 1
-                _source:
-                  flooring:
-                    id: 1
-                    value: Bamboo
-              - _index: kwls_lookup
-                _type: _doc
-                _id: syndicate
-                _score: 1
-                _source:
-                  syndicate:
-                    id: 1
-                    value: KW My MC
-              - _index: kwls_lookup
-                _type: _doc
-                _id: frequency
-                _score: 1
-                _source:
-                  frequency:
-                    id: 1
-                    value: Annually
-              - _index: kwls_lookup
-                _type: _doc
-                _id: arch_style
-                _score: 1
-                _source:
-                  arch_style:
-                    id: 1
-                    value: A Frame
-              - _index: kwls_lookup
-                _type: _doc
-                _id: parking_feature
-                _score: 1
-                _source:
-                  parking_feature:
-                    id: 1
-                    value: Alley
-              - _index: kwls_lookup
-                _type: _doc
-                _id: construction_material
-                _score: 1
-                _source:
-                  construction_material:
-                    id: 1
-                    value: Adobe
-              - _index: kwls_lookup
-                _type: _doc
-                _id: prop_type
-                _score: 1
-                _source:
-                  prop_type:
-                    id: 8
-                    value: Residential
-                    sa_mapping:
-                      id: 1
-                      value: Single Family Residence
-                    value_transkey: listings.residential
-              - _index: kwls_lookup
-                _type: _doc
-                _id: roof_type
-                _score: 1
-                _source:
-                  roof_type:
-                    id: 1
-                    value: Aluminum
-              - _index: kwls_lookup
-                _type: _doc
-                _id: list_status
-                _score: 1
-                _source:
-                  list_status:
-                    id: 6
-                    value: Pending Contingent
-                    sa_mapping:
-                      id: 7
-                      value: Contingent-No Show
-                    value_transkey: listings.pending_contingent
-              - _index: kwls_lookup
-                _type: _doc
-                _id: prop_sub_type
-                _score: 1
-                _source:
-                  prop_sub_type:
-                    id: 1
-                    value: Apartment
-                    sa_mapping:
-                      id: 1
-                      value: Residential-Unit/Flat/Apartment
-                    value_transkey: listings.apartment
-              - _index: kwls_lookup
-                _type: _doc
-                _id: special_condition
-                _score: 1
-                _source:
-                  special_condition:
-                    id: 1
-                    value: Auction
-              - _index: kwls_lookup
-                _type: _doc
-                _id: state_province
-                _score: 1
-                _source:
-                  state_province:
-                    id: 1
-                    label: Alabama, USA
-                    value: AL
+            success: true
+            data:
+              list_type: MLS Listing
+              list_type_id: 1
+              mls_id: KWW_KIWI
+              source_system_name: KW Sourced
+              kw_mc: true
+              kw_listing: true
+              version: 2.0.0
+              list_id: 1254243
+              list_key: KWW_KIWI-123456
+              kwls_status: Accepted
+              manual_entry: false
+              mls_number: '1254243'
+              kw_agent: true
+              list_uuid: 668c51b17c9422975e4f12d6
+              current_list_price: 385000
+              list_status: Draft
+              list_status_id: 18
+              list_category: Off Market
+              list_category_id: 4
+              prop_type: Residential
+              prop_type_id: 8
+              prop_subtype: Condominium
+              prop_subtype_id: 4
+              mls_name: Keller Williams Realty
+              is_kww_listing: true
+              kww_region: null
+              co_list_kw_uid: null
+              sell_kw_uid: null
+              is_deleted: true
+              mls_source_id: null
+              list_kw_uid: 556396
+              market_center: null
+              syndicate:
+                list_team_id: null
+                list_org_id: null
+                brokerage_id: null
+                all_kw_apps: true
+                command_only: false
+                consumer_only: false
+              list_address: null
+              property_address: null
+              currency_code: null
+              lease_price: null
+              close_price: null
+              original_list_price: 385000
+              price_tax_suffix: false
+              price_history: null
+              list_dt: '2021-11-15T15:45:08.873000'
+              kw_expiry_dt: null
+              kw_expiry_dt_lock: false
+              contract_expiry_dt: null
+              contract_expiry_dt_lock: false
+              close_dt: null
+              list_status_lock: false
+              original_list_category: Off Market
+              original_list_category_id: 4
+              luxury_home: false
+              prop_type_lock: false
+              prop_subtype_lock: false
+              special_list_condition: null
+              year_built: null
+              living_area: null
+              living_area_units: null
+              lot_size_area: null
+              lot_size_units: null
+              lot_front_area: null
+              lot_front_units: null
+              lot_depth_area: null
+              lot_depth_units: null
+              office_size: null
+              office_size_units: null
+              warehouse_size: null
+              warehouse_size_units: null
+              retail_size: null
+              retail_size_units: null
+              other_area_size: null
+              other_area_size_units: null
+              total_bed: null
+              total_bath: 0
+              full_bath: 0
+              half_bath: 0
+              one_quarter_bath: 0
+              three_quarter_bath: 0
+              partial_bath: 0
+              list_desc: This is test list from Taras2
+              list_desc_en: null
+              list_desc_lock: false
+              brokerage: null
+              list_agent_office: null
+              co_list_agent_office: null
+              sell_agent_office: null
+              co_sell_agent_office: null
+              location: null
+              structure:
+                builder_name: null
+                stories: null
+                total_units: null
+                total_buildings: null
+                unit_level: null
+                building_name: null
+                has_garage: false
+                has_parking: false
+                parking_total: null
+                parking_features: null
+                appliances: null
+                architectural_styles: null
+                architectural_design: null
+                interior_features:
+                  has_fireplace: false
+                  has_ceiling_fan: false
+                  has_jetted_bath_tub: false
+                  has_mother_in_law: false
+                  has_sauna: false
+                  has_security_system: false
+                  has_skylight: false
+                  has_vaulted_ceiling: false
+                  has_wet_bar: false
+                  is_cable_ready: false
+                  is_wired: false
+                exterior_features:
+                  has_hot_tub_spa: false
+                  has_barbecue_area: false
+                  has_deck: false
+                  has_disabled_access: false
+                  has_dock: false
+                  has_garden: false
+                  has_gated_entry: false
+                  has_green_house: false
+                  has_patio: false
+                  has_pond: false
+                  has_pool: false
+                  has_porch: false
+                  has_rv_parking: false
+                  has_sports_court: false
+                  has_sprinkler_system: false
+                  is_water_front: false
+                views: null
+                roof_types: null
+                foundation_details: null
+                construction_materials: null
+                heating_cooling: null
+                floorings: null
+                basement_desc: null
+                master_bedroom_desc: null
+                family_room_desc: null
+                dining_room_desc: null
+                living_room_desc: null
+                fireplace_desc: null
+                utilities: null
+                water_source: null
+                rooms_total: null
+                fireplaces_total: null
+                is_new_construction: false
+              green_home: null
+              expenses: null
+              hoa: null
+              taxes: null
+              marketing_info:
+                display_listing: true
+                display_address: true
+                display_internet: true
+                display_list_price: true
+                display_photo: true
+                courtesy_location: null
+                courtesy_label: null
+                courtesy_of_list: null
+                courtesy_of_detail: null
+                photo_courtesy_required: false
+                vow: false
+                legal_exclusive_rights: false
+                legal_accept_disclaimer: false
+                living_area_display: null
+                legal_description: null
+              virtual_tours: null
+              virtual_tours_lock: false
+              open_houses: null
+              open_houses_lock: false
+              photos: null
+              photos_lock: false
+              links: null
+              links_lock: false
+              mls_updated_at: null
+              kw_updated_at: '2021-11-15T15:45:18.113Z'
+              kw_updated_by: KW Sourced-556396
+              raw:
+                lambda_updated_at: '2021-11-15T15:45:18.113Z'
+              history: null
+              kw_attribute:
+                kw_active: false
+                list_team_id: null
+                membership:
+                  luxury: false
+                  commercial: false
+                  land: false
+                  kwyp: false
+                  gps: false
+                  maps_client: false
+                  maps_coach: false
+                  maps_mastery_client: false
+                  keller_mortgage: false
+                  kww: false
+              geo: null
+              system:
+                reprocessed: false
+                processed_by: pipeline
     OrgsPeople:
       description: Orgs People by ID
       content:
@@ -3021,16 +2956,6 @@ components:
                 start_dt: '2020-04-01'
                 legacy_org_id: 6
                 legacy_team_id: null
-    InternalServerErrorResponse:
-      description: Unexpected error happened.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            success: 'false'
-            errorCode: INTERNAL_SERVER_ERROR
-            message: Unexpected error happened. Try again later.
     ListingsCreated:
       description: Listings response
       content:
@@ -3383,230 +3308,6 @@ components:
               kw_listing: true
               kw_agent: true
               mls_name: Keller Williams Realty
-    DeleteResponse:
-      description: Delete Response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ListingsCreated'
-          example:
-            success: true
-            data:
-              list_type: MLS Listing
-              list_type_id: 1
-              mls_id: KWW_KIWI
-              source_system_name: KW Sourced
-              kw_mc: true
-              kw_listing: true
-              version: 2.0.0
-              list_id: 1254243
-              list_key: KWW_KIWI-123456
-              kwls_status: Accepted
-              manual_entry: false
-              mls_number: '1254243'
-              kw_agent: true
-              list_uuid: 668c51b17c9422975e4f12d6
-              current_list_price: 385000
-              list_status: Draft
-              list_status_id: 18
-              list_category: Off Market
-              list_category_id: 4
-              prop_type: Residential
-              prop_type_id: 8
-              prop_subtype: Condominium
-              prop_subtype_id: 4
-              mls_name: Keller Williams Realty
-              is_kww_listing: true
-              kww_region: null
-              co_list_kw_uid: null
-              sell_kw_uid: null
-              is_deleted: true
-              mls_source_id: null
-              list_kw_uid: 556396
-              market_center: null
-              syndicate:
-                list_team_id: null
-                list_org_id: null
-                brokerage_id: null
-                all_kw_apps: true
-                command_only: false
-                consumer_only: false
-              list_address: null
-              property_address: null
-              currency_code: null
-              lease_price: null
-              close_price: null
-              original_list_price: 385000
-              price_tax_suffix: false
-              price_history: null
-              list_dt: '2021-11-15T15:45:08.873000'
-              kw_expiry_dt: null
-              kw_expiry_dt_lock: false
-              contract_expiry_dt: null
-              contract_expiry_dt_lock: false
-              close_dt: null
-              list_status_lock: false
-              original_list_category: Off Market
-              original_list_category_id: 4
-              luxury_home: false
-              prop_type_lock: false
-              prop_subtype_lock: false
-              special_list_condition: null
-              year_built: null
-              living_area: null
-              living_area_units: null
-              lot_size_area: null
-              lot_size_units: null
-              lot_front_area: null
-              lot_front_units: null
-              lot_depth_area: null
-              lot_depth_units: null
-              office_size: null
-              office_size_units: null
-              warehouse_size: null
-              warehouse_size_units: null
-              retail_size: null
-              retail_size_units: null
-              other_area_size: null
-              other_area_size_units: null
-              total_bed: null
-              total_bath: 0
-              full_bath: 0
-              half_bath: 0
-              one_quarter_bath: 0
-              three_quarter_bath: 0
-              partial_bath: 0
-              list_desc: This is test list from Taras2
-              list_desc_en: null
-              list_desc_lock: false
-              brokerage: null
-              list_agent_office: null
-              co_list_agent_office: null
-              sell_agent_office: null
-              co_sell_agent_office: null
-              location: null
-              structure:
-                builder_name: null
-                stories: null
-                total_units: null
-                total_buildings: null
-                unit_level: null
-                building_name: null
-                has_garage: false
-                has_parking: false
-                parking_total: null
-                parking_features: null
-                appliances: null
-                architectural_styles: null
-                architectural_design: null
-                interior_features:
-                  has_fireplace: false
-                  has_ceiling_fan: false
-                  has_jetted_bath_tub: false
-                  has_mother_in_law: false
-                  has_sauna: false
-                  has_security_system: false
-                  has_skylight: false
-                  has_vaulted_ceiling: false
-                  has_wet_bar: false
-                  is_cable_ready: false
-                  is_wired: false
-                exterior_features:
-                  has_hot_tub_spa: false
-                  has_barbecue_area: false
-                  has_deck: false
-                  has_disabled_access: false
-                  has_dock: false
-                  has_garden: false
-                  has_gated_entry: false
-                  has_green_house: false
-                  has_patio: false
-                  has_pond: false
-                  has_pool: false
-                  has_porch: false
-                  has_rv_parking: false
-                  has_sports_court: false
-                  has_sprinkler_system: false
-                  is_water_front: false
-                views: null
-                roof_types: null
-                foundation_details: null
-                construction_materials: null
-                heating_cooling: null
-                floorings: null
-                basement_desc: null
-                master_bedroom_desc: null
-                family_room_desc: null
-                dining_room_desc: null
-                living_room_desc: null
-                fireplace_desc: null
-                utilities: null
-                water_source: null
-                rooms_total: null
-                fireplaces_total: null
-                is_new_construction: false
-              green_home: null
-              expenses: null
-              hoa: null
-              taxes: null
-              marketing_info:
-                display_listing: true
-                display_address: true
-                display_internet: true
-                display_list_price: true
-                display_photo: true
-                courtesy_location: null
-                courtesy_label: null
-                courtesy_of_list: null
-                courtesy_of_detail: null
-                photo_courtesy_required: false
-                vow: false
-                legal_exclusive_rights: false
-                legal_accept_disclaimer: false
-                living_area_display: null
-                legal_description: null
-              virtual_tours: null
-              virtual_tours_lock: false
-              open_houses: null
-              open_houses_lock: false
-              photos: null
-              photos_lock: false
-              links: null
-              links_lock: false
-              mls_updated_at: null
-              kw_updated_at: '2021-11-15T15:45:18.113Z'
-              kw_updated_by: KW Sourced-556396
-              raw:
-                lambda_updated_at: '2021-11-15T15:45:18.113Z'
-              history: null
-              kw_attribute:
-                kw_active: false
-                list_team_id: null
-                membership:
-                  luxury: false
-                  commercial: false
-                  land: false
-                  kwyp: false
-                  gps: false
-                  maps_client: false
-                  maps_coach: false
-                  maps_mastery_client: false
-                  keller_mortgage: false
-                  kww: false
-              geo: null
-              system:
-                reprocessed: false
-                processed_by: pipeline
-    UnhandledErrorResponse:
-      description: Unexpected error happened.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            success: 'false'
-            errorCode: BAD_GATEWAY
-            message: Unhandled error.
     ListingsResponse:
       description: All listings match your filter
       content:
@@ -3995,6 +3696,305 @@ components:
                   list_category_transkey: listings.for_sale
                 sort:
                 - 5920294403786638000
+    InternalServerErrorResponse:
+      description: Unexpected error happened.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: 'false'
+            errorCode: INTERNAL_SERVER_ERROR
+            message: Unexpected error happened. Try again later.
+    BadRequestErrorResponse:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidFilterQueryParameter:
+              summary: A query parameter is invalid.
+              value:
+                success: 'false'
+                errorCode: BAD_REQUEST
+                message: Invalid filter query parameter
+            payloadFieldInvalidType:
+              summary: Invalid data type.
+              value:
+                success: 'false'
+                errorCode: BAD_REQUEST
+                message: '"list_desc" must be a string'
+            payloadFieldNotAllowed:
+              summary: Not allowed property.
+              value:
+                success: 'false'
+                errorCode: BAD_REQUEST
+                message: '"test" is not allowed'
+            payloadFieldRequired:
+              summary: Missing required property.
+              value:
+                success: 'false'
+                errorCode: BAD_REQUEST
+                message: '"mls_id" is required'
+    ForbiddenErrorResponse:
+      description: Request forbidden.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notKWWListing:
+              summary: Cannot edit non-kww listing.
+              value:
+                success: 'false'
+                errorCode: FORBIDDEN
+                message: Listing not kww listing, cannot edit
+            invlidPermissions:
+              summary: Invalid permissions.
+              value:
+                success: 'false'
+                errorCode: FORBIDDEN
+                message: You do not have permissions to delete this listing
+    UnauthorizedErrorResponse:
+      description: Unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            token:
+              summary: Bearer token is either invalid or corrupt.
+              value:
+                success: 'false'
+                errorCode: BAD_TOKEN_AUTHENTICATION
+                message: Token is not valid or missing
+            apikey:
+              summary: The API key is either invalid or corrupt.
+              value:
+                success: 'false'
+                errorCode: BAD_API_KEY
+                message: API key is not valid, missing, or you do not have permission to make this request
+    UnhandledErrorResponse:
+      description: Unexpected error happened.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            success: 'false'
+            errorCode: BAD_GATEWAY
+            message: Unhandled error.
+    LookupTableResponse:
+      description: Get all IDs by lookup-table
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LookupTableResponse'
+          example:
+            took: 3
+            timed_out: false
+            _shards:
+              total: 5
+              successful: 5
+              skipped: 0
+              failed: 0
+            hits:
+              total:
+                value: 22
+                relation: eq
+              max_score: 1
+              hits:
+              - _index: kwls_lookup
+                _type: _doc
+                _id: list_type
+                _score: 1
+                _source:
+                  list_type:
+                    id: 1
+                    value: Prospective
+                    value_transkey: listings.prospective
+              - _index: kwls_lookup
+                _type: _doc
+                _id: currency
+                _score: 1
+                _source:
+                  currency:
+                    id: 1
+                    label: Emirati Dirham
+                    value: AED
+              - _index: kwls_lookup
+                _type: _doc
+                _id: country
+                _score: 1
+                _source:
+                  country:
+                    id: 3
+                    label: Albania
+                    value: ALB
+              - _index: kwls_lookup
+                _type: _doc
+                _id: unit
+                _score: 1
+                _source:
+                  unit:
+                    id: 1
+                    label: Square Feet
+                    value: sqft
+              - _index: kwls_lookup
+                _type: _doc
+                _id: kwls_status
+                _score: 1
+                _source:
+                  kwls_status:
+                    id: 1
+                    value: Initiated
+                    value_transkey: listings.initiated
+              - _index: kwls_lookup
+                _type: _doc
+                _id: appliance
+                _score: 1
+                _source:
+                  appliance:
+                    id: 1
+                    value: Barbeque or Grill
+              - _index: kwls_lookup
+                _type: _doc
+                _id: list_category
+                _score: 1
+                _source:
+                  list_category:
+                    id: 0
+                    value: Other
+                    sa_mapping:
+                      id: 0
+                      value: Other
+                    value_transkey: listings.other
+              - _index: kwls_lookup
+                _type: _doc
+                _id: expense_type
+                _score: 1
+                _source:
+                  expense_type:
+                    id: 1
+                    value: AC Maintenance Fee
+              - _index: kwls_lookup
+                _type: _doc
+                _id: oh_status
+                _score: 1
+                _source:
+                  oh_status:
+                    id: 1
+                    value: Active
+              - _index: kwls_lookup
+                _type: _doc
+                _id: flooring
+                _score: 1
+                _source:
+                  flooring:
+                    id: 1
+                    value: Bamboo
+              - _index: kwls_lookup
+                _type: _doc
+                _id: syndicate
+                _score: 1
+                _source:
+                  syndicate:
+                    id: 1
+                    value: KW My MC
+              - _index: kwls_lookup
+                _type: _doc
+                _id: frequency
+                _score: 1
+                _source:
+                  frequency:
+                    id: 1
+                    value: Annually
+              - _index: kwls_lookup
+                _type: _doc
+                _id: arch_style
+                _score: 1
+                _source:
+                  arch_style:
+                    id: 1
+                    value: A Frame
+              - _index: kwls_lookup
+                _type: _doc
+                _id: parking_feature
+                _score: 1
+                _source:
+                  parking_feature:
+                    id: 1
+                    value: Alley
+              - _index: kwls_lookup
+                _type: _doc
+                _id: construction_material
+                _score: 1
+                _source:
+                  construction_material:
+                    id: 1
+                    value: Adobe
+              - _index: kwls_lookup
+                _type: _doc
+                _id: prop_type
+                _score: 1
+                _source:
+                  prop_type:
+                    id: 8
+                    value: Residential
+                    sa_mapping:
+                      id: 1
+                      value: Single Family Residence
+                    value_transkey: listings.residential
+              - _index: kwls_lookup
+                _type: _doc
+                _id: roof_type
+                _score: 1
+                _source:
+                  roof_type:
+                    id: 1
+                    value: Aluminum
+              - _index: kwls_lookup
+                _type: _doc
+                _id: list_status
+                _score: 1
+                _source:
+                  list_status:
+                    id: 6
+                    value: Pending Contingent
+                    sa_mapping:
+                      id: 7
+                      value: Contingent-No Show
+                    value_transkey: listings.pending_contingent
+              - _index: kwls_lookup
+                _type: _doc
+                _id: prop_sub_type
+                _score: 1
+                _source:
+                  prop_sub_type:
+                    id: 1
+                    value: Apartment
+                    sa_mapping:
+                      id: 1
+                      value: Residential-Unit/Flat/Apartment
+                    value_transkey: listings.apartment
+              - _index: kwls_lookup
+                _type: _doc
+                _id: special_condition
+                _score: 1
+                _source:
+                  special_condition:
+                    id: 1
+                    value: Auction
+              - _index: kwls_lookup
+                _type: _doc
+                _id: state_province
+                _score: 1
+                _source:
+                  state_province:
+                    id: 1
+                    label: Alabama, USA
+                    value: AL
   requestBodies:
     ListingsUpdate:
       description: Update Listings
