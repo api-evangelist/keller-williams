@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/keller-williams/integrations
 - https://n8n.io/integrations/keller-williams/
@@ -9,8 +9,29 @@ checked:
 - https://composio.dev/toolkits/keller-williams
 - https://monid.ai/tools/keller-williams
 - https://n8n.io/integrations/keller-williams/
+- https://services.reso.org/orgs?showStats=true&showEndorsements=true
 - https://zapier.com/apps/keller-williams/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: RESO
+  partner: reso
+  type: contract
+  channel: network-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    role: Brokerage
+    tier: Uncertified
+    registered_name: Keller Williams Realty
+    organization_uoi: B00000001
+    matched_domain: kw.com
+    matched_by: domain
+    endorsements: null
+    summary_url: https://certification.reso.org/summary/B00000001
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
 templates: []
