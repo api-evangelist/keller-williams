@@ -10,6 +10,7 @@ checked:
 - https://monid.ai/tools/keller-williams
 - https://n8n.io/integrations/keller-williams/
 - https://services.reso.org/orgs?showStats=true&showEndorsements=true
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/keller-williams/integrations
 summary: null
 marketplace_apps: []
@@ -34,4 +35,29 @@ edges:
     summary_url: https://certification.reso.org/summary/B00000001
     detected_by: sweep-real-estate.py
     detected: '2026-10-14'
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/kwcommand/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Keller Williams Command
+    matched_domain: kw.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: kwcommand
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates: []
