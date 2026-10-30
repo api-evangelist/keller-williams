@@ -1,4 +1,4 @@
-# Keller Williams (keller-williams)
+# Keller Williams
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,109 +64,144 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Keller Williams Realty, Inc. (KWRI) is an Austin, Texas headquartered residential real estate franchisor and the largest real estate brokerage franchise in the United States by agent count, operating more than 1,000 market centers worldwide through independently owned and operated offices. It builds and operates KW Command, a proprietary agent operating system, and the KW Marketplace where third-party vendors sell integrated products to KW agents. Its API posture is real but partner-gated: a genuine Apigee-backed developer portal (DevHub) at developer.kw.com, a live gateway at partners.api.kw.com, an OpenID Connect authorization server with a publicly readable discovery document, and a published API License Agreement — but access requires an approved partnership application. Keller Williams carries no RESO posture: it is absent from the RESO certification directory, and its own listings specification states the service "is not a substitution for or tied to any Multiple Listings Services database records."
+Keller Williams Realty, Inc. (KWRI) is an Austin, Texas headquartered residential real estate franchisor and the largest real estate brokerage franchise in the United States by agent count, operating more than 1,000 market centers worldwide through independently owned and operated offices. In the value chain Keller Williams sits at the brokerage and agent-platform layer, not the data-cooperative layer: it franchises brokerages, and it builds and operates KW Command, a proprietary agent operating system for lead, contact, task, listing, opportunity and marketing management, plus the KW Marketplace where third-party vendors sell integrated products to KW agents. Its API posture is real but partner-gated. Keller Williams runs a genuine Apigee-backed developer portal (DevHub) at developer.kw.com with a live gateway at partners.api.kw.com and a sandbox at sandbox.partners.api.kw.com, an OpenID Connect authorization server whose discovery document is publicly readable, and a published API License Agreement. Access is not self-serve: a developer must submit a partnership application through the "Apply to Integrate" form, be approved by KWRI, receive a DevHub account, then sign the KW API License Agreement and Terms of Use before receiving an API key and secret. Only one API — KW Worldwide Listings Search — is visible anonymously in the API catalog; the rest of the catalog (Command MC, Contact and Lead Data, Tasks, Opportunity/Deal/ Transaction Data, User/Organization/Role Information, Marketplace Subscription Management, Internal) is behind a SAML member login. On the sector's central question, Keller Williams carries no RESO posture at all: it is absent from the RESO certification directory, no RESO Web API, Data Dictionary, OData $metadata or Universal Property Identifier reference appears anywhere in its developer portal or specification, and its own listings spec states in its description that the service "is not a substitution for or tied to any Multiple Listings Services database records." This is a brokerage's own listing and CRM data behind a commercial partner agreement, not licensed MLS data behind a certified standard.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/keller-williams/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/keller-williams/refs/heads/main/apis.yml)
+**Areas:** Real Estate · United States · Residential Real Estate · Brokerage · Franchise · Property Listings · PropTech · Agent Platform · CRM · Partner API · Marketplace · Austin Texas
 
-## Tags
+## Keller Williams on APIs.io
 
-- Real Estate
-- United States
-- Residential Real Estate
-- Brokerage
-- Franchise
-- Property Listings
-- PropTech
-- Agent Platform
-- CRM
-- Partner APIs
-- Marketplace
-- Austin Texas
+Everything profiled for Keller Williams is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/keller-williams/](https://apis.io/providers/keller-williams/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-07-26
-- **Modified:** 2026-07-26
+- [KW Partner Identity API (OpenID Connect)](https://apis.io/apis/keller-williams/keller-williams-partner-identity-api/) — Keller Williams uses OpenID Connect on top of OAuth 2.0 to grant a partner application access to an individual KW user's Command data. The authorization…
+- [KW Marketplace Subscription & Metered Billing API](https://apis.io/apis/keller-williams/keller-williams-marketplace-subscription-api/) — The partner-facing surface behind the KW Marketplace, where vendors sell products to Keller Williams agents. Keller Williams pushes subscription lifecycle…
+- [Keller Williams Search API](https://apis.io/apis/keller-williams/keller-williams-search-api/) — The Search API from Keller Williams — 5 operation(s) for search.
 
-## APIs
+### Published properties
 
-### KW Worldwide Listings Search API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The only Keller Williams API whose specification is published anonymously in the DevHub API catalog. Returns Keller Williams Listing Service (KWLS) listings scoped to a KW Worldwide region, with listing create, update and delete, a controlled-vocabulary lookup table, and an organization-people lookup. The published OpenAPI 3.0.1 document declares 5 paths and 8 operations.
+#### Arazzo workflows (1)
 
-- **Human URL:** [https://developer.kw.com/docs/listingskww/1/overview](https://developer.kw.com/docs/listingskww/1/overview)
-- **Base URL:** `https://partners.api.kw.com/v2`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [Publish a KW Worldwide listing](https://apis.io/arazzos/keller-williams/keller-williams-publish-listing/)
 
-- Property Listings
-- Search
-- KW Worldwide
-- KWLS
+#### AsyncAPI (1)
 
-#### Properties
+Event-driven and webhook contracts.
 
-- [OpenAPI](openapi/keller-williams-listings-search-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Documentation](https://developer.kw.com/docs/listingskww/1/overview)
-- [API Reference](https://developer.kw.com/docs/listingskww/1/routes/listings/get)
-- [Documentation](https://developer.kw.com/filtering-and-sorting)
-- [Sandbox](https://sandbox.partners.api.kw.com/v2)
+- [Keller Williams Marketplace Webhooks](https://apis.io/asyncapis/keller-williams/keller-williams-marketplace-webhooks/)
 
-### KW Partner Identity API (OpenID Connect)
+#### MCP servers (1)
 
-OpenID Connect on top of OAuth 2.0, granting a partner application access to an individual KW user's Command data. The authorization server at `partners.api.kw.com/idp` serves a publicly readable discovery document advertising authorize, token, introspect, userinfo, revoke, end_session and device_authorization endpoints, RS256 ID tokens, PKCE S256, and 40 supported scopes.
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://developer.kw.com/getting-started](https://developer.kw.com/getting-started)
-- **Base URL:** `https://partners.api.kw.com/idp`
+- [keller-williams](https://apis.io/servers/keller-williams/keller-williams/)
 
-#### Tags
+#### Agentic access (1)
 
-- Authentication
-- OpenID Connect
-- OAuth 2.0
-- Scopes
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Keller Williams Agentic Access](https://apis.io/agentic-access/keller-williams/keller-williams-agentic-access/)
 
-- [OpenID Connect Discovery](authentication/keller-williams-openid-configuration.json)
+#### Examples (1)
+
+Example requests and responses.
+
+- [Keller Williams Listings Search Examples](https://apis.io/examples/keller-williams/keller-williams-listings-search-examples/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [KW Listings Search](https://apis.io/collections/keller-williams/open-keller-williams-listings-search/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Keller Williams Listings Search Overlay](https://apis.io/overlays/keller-williams/keller-williams-listings-search-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Keller Williams Authentication](https://apis.io/security/keller-williams/keller-williams-authentication/)
+- [Keller Williams Domain Security](https://apis.io/security/keller-williams/keller-williams-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Keller Williams Scopes](https://apis.io/scopes/keller-williams/keller-williams-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.kw.com/)
 - [Documentation](https://developer.kw.com/getting-started)
-- [Documentation](https://developer.kw.com/docs-authentication)
-- [Documentation](https://developer.kw.com/docs-refresh-token)
+- [Getting started](https://developer.kw.com/getting-started)
+- [API reference](https://developer.kw.com/docs/listingskww/1/overview)
+- [Sign up](https://share.hsforms.com/2JQHe7zfKRLSo_cXKjy-5nwbg45/)
+- [Support](https://developer.kw.com/support)
+- [Blog](https://outfront.kw.com/)
+- [Terms of service](https://developer.kw.com/terms-and-conditions)
+- [Privacy policy](https://legal.kw.com/privacy-policy)
+- [GitHub](https://github.com/KWRI)
+- [Status](https://status.kw.com/)
 
-### KW Marketplace Subscription & Metered Billing API
+## API Evangelist rating
 
-The partner-facing surface behind the KW Marketplace. Keller Williams pushes subscription lifecycle events to a partner's secured HTTPS endpoint, and partners report consumption back through a pre-configured metered billing endpoint. Sample payloads and an error-code reference are published publicly; no OpenAPI document is offered for this surface.
+**Kin Score 36.0** — thin · rubric 0.24.0 · scored 2026-10-17
 
-- **Human URL:** [https://developer.kw.com/marketplace-documentation](https://developer.kw.com/marketplace-documentation)
-- **Base URL:** `https://partners.api.kw.com/v1`
+| Facet | Score |
+|---|---|
+| Discoverability | 74.1 |
+| Contract quality | 61.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 19.6 |
+| Access clarity | 23.7 |
 
-#### Tags
+**Agent readiness 34.9** — agent-ready
 
-- Marketplace
-- Subscriptions
-- Billing
-- Events
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-#### Properties
+**Regulatory alignment 28.7** — Securities & Market Data
 
-- [Documentation](https://developer.kw.com/marketplace-documentation)
-- [Documentation](https://developer.kw.com/metered-billing)
-- [Documentation](https://developer.kw.com/subscription-lifecycle-walkthrough)
-- [Documentation](https://developer.kw.com/docs-synchronous-subscription)
-- [Documentation](https://developer.kw.com/docs-asynchronous-subscription)
-- [Documentation](https://developer.kw.com/docs-error-codes-reference)
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/keller-williams/](https://apis.io/providers/keller-williams/).
 
-## Access
+## How this profile is made
 
-| Question | Answer |
-| --- | --- |
-| Developer portal | https://developer.kw.com/ (HTTP 200, Apigee integrated portal, site id `devhub-apigee-prod-kwri`) |
-| Access gate | Application + approval, then a signed API License Agreement |
-| What you must sign or join | Submit the "Apply to Integrate" / "Become A Partner" HubSpot application, receive KWRI approval and a DevHub account, accept the KW API License Agreement (effective 2023-08-02) and the KWRI API Terms of Use |
-| Auth model | OAuth 2.0 / OpenID Connect (authorization code, PKCE S256) plus API key + secret; Basic auth for non-user-specific resources; SAML sign-in for the DevHub portal itself |
-| RESO posture | No RESO reference anywhere; not listed among the 578 organizations in the RESO certification directory |
-| Open data | None |
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-## Maintainers
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Keller Williams: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-- Kin Lane — kin@apievangelist.com
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/keller-williams/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
